@@ -1,5 +1,6 @@
 package tech.relativelyobjective.monsterbrewery.pieces;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.BoxLayout;
@@ -106,20 +107,26 @@ public class PanelMonsterOverview extends JPanel {
 		constraints.gridy = 0;
 		//Name
 		constraints.gridx = 0;
+		adjustGridBagAnchor(constraints);
 		super.add(new JLabel("Name"), constraints);
 		name = new JTextField(20);
 		constraints.gridx = 1;
+		adjustGridBagAnchor(constraints);
 		super.add(name, constraints);
 		constraints.gridy++;
 		//Size
 		constraints.gridx = 0;
+		adjustGridBagAnchor(constraints);
 		super.add(new JLabel("Size"), constraints);
 		size = new JComboBox(sizeList);
+		size.setMinimumSize(new Dimension(100,100));
 		constraints.gridx = 1;
+		adjustGridBagAnchor(constraints);
 		super.add(size, constraints);
 		constraints.gridy++;
 		//Type / Tag
 		constraints.gridx = 0;
+		adjustGridBagAnchor(constraints);
 		super.add(new JLabel("Type / Tag"), constraints);
 		JPanel typeTagRow = new JPanel();
 			type = new JComboBox(typeList);
@@ -130,39 +137,46 @@ public class PanelMonsterOverview extends JPanel {
 			typeTagRow.add(type);
 			typeTagRow.add(tag);
 			constraints.gridx = 1;
+			adjustGridBagAnchor(constraints);
 		super.add(typeTagRow, constraints);
 		constraints.gridy++;
 		//Alignment
 		constraints.gridx = 0;
+		adjustGridBagAnchor(constraints);
 		super.add(new JLabel("Alignment"), constraints);
 		alignment = new JComboBox(alignmentList);
 		constraints.gridx = 1;
+		adjustGridBagAnchor(constraints);
 		super.add(alignment, constraints);
 		constraints.gridy++;
 		//Armor
 		constraints.gridx = 0;
+		adjustGridBagAnchor(constraints);
 		super.add(new JLabel("Armor Class"), constraints);
 		JPanel armorRow = new JPanel();
 			armorRow.setLayout(new BoxLayout(armorRow, BoxLayout.X_AXIS));
 			armorClass = new JSpinner(new SpinnerNumberModel(0,0,50,1));
 			armorRow.add(armorClass);
-			armorType = new JTextField();
+			armorType = new JTextField(16);
 			armorRow.add(armorType);
 		constraints.gridx = 1;
+		adjustGridBagAnchor(constraints);
 		super.add(armorRow, constraints);
 		constraints.gridy++;
 		//Hit Points
 		constraints.gridx = 0;
+		adjustGridBagAnchor(constraints);
 		super.add(new JLabel("Hit Points"), constraints);
 		JPanel hitPointRow = new JPanel();
 			hitPointRow.setLayout(new BoxLayout(hitPointRow, BoxLayout.X_AXIS));
-			hitPointDice = new JSpinner(new SpinnerNumberModel(0,0,100,1));
+			hitPointDice = new JSpinner(new SpinnerNumberModel(0,0,50,1));
 			hitPointRow.add(hitPointDice);
 			hitPointDiceCount = new JComboBox(diceList);
 			hitPointRow.add(hitPointDiceCount);
-			hitPointCount = new JTextField();
+			hitPointCount = new JTextField(9);
 			hitPointRow.add(hitPointCount);
 		constraints.gridx = 1;
+		adjustGridBagAnchor(constraints);
 		super.add(hitPointRow, constraints);
 		constraints.gridy++;
 		//Hit Point Buttons
@@ -172,5 +186,15 @@ public class PanelMonsterOverview extends JPanel {
 			JButton rollButton = new JButton("Roll HP");
 			hitPointButtons.add(rollButton);
 		super.add(hitPointButtons, constraints);
+	}
+	private void adjustGridBagAnchor(GridBagConstraints gridBag) {
+		if (gridBag == null) {
+			return;
+		}
+		if (gridBag.gridx == 0) {
+			gridBag.anchor = GridBagConstraints.EAST;
+		} else {
+			gridBag.anchor = GridBagConstraints.WEST;
+		}
 	}
 }
