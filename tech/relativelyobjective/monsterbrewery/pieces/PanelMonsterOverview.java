@@ -1,5 +1,6 @@
 package tech.relativelyobjective.monsterbrewery.pieces;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -154,11 +155,11 @@ public class PanelMonsterOverview extends JPanel {
 		adjustGridBagAnchor(constraints);
 		super.add(new JLabel("Armor Class"), constraints);
 		JPanel armorRow = new JPanel();
-			armorRow.setLayout(new BoxLayout(armorRow, BoxLayout.X_AXIS));
+			armorRow.setLayout(new BorderLayout());
 			armorClass = new JSpinner(new SpinnerNumberModel(0,0,50,1));
-			armorRow.add(armorClass);
+			armorRow.add(armorClass, BorderLayout.WEST);
 			armorType = new JTextField(16);
-			armorRow.add(armorType);
+			armorRow.add(armorType, BorderLayout.EAST);
 		constraints.gridx = 1;
 		adjustGridBagAnchor(constraints);
 		super.add(armorRow, constraints);
@@ -168,13 +169,13 @@ public class PanelMonsterOverview extends JPanel {
 		adjustGridBagAnchor(constraints);
 		super.add(new JLabel("Hit Points"), constraints);
 		JPanel hitPointRow = new JPanel();
-			hitPointRow.setLayout(new BoxLayout(hitPointRow, BoxLayout.X_AXIS));
+			hitPointRow.setLayout(new BorderLayout());
 			hitPointDice = new JSpinner(new SpinnerNumberModel(0,0,50,1));
-			hitPointRow.add(hitPointDice);
+			hitPointRow.add(hitPointDice, BorderLayout.WEST);
 			hitPointDiceCount = new JComboBox(diceList);
-			hitPointRow.add(hitPointDiceCount);
+			hitPointRow.add(hitPointDiceCount, BorderLayout.CENTER);
 			hitPointCount = new JTextField(9);
-			hitPointRow.add(hitPointCount);
+			hitPointRow.add(hitPointCount, BorderLayout.EAST);
 		constraints.gridx = 1;
 		adjustGridBagAnchor(constraints);
 		super.add(hitPointRow, constraints);
