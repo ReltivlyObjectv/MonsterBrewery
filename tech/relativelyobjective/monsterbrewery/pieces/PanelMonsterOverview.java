@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,9 +28,9 @@ public class PanelMonsterOverview extends JPanel {
 	private final JComboBox type;
 	private final JComboBox tag;
 	private final JComboBox alignment;
-	private final JComboBox hitPointDiceCount;
+	private final JComboBox hitPointDiceType;
 	private final JSpinner armorClass;
-	private final JSpinner hitPointDice;
+	private final JSpinner hitPointDiceCount;
 	public final String[] sizeList = {
 		"Tiny",
 		"Small",
@@ -170,10 +171,10 @@ public class PanelMonsterOverview extends JPanel {
 		super.add(new JLabel("Hit Points"), constraints);
 		JPanel hitPointRow = new JPanel();
 			hitPointRow.setLayout(new BorderLayout());
-			hitPointDice = new JSpinner(new SpinnerNumberModel(0,0,50,1));
-			hitPointRow.add(hitPointDice, BorderLayout.WEST);
-			hitPointDiceCount = new JComboBox(diceList);
-			hitPointRow.add(hitPointDiceCount, BorderLayout.CENTER);
+			hitPointDiceCount = new JSpinner(new SpinnerNumberModel(0,0,50,1));
+			hitPointRow.add(hitPointDiceCount, BorderLayout.WEST);
+			hitPointDiceType = new JComboBox(diceList);
+			hitPointRow.add(hitPointDiceType, BorderLayout.CENTER);
 			hitPointCount = new JTextField(9);
 			hitPointRow.add(hitPointCount, BorderLayout.EAST);
 		constraints.gridx = 1;
@@ -183,8 +184,14 @@ public class PanelMonsterOverview extends JPanel {
 		//Hit Point Buttons
 		JPanel hitPointButtons = new JPanel();
 			JButton generateButton = new JButton("Generate HP");
+			generateButton.addActionListener((ActionEvent e) -> {
+				calculateHitPointString();
+			});
 			hitPointButtons.add(generateButton);
 			JButton rollButton = new JButton("Roll HP");
+			rollButton.addActionListener((ActionEvent e) -> {
+				calculateRandomHitPointString();
+			});
 			hitPointButtons.add(rollButton);
 		super.add(hitPointButtons, constraints);
 	}
@@ -197,5 +204,69 @@ public class PanelMonsterOverview extends JPanel {
 		} else {
 			gridBag.anchor = GridBagConstraints.WEST;
 		}
+	}
+	public String getMonsterName() {
+		return name.getText();
+	}
+	public String getArmorType() {
+		return armorType.getText();
+	}
+	public String getMonsterSize() {
+		return (String) size.getSelectedItem();
+	}
+	public String getMonsterType() {
+		return (String) type.getSelectedItem();
+	}
+	public String getMonsterTag() {
+		return (String) tag.getSelectedItem();
+	}
+	public String getAlignment() {
+		return (String) alignment.getSelectedItem();
+	}
+	public String getHitPointString() {
+		return hitPointCount.getText();
+	}
+	public int getHitPointDiceCount() {
+		return (int) hitPointDiceCount.getValue();
+	}
+	public String getHitPointDiceType() {
+		return (String) hitPointDiceType.getSelectedItem();
+	}
+	public int getArmorClass() {
+		return (int) armorClass.getValue();
+	}
+	public void calculateHitPointString() {
+		int hitPointDiceCount = getHitPointDiceCount();
+		String diceTypeString = getHitPointDiceType().replace("d", "");
+		Integer diceType;
+		try {
+			diceType = new Integer(diceTypeString);
+		} catch(NumberFormatException e) {
+			System.out.printf("Could not parse: %s\n", diceTypeString);
+			return;
+		}
+		int maxValue = diceType * hitPointDiceCount;
+		int averageValue = maxValue / 2;
+		String text = String.format("(%dd%d) %s", 
+			hitPointDiceCount, diceType, averageValue);
+		hitPointCount.setText(text);
+	}
+	public void calculateRandomHitPointString() {
+		int hitPointDiceCount = getHitPointDiceCount();
+		String diceTypeString = getHitPointDiceType().replace("d", "");
+		Integer diceType;
+		try {
+			diceType = new Integer(diceTypeString);
+		} catch(NumberFormatException e) {
+			System.out.printf("Could not parse: %s\n", diceTypeString);
+			return;
+		}
+		int value = 0;
+		for (int i = 0; i < hitPointDiceCount; i++) {
+			value += 1 + (int) (Math.random() * diceType);
+		}
+		String text = String.format("(%dd%d) %s", 
+			hitPointDiceCount, diceType, value);
+		hitPointCount.setText(text);
 	}
 }
