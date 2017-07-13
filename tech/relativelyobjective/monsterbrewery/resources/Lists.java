@@ -1,0 +1,81 @@
+package tech.relativelyobjective.monsterbrewery.resources;
+
+/**
+ *
+ * @author ReltivlyObjectv
+ * Contact: me@relativelyobjective.tech
+ * 
+ */
+public class Lists {
+	public static final String[] SIZE = {
+		"Tiny",
+		"Small",
+		"Medium",
+		"Large",
+		"Huge",
+		"Gargantuan"
+	};
+	public static final String[] ALIGNMENT = {
+		"Neutral Good",
+		"Neutral Evil",
+		"True Neutral",
+		"Lawful Good",
+		"Lawful Neutral",
+		"Lawful Evil",
+		"Chaotic Good",
+		"Chaotic Neutral",
+		"Chaotic Evil"
+	};
+	public static final String[] DICE = {
+		"d4",
+		"d6",
+		"d8",
+		"d10",
+		"d12",
+		"d20"
+	};
+	public static final String[] TYPE = {
+		"Aberration",
+		"Beast",
+		"Celestial",
+		"Construct",
+		"Dragon",
+		"Elemental",
+		"Fey",
+		"Fiend",
+		"Giant",
+		"Humanoid",
+		"Monstrosity",
+		"Ooze",
+		"Plant",
+		"Undead"
+	};
+	public static final String[] TAG = {
+		"Aarakocra",
+		"Bullywug",
+		"Demon",
+		"Devil",
+		"Dwarf",
+		"Elf",
+		"Gith",
+		"Gnoll",
+		"Gnome",
+		"Goblinoid",
+		"Grimlock",
+		"Human",
+		"Kenku",
+		"Kobold",
+		"Kuo-toa",
+		"Lizardfolk",
+		"Merfolk",
+		"Orc",
+		"Quaggoth",
+		"Sahuagin",
+		"Shapechanger",
+		"Thri-Kreen",
+		"Titan",
+		"Troglodyte",
+		"Yuan-Ti",
+		"yugoloth"
+	};
+}

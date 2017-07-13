@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import tech.relativelyobjective.monsterbrewery.resources.Lists;
 
 /**
  *
@@ -31,77 +32,6 @@ public class PanelMonsterOverview extends JPanel {
 	private final JComboBox hitPointDiceType;
 	private final JSpinner armorClass;
 	private final JSpinner hitPointDiceCount;
-	public final String[] sizeList = {
-		"Tiny",
-		"Small",
-		"Medium",
-		"Large",
-		"Huge",
-		"Gargantuan"
-	};
-	public final String[] alignmentList = {
-		"Neutral Good",
-		"Neutral Evil",
-		"True Neutral",
-		"Lawful Good",
-		"Lawful Neutral",
-		"Lawful Evil",
-		"Chaotic Good",
-		"Chaotic Neutral",
-		"Chaotic Evil"
-	};
-	public final String[] diceList = {
-		"d4",
-		"d6",
-		"d8",
-		"d10",
-		"d12",
-		"d20"
-	};
-	public final String[] typeList = {
-		"Aberration",
-		"Beast",
-		"Celestial",
-		"Construct",
-		"Dragon",
-		"Elemental",
-		"Fey",
-		"Fiend",
-		"Giant",
-		"Humanoid",
-		"Monstrosity",
-		"Ooze",
-		"Plant",
-		"Undead"
-	};
-	public final String[] tagList = {
-		"Aarakocra",
-		"Bullywug",
-		"Demon",
-		"Devil",
-		"Dwarf",
-		"Elf",
-		"Gith",
-		"Gnoll",
-		"Gnome",
-		"Goblinoid",
-		"Grimlock",
-		"Human",
-		"Kenku",
-		"Kobold",
-		"Kuo-toa",
-		"Lizardfolk",
-		"Merfolk",
-		"Orc",
-		"Quaggoth",
-		"Sahuagin",
-		"Shapechanger",
-		"Thri-Kreen",
-		"Titan",
-		"Troglodyte",
-		"Yuan-Ti",
-		"yugoloth"
-	};
 	
 	public PanelMonsterOverview() {
 		super.setLayout(new GridBagLayout());
@@ -120,7 +50,7 @@ public class PanelMonsterOverview extends JPanel {
 		constraints.gridx = 0;
 		adjustGridBagAnchor(constraints);
 		super.add(new JLabel("Size"), constraints);
-		size = new JComboBox(sizeList);
+		size = new JComboBox(Lists.SIZE);
 		size.setMinimumSize(new Dimension(100,100));
 		constraints.gridx = 1;
 		adjustGridBagAnchor(constraints);
@@ -131,9 +61,9 @@ public class PanelMonsterOverview extends JPanel {
 		adjustGridBagAnchor(constraints);
 		super.add(new JLabel("Type / Tag"), constraints);
 		JPanel typeTagRow = new JPanel();
-			type = new JComboBox(typeList);
+			type = new JComboBox(Lists.TYPE);
 			type.setEditable(true);
-			tag = new JComboBox(tagList);
+			tag = new JComboBox(Lists.TAG);
 			tag.setEditable(true);
 			typeTagRow.setLayout(new BoxLayout(typeTagRow, BoxLayout.LINE_AXIS));
 			typeTagRow.add(type);
@@ -146,7 +76,7 @@ public class PanelMonsterOverview extends JPanel {
 		constraints.gridx = 0;
 		adjustGridBagAnchor(constraints);
 		super.add(new JLabel("Alignment"), constraints);
-		alignment = new JComboBox(alignmentList);
+		alignment = new JComboBox(Lists.ALIGNMENT);
 		constraints.gridx = 1;
 		adjustGridBagAnchor(constraints);
 		super.add(alignment, constraints);
@@ -173,7 +103,7 @@ public class PanelMonsterOverview extends JPanel {
 			hitPointRow.setLayout(new BorderLayout());
 			hitPointDiceCount = new JSpinner(new SpinnerNumberModel(0,0,50,1));
 			hitPointRow.add(hitPointDiceCount, BorderLayout.WEST);
-			hitPointDiceType = new JComboBox(diceList);
+			hitPointDiceType = new JComboBox(Lists.DICE);
 			hitPointRow.add(hitPointDiceType, BorderLayout.CENTER);
 			hitPointCount = new JTextField(9);
 			hitPointRow.add(hitPointCount, BorderLayout.EAST);
