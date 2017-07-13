@@ -1,10 +1,9 @@
 package tech.relativelyobjective.monsterbrewery.pieces;
 
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 
 /**
  *
@@ -17,14 +16,6 @@ public class PanelMonsterStatLists extends JPanel {
 	private final PanelMonsterStatSaving savingThrows;
 	private final PanelMonsterStatSpeed speed;
 	
-	private class JLabelBold extends JLabel {
-		public JLabelBold(String label) {
-			super(label);
-			Font font = super.getFont();
-			Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
-			super.setFont(boldFont);
-		}
-	}
 	
 	public PanelMonsterStatLists() {
 		super.setLayout(new GridBagLayout());
