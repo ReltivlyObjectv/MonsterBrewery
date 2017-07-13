@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 public class PanelMonsterOptions extends JPanel {
 	private final PanelMonsterOverview overview;
 	private final PanelMonsterAttributes attributes;
+	private final PanelMonsterStatLists statLists;
 	
 	public PanelMonsterOptions() {
 		super.setLayout(new BorderLayout());
@@ -22,5 +23,7 @@ public class PanelMonsterOptions extends JPanel {
 			attributes = new PanelMonsterAttributes();
 			overviewElements.add(attributes, BorderLayout.EAST);
 		super.add(overviewElements, BorderLayout.NORTH);
+		statLists = new PanelMonsterStatLists();
+		super.add(statLists, BorderLayout.CENTER);
 	}
 }
