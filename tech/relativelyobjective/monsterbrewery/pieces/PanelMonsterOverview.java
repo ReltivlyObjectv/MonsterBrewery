@@ -19,16 +19,23 @@ import javax.swing.SpinnerNumberModel;
  */
 public class PanelMonsterOverview extends JPanel {
 	private final JTextField name;
-	private final JTextField size;
 	private final JTextField armorType;
 	private final JTextField hitPointCount;
+	private final JComboBox size;
 	private final JComboBox type;
 	private final JComboBox tag;
 	private final JComboBox alignment;
 	private final JComboBox hitPointDiceCount;
 	private final JSpinner armorClass;
 	private final JSpinner hitPointDice;
-
+	public final String[] sizeList = {
+		"Tiny",
+		"Small",
+		"Medium",
+		"Large",
+		"Huge",
+		"Gargantuan"
+	};
 	public final String[] alignmentList = {
 		"Neutral Good",
 		"Neutral Evil",
@@ -48,6 +55,50 @@ public class PanelMonsterOverview extends JPanel {
 		"d12",
 		"d20"
 	};
+	public final String[] typeList = {
+		"Aberration",
+		"Beast",
+		"Celestial",
+		"Construct",
+		"Dragon",
+		"Elemental",
+		"Fey",
+		"Fiend",
+		"Giant",
+		"Humanoid",
+		"Monstrosity",
+		"Ooze",
+		"Plant",
+		"Undead"
+	};
+	public final String[] tagList = {
+		"Aarakocra",
+		"Bullywug",
+		"Demon",
+		"Devil",
+		"Dwarf",
+		"Elf",
+		"Gith",
+		"Gnoll",
+		"Gnome",
+		"Goblinoid",
+		"Grimlock",
+		"Human",
+		"Kenku",
+		"Kobold",
+		"Kuo-toa",
+		"Lizardfolk",
+		"Merfolk",
+		"Orc",
+		"Quaggoth",
+		"Sahuagin",
+		"Shapechanger",
+		"Thri-Kreen",
+		"Titan",
+		"Troglodyte",
+		"Yuan-Ti",
+		"yugoloth"
+	};
 	
 	public PanelMonsterOverview() {
 		super.setLayout(new GridBagLayout());
@@ -63,7 +114,7 @@ public class PanelMonsterOverview extends JPanel {
 		//Size
 		constraints.gridx = 0;
 		super.add(new JLabel("Size"), constraints);
-		size = new JTextField(20);
+		size = new JComboBox(sizeList);
 		constraints.gridx = 1;
 		super.add(size, constraints);
 		constraints.gridy++;
@@ -71,9 +122,9 @@ public class PanelMonsterOverview extends JPanel {
 		constraints.gridx = 0;
 		super.add(new JLabel("Type / Tag"), constraints);
 		JPanel typeTagRow = new JPanel();
-			type = new JComboBox();
+			type = new JComboBox(typeList);
 			type.setEditable(true);
-			tag = new JComboBox();
+			tag = new JComboBox(tagList);
 			tag.setEditable(true);
 			typeTagRow.setLayout(new BoxLayout(typeTagRow, BoxLayout.LINE_AXIS));
 			typeTagRow.add(type);
