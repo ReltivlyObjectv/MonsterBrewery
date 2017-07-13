@@ -45,9 +45,9 @@ public class PanelMonsterAttributes extends JPanel {
 			options.add(edit, buttonWeight);
 			delete = new JButton("Delete");
 			options.add(delete, buttonWeight);
-			up = new JButton("Scroll Up");
+			up = new JButton("Up");
 			options.add(up, buttonWeight);
-			down = new JButton("Scroll Down");
+			down = new JButton("Down");
 			options.add(down, buttonWeight);
 		constraints.gridy++;
 		super.add(options, constraints);
