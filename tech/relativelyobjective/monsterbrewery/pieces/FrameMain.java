@@ -22,8 +22,10 @@ public class FrameMain extends JFrame {
 		super.add(previewWindow, BorderLayout.EAST);
 		super.add(monsterOptions, BorderLayout.WEST);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		super.setSize(800, 500);
-		super.setMinimumSize(new Dimension(400,500));
+		super.setPreferredSize(new Dimension(1000, 500));
+		super.setMinimumSize(super.getPreferredSize());
+		super.setMaximumSize(super.getPreferredSize());
+		super.setSize(super.getPreferredSize());
 		super.setVisible(true);
 	}
 }
