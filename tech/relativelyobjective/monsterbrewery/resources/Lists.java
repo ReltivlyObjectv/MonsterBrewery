@@ -95,9 +95,39 @@ public class Lists {
 		"Hover"
 	};
 	public static final String[] SENSES = {
-		//TODO
+		"",
+		"Passive Perception",
+		"Blindsight",
+		"Darkvision",
+		"Tremorsense",
+		"Truesight"
 	};
 	public static final String[] LANGUAGES = {
-		//TODO
+		"",
+		"Abyssal",
+		"Aquan",
+		"Auran",
+		"Celestial",
+		"Common",
+		"Deep Speech",
+		"Draconic",
+		"Druidic",
+		"Dwarvish",
+		"Elvish",
+		"Giant",
+		"Gnomish",
+		"Goblin",
+		"Gnoll",
+		"Halfling",
+		"Ignan",
+		"Infernal",
+		"Orc",
+		"Primordial",
+		"Sylvan",
+		"Terran",
+		"Undercommon",
+		"Worg",
+		"White Wolf",
+		"Yeti"
 	};
 }
