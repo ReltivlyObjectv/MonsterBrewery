@@ -6,7 +6,7 @@ package tech.relativelyobjective.monsterbrewery.resources;
  * Contact: me@relativelyobjective.tech
  * 
  */
-public class Attributes {
+public class Abilities {
 	public static int calculateModifier(int abilityScore) {
 		return (abilityScore / 2) - 5;
 	}

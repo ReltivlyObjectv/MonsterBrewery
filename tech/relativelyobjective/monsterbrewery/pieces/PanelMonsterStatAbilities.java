@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
-import tech.relativelyobjective.monsterbrewery.resources.Attributes;
+import tech.relativelyobjective.monsterbrewery.resources.Abilities;
 import tech.relativelyobjective.monsterbrewery.resources.Lists;
 
 /**
@@ -27,7 +27,7 @@ public class PanelMonsterStatAbilities extends JPanel {
 			valueSpinner = new JSpinner(new SpinnerNumberModel(1,1,30,1));
 			modifier = new JLabel("-5");
 			valueSpinner.addChangeListener((ChangeEvent e) -> {
-				int mod = Attributes.calculateModifier((int) valueSpinner.getValue());
+				int mod = Abilities.calculateModifier((int) valueSpinner.getValue());
 				String modLabel = mod < 0 ? "" + mod : "+" + mod;
 				modifier.setText(modLabel);
 			});
