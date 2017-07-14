@@ -1,5 +1,7 @@
 package tech.relativelyobjective.monsterbrewery.attributes;
 
+import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
+
 /**
  *
  * @author ReltivlyObjectv
@@ -7,5 +9,5 @@ package tech.relativelyobjective.monsterbrewery.attributes;
  * 
  */
 public interface Attribute {
-	public void editAttribute();
+	public void editAttribute(FrameMain mainFrame);
 }

@@ -1,5 +1,6 @@
 package tech.relativelyobjective.monsterbrewery.pieces;
 
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -74,7 +75,16 @@ public class PanelMonsterAttributes extends JPanel {
 		AttributeHandler.deleteAttribute(attribList.getSelectedIndex());
 	}
 	private void editSelected() {
-		AttributeHandler.editItem(attribList.getSelectedIndex());
+		//Assumes this is an indirect child of the FrameMain
+		Container mainFrame = super.getParent();
+		while (!(mainFrame instanceof FrameMain)) {
+			if(mainFrame == null) {
+				System.out.printf("Rogue Attribute Panel! Not a child of a FrameMain class.\n");
+				return;
+			}
+			mainFrame = mainFrame.getParent();
+		}
+		AttributeHandler.editItem(attribList.getSelectedIndex(), (FrameMain) mainFrame);
 	}
 	private void moveSelected(boolean up) {
 		AttributeHandler.shiftItem(attribList.getSelectedIndex(), up);

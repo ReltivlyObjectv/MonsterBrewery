@@ -1,5 +1,14 @@
 package tech.relativelyobjective.monsterbrewery.attributes;
 
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JTextField;
+import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
+
 /**
  *
  * @author ReltivlyObjectv
@@ -12,8 +21,28 @@ public class Language implements Attribute {
 	public Language(String value) {
 		lang = value;
 	}
-	public void editAttribute() {
-		//TODO
+	@Override
+	public void editAttribute(FrameMain mainFrame) {
+		JDialog editWindow = new JDialog(mainFrame, "Edit Language", true);
+		editWindow.setPreferredSize(new Dimension(400,100));
+		editWindow.setSize(editWindow.getPreferredSize());
+		editWindow.setMaximumSize(editWindow.getPreferredSize());
+		editWindow.setMinimumSize(editWindow.getPreferredSize());
+		editWindow.setLayout(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+		JTextField text = new JTextField(20);
+		text.setText(lang);
+		constraints.gridy = 0;
+		constraints.gridx = 0;
+		editWindow.add(text, constraints);
+		JButton saveButton = new JButton("Save Language");
+		saveButton.addActionListener((ActionEvent e) -> {
+			lang = text.getText();
+			editWindow.dispose();
+		});
+		constraints.gridx++;
+		editWindow.add(saveButton, constraints);
+		editWindow.setVisible(true);
 	}
 	@Override
 	public String toString() {

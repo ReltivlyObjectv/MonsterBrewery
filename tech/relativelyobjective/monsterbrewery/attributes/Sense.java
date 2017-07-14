@@ -1,5 +1,7 @@
 package tech.relativelyobjective.monsterbrewery.attributes;
 
+import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
+
 /**
  *
  * @author ReltivlyObjectv
@@ -14,8 +16,9 @@ public class Sense implements Attribute {
 		sense = value;
 		magnitude = mag;
 	}
-	public void editAttribute() {
+	public void editAttribute(FrameMain mainFrame) {
 		//TODO
+		System.out.printf("%s\n", mainFrame.toString());
 	}
 	@Override
 	public String toString() {

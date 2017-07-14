@@ -3,6 +3,7 @@ package tech.relativelyobjective.monsterbrewery;
 import java.util.LinkedList;
 import java.util.List;
 import tech.relativelyobjective.monsterbrewery.attributes.Attribute;
+import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 import tech.relativelyobjective.monsterbrewery.pieces.PanelMonsterAttributes;
 
 /**
@@ -86,10 +87,10 @@ public class AttributeHandler {
 		allAttributes = newList;
 		updateList();
 	}
-	public static void editItem(Attribute a) {
-		a.editAttribute();
+	public static void editItem(Attribute a, FrameMain mainFrame) {
+		a.editAttribute(mainFrame);
 	}
-	public static void editItem(int index) {
+	public static void editItem(int index, FrameMain mainFrame) {
 		if (index >= allAttributes.size() || index < 0) {
 			//Out of bounds
 			return;
@@ -97,7 +98,7 @@ public class AttributeHandler {
 		int localIndex = 0;
 		for(Attribute a : allAttributes) {
 			if (localIndex == index) {
-				editItem(a);
+				editItem(a, mainFrame);
 				return;
 			}
 			localIndex++;
