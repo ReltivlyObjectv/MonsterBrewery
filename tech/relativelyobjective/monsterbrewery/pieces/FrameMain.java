@@ -22,7 +22,7 @@ public class FrameMain extends JFrame {
 		super.add(previewWindow, BorderLayout.CENTER);
 		super.add(monsterOptions, BorderLayout.WEST);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		super.setPreferredSize(new Dimension(1000, 500));
+		super.setPreferredSize(new Dimension(1000, 600));
 		super.setMinimumSize(super.getPreferredSize());
 		super.setMaximumSize(super.getPreferredSize());
 		super.setSize(super.getPreferredSize());

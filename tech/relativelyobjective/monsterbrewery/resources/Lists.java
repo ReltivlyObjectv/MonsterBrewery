@@ -134,4 +134,46 @@ public class Lists {
 		"White Wolf",
 		"Yeti"
 	};
+	public static final String[] SKILLS = {
+		"",
+		"Athletics",
+		"Acrobatics",
+		"Sleight of Hand",
+		"Stealth",
+		"Arcana",
+		"History",
+		"Investigation",
+		"Nature",
+		"Religion",
+		"Animal Handling",
+		"Insight",
+		"Medicine",
+		"Perception",
+		"Survival",
+		"Deception",
+		"Intimidation",
+		"Performance",
+		"Persuasion"
+	};
+	public static final String[] SKILLS_ATTRIB = {
+		"",
+		"Athletics (Str)",
+		"Acrobatics (Dex)",
+		"Sleight of Hand (Dex)",
+		"Stealth (Dex)",
+		"Arcana (Int)",
+		"History (Int)",
+		"Investigation (Int)",
+		"Nature (Int)",
+		"Religion (Int)",
+		"Animal Handling (Wis)",
+		"Insight (Wis)",
+		"Medicine (Wis)",
+		"Perception (Wis)",
+		"Survival (Wis)",
+		"Deception (Cha)",
+		"Intimidation (Cha)",
+		"Performance (Cha)",
+		"Persuasion (Cha)"
+	};
 }
