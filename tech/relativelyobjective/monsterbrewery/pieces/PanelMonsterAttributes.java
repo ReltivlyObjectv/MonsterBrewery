@@ -3,6 +3,7 @@ package tech.relativelyobjective.monsterbrewery.pieces;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -43,12 +44,24 @@ public class PanelMonsterAttributes extends JPanel {
 			buttonWeight.weightx = .25;
 			buttonWeight.weighty = 1;
 			edit = new JButton("Edit");
+			edit.addActionListener((ActionEvent e) -> {
+				editSelected();
+			});
 			options.add(edit, buttonWeight);
 			delete = new JButton("Delete");
+			delete.addActionListener((ActionEvent e) -> {
+				deleteSelected();
+			});
 			options.add(delete, buttonWeight);
 			up = new JButton("Up");
+			up.addActionListener((ActionEvent e) -> {
+				moveSelected(true);
+			});
 			options.add(up, buttonWeight);
 			down = new JButton("Down");
+			down.addActionListener((ActionEvent e) -> {
+				moveSelected(false);
+			});
 			options.add(down, buttonWeight);
 		constraints.gridy++;
 		super.add(options, constraints);
@@ -56,5 +69,14 @@ public class PanelMonsterAttributes extends JPanel {
 	}
 	public JList getList() {
 		return attribList;
+	}
+	private void deleteSelected() {
+		AttributeHandler.deleteAttribute(attribList.getSelectedIndex());
+	}
+	private void editSelected() {
+		AttributeHandler.editItem(attribList.getSelectedIndex());
+	}
+	private void moveSelected(boolean up) {
+		AttributeHandler.shiftItem(attribList.getSelectedIndex(), up);
 	}
 }

@@ -27,6 +27,40 @@ public class AttributeHandler {
 		allAttributes.remove(a);
 		updateList();
 	}
+	public static void deleteAttribute(int index) {
+		if (index >= allAttributes.size() || index < 0) {
+			//Out of bounds
+			return;
+		}
+		int localIndex = 0;
+		for(Attribute a : allAttributes) {
+			if (localIndex == index) {
+				deleteAttribute(a);
+				return;
+			}
+			localIndex++;
+		}
+	}
+	public static void shiftItem (int index, boolean up) {
+		//TODO
+	}
+	public static void editItem(Attribute a) {
+		//TODO
+	}
+	public static void editItem(int index) {
+		if (index >= allAttributes.size() || index < 0) {
+			//Out of bounds
+			return;
+		}
+		int localIndex = 0;
+		for(Attribute a : allAttributes) {
+			if (localIndex == index) {
+				editItem(a);
+				return;
+			}
+			localIndex++;
+		}
+	}
 	public static void updateList() {
 		display.getList().setListData(allAttributes.toArray());
 	}
