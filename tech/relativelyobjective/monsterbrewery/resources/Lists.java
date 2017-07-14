@@ -94,4 +94,10 @@ public class Lists {
 		"Fly",
 		"Hover"
 	};
+	public static final String[] SENSES = {
+		//TODO
+	};
+	public static final String[] LANGUAGES = {
+		//TODO
+	};
 }
