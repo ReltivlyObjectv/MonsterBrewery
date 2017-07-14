@@ -100,7 +100,6 @@ public class Lists {
 	};
 	public static final String[] SENSES = {
 		"",
-		"Passive Perception",
 		"Blindsight",
 		"Darkvision",
 		"Tremorsense",
@@ -153,7 +152,8 @@ public class Lists {
 		"Deception",
 		"Intimidation",
 		"Performance",
-		"Persuasion"
+		"Persuasion",
+		"Passive Perception"
 	};
 	public static final String[] SKILLS_ATTRIB = {
 		"",

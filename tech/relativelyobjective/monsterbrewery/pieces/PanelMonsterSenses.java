@@ -34,7 +34,7 @@ public class PanelMonsterSenses extends JPanel {
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.gridx = 0;
 		constraints.gridy = 0;
-		super.add(new JLabel("Sense/Passive Perception"));
+		super.add(new JLabel("Sense"));
 		constraints.gridx = 1;
 		super.add(new JLabel("Distance"));
 		constraints.gridy++;

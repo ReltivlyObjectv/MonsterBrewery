@@ -54,11 +54,7 @@ public class Sense implements Attribute {
 	}
 	@Override
 	public String toString() {
-		if (sense.compareTo("Passive Perception") == 0) {
-			return String.format("Sense: %s %d", sense, magnitude);
-		} else {
-			return String.format("Sense: %s (%d ft.)", sense, magnitude);
-		}
+		return String.format("Sense: %s (%d ft.)", sense, magnitude);
 	}
 	public String getSense() {
 		return sense;
