@@ -15,8 +15,7 @@ public class PanelMonsterOptions extends JPanel {
 	private final PanelMonsterOverview overview;
 	private final PanelMonsterAttributes attributes;
 	private final PanelMonsterStatLists statLists;
-	private final PanelMonsterSensesLanguages sensesLanguages;
-	private final PanelMonsterSkills skills;
+	private final PanelMonsterMiscAddButtons miscButtons;
 	
 	public PanelMonsterOptions() {
 		super.setLayout(new GridBagLayout());
@@ -33,11 +32,8 @@ public class PanelMonsterOptions extends JPanel {
 		statLists = new PanelMonsterStatLists();
 		constraints.gridy++;
 		super.add(statLists, constraints);
-		sensesLanguages = new PanelMonsterSensesLanguages();
+		miscButtons = new PanelMonsterMiscAddButtons();
 		constraints.gridy++;
-		super.add(sensesLanguages, constraints);
-		skills = new PanelMonsterSkills();
-		constraints.gridy++;
-		super.add(skills, constraints);
+		super.add(miscButtons, constraints);
 	}
 }
