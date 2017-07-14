@@ -19,7 +19,7 @@ public class FrameMain extends JFrame {
 		super.setLayout(new BorderLayout());
 		previewWindow = new PanelPreview();
 		monsterOptions = new PanelMonsterOptions();
-		super.add(previewWindow, BorderLayout.EAST);
+		super.add(previewWindow, BorderLayout.CENTER);
 		super.add(monsterOptions, BorderLayout.WEST);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.setPreferredSize(new Dimension(1000, 500));
