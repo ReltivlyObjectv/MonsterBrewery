@@ -32,7 +32,11 @@ public class Lists {
 		"d8",
 		"d10",
 		"d12",
-		"d20"
+		"d20",
+		"d24",
+		"d30",
+		"d60",
+		"d100"
 	};
 	public static final String[] TYPE = {
 		"Aberration",
