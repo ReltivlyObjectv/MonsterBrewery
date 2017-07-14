@@ -17,7 +17,7 @@ import tech.relativelyobjective.monsterbrewery.resources.Lists;
  * 
  */
 public class PanelMonsterStatSaving extends JPanel {
-	private JSpinner[] savingBonuses;
+	private final JSpinner[] savingBonuses;
 		
 	public PanelMonsterStatSaving() {
 		super.setLayout(new GridBagLayout());
