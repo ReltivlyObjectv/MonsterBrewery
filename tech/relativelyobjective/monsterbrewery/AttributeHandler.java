@@ -85,7 +85,11 @@ public class AttributeHandler {
 			localIndex++;
 		}
 		allAttributes = newList;
-		updateList();
+		if (up) {
+			updateList(index - 1);
+		} else {
+			updateList(index + 1);
+		}
 	}
 	public static void editItem(Attribute a, FrameMain mainFrame) {
 		a.editAttribute(mainFrame);
@@ -103,6 +107,10 @@ public class AttributeHandler {
 			}
 			localIndex++;
 		}
+	}
+	public static void updateList(int selected) {
+		display.getList().setListData(allAttributes.toArray());
+		display.getList().setSelectedIndex(selected);
 	}
 	public static void updateList() {
 		display.getList().setListData(allAttributes.toArray());
