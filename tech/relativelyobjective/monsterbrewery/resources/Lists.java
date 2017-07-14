@@ -78,4 +78,12 @@ public class Lists {
 		"Yuan-Ti",
 		"yugoloth"
 	};
+	public static final String[] ABILITIES = {
+		"Str",
+		"Dex",
+		"Con",
+		"Int",
+		"Wis",
+		"Cha"
+	};
 }
