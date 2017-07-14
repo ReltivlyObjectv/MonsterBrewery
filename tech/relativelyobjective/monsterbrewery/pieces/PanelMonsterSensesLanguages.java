@@ -67,7 +67,7 @@ public class PanelMonsterSensesLanguages extends JPanel {
 		}
 	}
 	private class LanguagesPanel extends JPanel {
-		private JComboBox lang;
+		private final JComboBox lang;
 		
 		public LanguagesPanel() {
 			super.setLayout(new GridBagLayout());
@@ -98,8 +98,8 @@ public class PanelMonsterSensesLanguages extends JPanel {
 			AttributeHandler.addAttribute(new Language(getLanguage()));
 		}
 	}
-	private SensesPanel senses;
-	private LanguagesPanel lang;
+	private final SensesPanel senses;
+	private final LanguagesPanel lang;
 	
 	public PanelMonsterSensesLanguages() {
 		super.setLayout(new GridBagLayout());
