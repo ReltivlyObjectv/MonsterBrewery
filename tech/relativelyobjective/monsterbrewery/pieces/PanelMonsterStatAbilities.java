@@ -26,7 +26,7 @@ public class PanelMonsterStatAbilities extends JPanel {
 		private JLabel modifier;
 		public AbilityBox() {
 			super.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-			valueSpinner = new JSpinner(new SpinnerNumberModel(1,1,20,1));
+			valueSpinner = new JSpinner(new SpinnerNumberModel(1,1,30,1));
 			modifier = new JLabel("-5");
 			valueSpinner.addChangeListener((ChangeEvent e) -> {
 				int mod = Attributes.calculateModifier((int) valueSpinner.getValue());
