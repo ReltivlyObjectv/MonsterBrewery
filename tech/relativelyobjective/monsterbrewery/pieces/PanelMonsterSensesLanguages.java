@@ -58,6 +58,8 @@ public class PanelMonsterSensesLanguages extends JPanel {
 		private void saveData() {
 			if (sense.getSelectedItem() == null) {
 				return;
+			} else if (getSense().equals("")) {
+				return;
 			} else if (getDistance() <= 0) {
 				return;
 			}
@@ -90,7 +92,9 @@ public class PanelMonsterSensesLanguages extends JPanel {
 		private void saveData() {
 			if (getLanguage() == null) {
 				return;
-			}
+			} else if (getLanguage().equals("")) {
+				return;
+			} 
 			AttributeHandler.addAttribute(new Language(getLanguage()));
 		}
 	}
