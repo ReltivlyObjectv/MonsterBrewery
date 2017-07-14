@@ -2,7 +2,12 @@ package tech.relativelyobjective.monsterbrewery.pieces;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 
 /**
@@ -39,8 +44,51 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 		constraints.gridy++;
 		super.add(skills, constraints);
 		JPanel buttonCluster = new JPanel();
-			//TODO
+			TitledBorder clusterBorder = BorderFactory.createTitledBorder(
+				BorderFactory.createEtchedBorder(EtchedBorder.LOWERED)
+			);
+			buttonCluster.setBorder(clusterBorder);
+			buttonCluster.setLayout(new GridBagLayout());
+			GridBagConstraints buttonCons = new GridBagConstraints();
+			buttonCons.gridx = 0;
+			buttonCons.gridy = 0;
+			JButton damageMod = new JButton("Add Damage Modifier");
+			damageMod.addActionListener((ActionEvent e) -> {
+				addDamageModification();
+			});
+			buttonCluster.add(damageMod, buttonCons);
+			buttonCons.gridx++;
+			JButton ability = new JButton("Add Ability");
+			ability.addActionListener((ActionEvent e) -> {
+				addAbility();
+			});
+			buttonCluster.add(ability, buttonCons);
+			buttonCons.gridy++;
+			buttonCons.gridx = 0;
+			JButton action = new JButton("Add Action");
+			action.addActionListener((ActionEvent e) -> {
+				addAction();
+			});
+			buttonCluster.add(action, buttonCons);
+			buttonCons.gridx++;
+			JButton legendary = new JButton("Add Legendary");
+			legendary.addActionListener((ActionEvent e) -> {
+				addLegendary();
+			});
+			buttonCluster.add(legendary, buttonCons);
 		constraints.gridx++;
 		super.add(buttonCluster, constraints);
+	}
+	private void addDamageModification() {
+		//TODO
+	}
+	private void addAbility() {
+		//TODO
+	}
+	private void addAction() {
+		//TODO
+	}
+	private void addLegendary() {
+		//TODO
 	}
 }
