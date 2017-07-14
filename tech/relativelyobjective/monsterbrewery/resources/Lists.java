@@ -86,4 +86,12 @@ public class Lists {
 		"Wis",
 		"Cha"
 	};
+	public static final String[] SPEED_TYPES = {
+		"Speed",
+		"Swim",
+		"Burrow",
+		"Climb",
+		"Fly",
+		"Hover"
+	};
 }
