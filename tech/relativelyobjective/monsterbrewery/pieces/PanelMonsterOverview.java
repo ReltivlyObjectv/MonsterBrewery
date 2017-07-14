@@ -166,7 +166,7 @@ public class PanelMonsterOverview extends JPanel {
 		return (int) armorClass.getValue();
 	}
 	public void calculateHitPointString() {
-		int hitPointDiceCount = getHitPointDiceCount();
+		int hitPointDiceCountInt = getHitPointDiceCount();
 		String diceTypeString = getHitPointDiceType().replace("d", "");
 		Integer diceType;
 		try {
@@ -175,14 +175,14 @@ public class PanelMonsterOverview extends JPanel {
 			System.out.printf("Could not parse: %s\n", diceTypeString);
 			return;
 		}
-		int maxValue = diceType * hitPointDiceCount;
+		int maxValue = diceType * hitPointDiceCountInt;
 		int averageValue = maxValue / 2;
 		String text = String.format("(%dd%d) %s", 
-			hitPointDiceCount, diceType, averageValue);
+			hitPointDiceCountInt, diceType, averageValue);
 		hitPointCount.setText(text);
 	}
 	public void calculateRandomHitPointString() {
-		int hitPointDiceCount = getHitPointDiceCount();
+		int hitPointDiceCountInt = getHitPointDiceCount();
 		String diceTypeString = getHitPointDiceType().replace("d", "");
 		Integer diceType;
 		try {
@@ -192,11 +192,11 @@ public class PanelMonsterOverview extends JPanel {
 			return;
 		}
 		int value = 0;
-		for (int i = 0; i < hitPointDiceCount; i++) {
+		for (int i = 0; i < hitPointDiceCountInt; i++) {
 			value += 1 + (int) (Math.random() * diceType);
 		}
 		String text = String.format("(%dd%d) %s", 
-			hitPointDiceCount, diceType, value);
+			hitPointDiceCountInt, diceType, value);
 		hitPointCount.setText(text);
 	}
 }
