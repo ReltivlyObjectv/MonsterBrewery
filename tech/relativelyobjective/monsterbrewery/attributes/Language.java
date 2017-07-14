@@ -12,6 +12,9 @@ public class Language implements Attribute {
 	public Language(String value) {
 		lang = value;
 	}
+	public void editAttribute() {
+		//TODO
+	}
 	@Override
 	public String toString() {
 		return String.format("Language: %s", lang);

@@ -42,10 +42,52 @@ public class AttributeHandler {
 		}
 	}
 	public static void shiftItem (int index, boolean up) {
-		//TODO
+		if (up && index == 0) {
+			return;
+		} else if (!up && index >= (allAttributes.size() - 1)) {
+			return;
+		}
+		List<Attribute> newList = new LinkedList<>();
+		Attribute top = null;
+		Attribute bottom = null;
+		int localIndex = 0;
+		for (Attribute a : allAttributes) {
+			if (up) {
+				if (localIndex == index - 1) {
+					bottom = a;
+				} else if (localIndex == index) {
+					top = a;
+					if (top != null) {
+						newList.add(top);
+					}
+					if (bottom != null) {
+						newList.add(bottom);
+					}
+				} else {
+					newList.add(a);
+				}
+			} if (!up) {
+				if (localIndex == index) {
+					bottom = a;
+				} else if (localIndex == index + 1) {
+					top = a;
+					if (top != null) {
+						newList.add(top);
+					}
+					if (bottom != null) {
+						newList.add(bottom);
+					}
+				} else {
+					newList.add(a);
+				}
+			}
+			localIndex++;
+		}
+		allAttributes = newList;
+		updateList();
 	}
 	public static void editItem(Attribute a) {
-		//TODO
+		a.editAttribute();
 	}
 	public static void editItem(int index) {
 		if (index >= allAttributes.size() || index < 0) {

@@ -14,6 +14,9 @@ public class Sense implements Attribute {
 		sense = value;
 		magnitude = mag;
 	}
+	public void editAttribute() {
+		//TODO
+	}
 	@Override
 	public String toString() {
 		if (sense.compareTo("Passive Perception") == 0) {

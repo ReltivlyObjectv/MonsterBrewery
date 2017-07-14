@@ -7,5 +7,5 @@ package tech.relativelyobjective.monsterbrewery.attributes;
  * 
  */
 public interface Attribute {
-	//This is meant to be empty -- Only used by other classes
+	public void editAttribute();
 }
