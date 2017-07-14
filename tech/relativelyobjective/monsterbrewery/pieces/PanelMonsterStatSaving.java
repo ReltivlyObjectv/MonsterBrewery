@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
-import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 import tech.relativelyobjective.monsterbrewery.resources.Lists;
 
 /**

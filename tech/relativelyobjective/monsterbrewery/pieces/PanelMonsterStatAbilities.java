@@ -9,7 +9,6 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import tech.relativelyobjective.monsterbrewery.resources.Attributes;
-import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 import tech.relativelyobjective.monsterbrewery.resources.Lists;
 
 /**

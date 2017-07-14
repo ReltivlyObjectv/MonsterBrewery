@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
-import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 import tech.relativelyobjective.monsterbrewery.resources.Lists;
 
 /**
@@ -17,8 +16,8 @@ import tech.relativelyobjective.monsterbrewery.resources.Lists;
  * 
  */
 public class PanelMonsterStatSpeed extends JPanel {
-	private JSpinner[] speeds;
-	private JCheckBox hover;
+	private final JSpinner[] speeds;
+	private final JCheckBox hover;
 	
 	public PanelMonsterStatSpeed() {
 		super.setLayout(new GridBagLayout());
