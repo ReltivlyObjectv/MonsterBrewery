@@ -25,7 +25,7 @@ public class PanelMonsterStatSaving extends JPanel {
 		constraints.gridy = 0;
 		for (int i = 0; i < Lists.ABILITIES.length; i++) {
 			constraints.gridx = i;
-			super.add(new JLabelBold(Lists.ABILITIES[i]), constraints);
+			super.add(new JLabel(Lists.ABILITIES[i]), constraints);
 		}
 		constraints.gridy++;
 		savingBonuses = new JSpinner[6];
