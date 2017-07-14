@@ -8,6 +8,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import tech.relativelyobjective.monsterbrewery.AttributeHandler;
 
 /**
  *
@@ -51,5 +52,9 @@ public class PanelMonsterAttributes extends JPanel {
 			options.add(down, buttonWeight);
 		constraints.gridy++;
 		super.add(options, constraints);
+		AttributeHandler.initialize(this);
+	}
+	public JList getList() {
+		return attribList;
 	}
 }

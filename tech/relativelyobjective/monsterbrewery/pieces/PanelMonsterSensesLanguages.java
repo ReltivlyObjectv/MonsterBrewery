@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import tech.relativelyobjective.monsterbrewery.AttributeHandler;
+import tech.relativelyobjective.monsterbrewery.attributes.Language;
+import tech.relativelyobjective.monsterbrewery.attributes.Sense;
 import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 import tech.relativelyobjective.monsterbrewery.resources.Lists;
 
@@ -58,8 +61,7 @@ public class PanelMonsterSensesLanguages extends JPanel {
 			} else if (getDistance() <= 0) {
 				return;
 			}
-			//TODO
-			System.out.printf("Adding a sense: %s (%d ft.)\n", getSense(), getDistance());
+			AttributeHandler.addAttribute(new Sense(getSense(), getDistance()));
 		}
 	}
 	private class LanguagesPanel extends JPanel {
@@ -89,8 +91,7 @@ public class PanelMonsterSensesLanguages extends JPanel {
 			if (getLanguage() == null) {
 				return;
 			}
-			//TODO
-			System.out.printf("Adding a language: %s\n", getLanguage());
+			AttributeHandler.addAttribute(new Language(getLanguage()));
 		}
 	}
 	private SensesPanel senses;
