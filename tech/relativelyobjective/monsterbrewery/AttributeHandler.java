@@ -42,6 +42,9 @@ public class AttributeHandler {
 			localIndex++;
 		}
 	}
+	public static boolean contains(Attribute a) {
+		return allAttributes.contains(a);
+	}
 	public static void shiftItem (int index, boolean up) {
 		if (up && index == 0) {
 			return;
@@ -49,7 +52,7 @@ public class AttributeHandler {
 			return;
 		}
 		List<Attribute> newList = new LinkedList<>();
-		Attribute top = null;
+		Attribute top;
 		Attribute bottom = null;
 		int localIndex = 0;
 		for (Attribute a : allAttributes) {

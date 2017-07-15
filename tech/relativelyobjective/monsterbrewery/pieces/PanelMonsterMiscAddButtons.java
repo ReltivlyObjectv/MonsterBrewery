@@ -1,5 +1,6 @@
 package tech.relativelyobjective.monsterbrewery.pieces;
 
+import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import tech.relativelyobjective.monsterbrewery.attributes.DamageModifier;
 import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 
 /**
@@ -79,8 +81,19 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 		constraints.gridx++;
 		super.add(buttonCluster, constraints);
 	}
+	private FrameMain getMainFrame() {
+		Container parent = super.getParent();
+		while (!(parent instanceof FrameMain)) {
+			if (parent == null) {
+				return null;
+			}
+			parent = parent.getParent();
+		}
+		return (FrameMain) parent;
+	}
 	private void addDamageModification() {
-		//TODO
+		DamageModifier addMe = new DamageModifier(null,null,null);
+		addMe.editAttribute(getMainFrame());
 	}
 	private void addAbility() {
 		//TODO

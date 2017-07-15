@@ -176,4 +176,40 @@ public class Lists {
 		"Performance (Cha)",
 		"Persuasion (Cha)"
 	};
+	public static final String[] DAMAGE_TYPES = {
+		"",
+		"Acid",
+		"Bludgeoning",
+		"Cold",
+		"Fire",
+		"Force",
+		"Lightning",
+		"Necrotic",
+		"Piercing",
+		"Poison",
+		"Psychic",
+		"Radiant",
+		"Slashing",
+		"Thunder"
+	};
+	public static final String[] CONDITIONS = {
+		"",
+		"Blinded",
+		"Charmed",
+		"Deafened",
+		"Encumbered",
+		"Exhaustion",
+		"Frightened",
+		"Grappled",
+		"Incorporeal",
+		"Intoxicated",
+		"Invisible",
+		"Paralyzed",
+		"Petrified",
+		"Poisoned",
+		"Prone",
+		"Restrained",
+		"Stunned",
+		"Unconcious"
+	};
 }
