@@ -43,15 +43,15 @@ public class MenuBar extends JMenuBar {
 		super.add(dropDown);
 	}
 	private void newMonster() {
-		System.out.printf("Not implemented!\n");
+		System.out.printf("Not implemented: New\n");
 	}
 	private void saveMonster() {
-		System.out.printf("Not implemented!\n");
+		System.out.printf("Not implemented: Save\n");
 	}
 	private void saveMonsterAs() {
-		System.out.printf("Not implemented!\n");
+		System.out.printf("Not implemented: Save As\n");
 	}
 	private void loadMonster() {
-		System.out.printf("Not implemented!\n");
+		System.out.printf("Not implemented: Load\n");
 	}
 }
