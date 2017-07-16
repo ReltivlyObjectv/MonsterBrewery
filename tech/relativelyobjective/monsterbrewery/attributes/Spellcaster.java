@@ -47,7 +47,7 @@ public class Spellcaster implements Attribute {
 			return String.format("%d: %s%s", level, spell, castOnCombat ? "*":"");
 		}
 		public void editSpell(JDialog parent, List<Spell> list, JList window) {
-			JDialog spellWindow = new JDialog(parent, "Add Spell", true);
+			JDialog spellWindow = new JDialog(parent, "Spell", true);
 				spellWindow.setPreferredSize(new Dimension(500,200));
 				spellWindow.setSize(spellWindow.getPreferredSize());
 				spellWindow.setMaximumSize(spellWindow.getPreferredSize());
