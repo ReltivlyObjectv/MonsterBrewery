@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -35,6 +37,15 @@ public class PanelMonsterAttributes extends JPanel {
 		attribList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		attribList.setLayoutOrientation(JList.VERTICAL);
 		attribList.setVisibleRowCount(-1);
+		attribList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent event) {
+				if (event.getClickCount() == 2) {
+					// Double-click detected
+					editSelected();
+				}
+			}
+		});
 		JScrollPane scroller = new JScrollPane(attribList);
 		scroller.setPreferredSize(new Dimension(250,170));
 		super.add(scroller, constraints);
