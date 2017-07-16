@@ -48,7 +48,7 @@ public class Spellcaster implements Attribute {
 		}
 		public void editSpell(JDialog parent, List<Spell> list, JList window) {
 			JDialog spellWindow = new JDialog(parent, "Add Spell", true);
-				spellWindow.setPreferredSize(new Dimension(300,200));
+				spellWindow.setPreferredSize(new Dimension(500,200));
 				spellWindow.setSize(spellWindow.getPreferredSize());
 				spellWindow.setMaximumSize(spellWindow.getPreferredSize());
 				spellWindow.setMinimumSize(spellWindow.getPreferredSize());
@@ -67,6 +67,7 @@ public class Spellcaster implements Attribute {
 				constraints.gridx++;
 				JComboBox spellComboBox = new JComboBox(getLevelSpells(level));
 				spellComboBox.setEditable(true);
+				spellComboBox.setPrototypeDisplayValue("LLLLLLLLLLLLLLLLLLLLLLLLLL");
 				spellComboBox.setSelectedItem(spell);
 				spellWindow.add(spellComboBox, constraints);
 				constraints.gridx = 0;
