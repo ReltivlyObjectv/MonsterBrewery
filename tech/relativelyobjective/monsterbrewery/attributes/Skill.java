@@ -28,29 +28,29 @@ public class Skill implements Attribute {
 	@Override
 	public void editAttribute(FrameMain mainFrame) {
 		JDialog editWindow = new JDialog(mainFrame, "Edit Skill", true);
-		editWindow.setPreferredSize(new Dimension(400,100));
-		editWindow.setSize(editWindow.getPreferredSize());
-		editWindow.setMaximumSize(editWindow.getPreferredSize());
-		editWindow.setMinimumSize(editWindow.getPreferredSize());
-		editWindow.setLayout(new GridBagLayout());
-		GridBagConstraints constraints = new GridBagConstraints();
-		JTextField text = new JTextField(15);
-		text.setText(skill);
-		constraints.gridy = 0;
-		constraints.gridx = 0;
-		editWindow.add(text, constraints);
-		JSpinner magSpinner = new JSpinner(new SpinnerNumberModel(0,-30,30,1));
-		magSpinner.setValue(modifier);
-		constraints.gridx++;
-		editWindow.add(magSpinner, constraints);
-		JButton saveButton = new JButton("Save Skill");
-		saveButton.addActionListener((ActionEvent e) -> {
-			skill = text.getText();
-			modifier = (int) magSpinner.getValue();
-			editWindow.dispose();
-		});
-		constraints.gridx++;
-		editWindow.add(saveButton, constraints);
+			editWindow.setPreferredSize(new Dimension(400,100));
+			editWindow.setSize(editWindow.getPreferredSize());
+			editWindow.setMaximumSize(editWindow.getPreferredSize());
+			editWindow.setMinimumSize(editWindow.getPreferredSize());
+			editWindow.setLayout(new GridBagLayout());
+			GridBagConstraints constraints = new GridBagConstraints();
+			JTextField text = new JTextField(15);
+			text.setText(skill);
+			constraints.gridy = 0;
+			constraints.gridx = 0;
+			editWindow.add(text, constraints);
+			JSpinner magSpinner = new JSpinner(new SpinnerNumberModel(0,-30,30,1));
+			magSpinner.setValue(modifier);
+			constraints.gridx++;
+			editWindow.add(magSpinner, constraints);
+			JButton saveButton = new JButton("Save Skill");
+			saveButton.addActionListener((ActionEvent e) -> {
+				skill = text.getText();
+				modifier = (int) magSpinner.getValue();
+				editWindow.dispose();
+			});
+			constraints.gridx++;
+			editWindow.add(saveButton, constraints);
 		editWindow.setVisible(true);
 	}
 	@Override
