@@ -73,6 +73,14 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 			});
 			buttonCluster.add(action, buttonCons);
 			buttonCons.gridx++;
+			JButton spellcaster = new JButton("Add Spellcaster");
+			spellcaster.addActionListener((ActionEvent e) -> {
+				addSpellcaster();
+			});
+			buttonCluster.add(spellcaster, buttonCons);
+			buttonCons.gridy++;
+			buttonCons.gridx = 0;
+			buttonCons.gridwidth = 2;
 			JButton legendary = new JButton("Add Legendary");
 			legendary.addActionListener((ActionEvent e) -> {
 				addLegendary();
@@ -102,6 +110,9 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 		//TODO
 	}
 	private void addLegendary() {
+		//TODO
+	}
+	private void addSpellcaster() {
 		//TODO
 	}
 }
