@@ -25,6 +25,7 @@ public class Sense implements Attribute {
 		sense = value;
 		magnitude = mag;
 	}
+	@Override
 	public void editAttribute(FrameMain mainFrame) {
 		JDialog editWindow = new JDialog(mainFrame, "Edit Sense", true);
 			editWindow.setPreferredSize(new Dimension(400,100));
