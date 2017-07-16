@@ -90,6 +90,14 @@ public class Lists {
 		"Wis",
 		"Cha"
 	};
+	public enum Abilities {
+		STRENGTH,
+		DEXTERITY,
+		CONSTITUTION,
+		INTELLIGENCE,
+		WISDOM,
+		CHARISMA
+	}
 	public static final String[] SPEED_TYPES = {
 		"Speed",
 		"Swim",
@@ -212,4 +220,29 @@ public class Lists {
 		"Stunned",
 		"Unconcious"
 	};
+	public static final String[] CLASSES = {
+		"Barbarian",
+		"Bard",
+		"Cleric",
+		"Druid",
+		"Fighter",
+		"Monk",
+		"Paladin",
+		"Ranger",
+		"Rogue",
+		"Sorcerer",
+		"Warlock",
+		"Wizard"
+	};
+	public static final String[] CANTRIPS = {
+	};
+	public static final String[] LEVEL_1_SPELLS = {};
+	public static final String[] LEVEL_2_SPELLS = {};
+	public static final String[] LEVEL_3_SPELLS = {};
+	public static final String[] LEVEL_4_SPELLS = {};
+	public static final String[] LEVEL_5_SPELLS = {};
+	public static final String[] LEVEL_6_SPELLS = {};
+	public static final String[] LEVEL_7_SPELLS = {};
+	public static final String[] LEVEL_8_SPELLS = {};
+	public static final String[] LEVEL_9_SPELLS = {};
 }

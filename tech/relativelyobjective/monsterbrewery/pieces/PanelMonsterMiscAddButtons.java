@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import tech.relativelyobjective.monsterbrewery.attributes.DamageModifier;
+import tech.relativelyobjective.monsterbrewery.attributes.Spellcaster;
 import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 
 /**
@@ -113,6 +114,7 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 		//TODO
 	}
 	private void addSpellcaster() {
-		//TODO
+		Spellcaster addMe = new Spellcaster();
+		addMe.editAttribute(getMainFrame());
 	}
 }
