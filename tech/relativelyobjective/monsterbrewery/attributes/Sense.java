@@ -44,9 +44,11 @@ public class Sense implements Attribute {
 			editWindow.add(magSpinner, constraints);
 			JButton saveButton = new JButton("Save Sense");
 			saveButton.addActionListener((ActionEvent e) -> {
-				sense = text.getText();
-				magnitude = (int) magSpinner.getValue();
-				editWindow.dispose();
+				if (!text.getText().isEmpty()) {
+					sense = text.getText();
+					magnitude = (int) magSpinner.getValue();
+					editWindow.dispose();
+				}
 			});
 			constraints.gridx++;
 			editWindow.add(saveButton, constraints);

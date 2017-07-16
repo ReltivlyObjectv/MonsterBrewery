@@ -93,14 +93,17 @@ public class Spellcaster implements Attribute {
 					spellComboBox.setSelectedItem(currentlySelected);
 				});
 				saveButton.addActionListener((ActionEvent e) -> {
-					level = (int) levelSpinner.getValue();
-					spell = (String) spellComboBox.getSelectedItem();
-					castOnCombat = castOnCombatBox.isSelected();
-					if (!list.contains(this)) {
-						list.add(this);
+					if (spellComboBox.getSelectedItem() != null 
+						&& !((String)spellComboBox.getSelectedItem()).contentEquals("")) {
+						level = (int) levelSpinner.getValue();
+						spell = (String) spellComboBox.getSelectedItem();
+						castOnCombat = castOnCombatBox.isSelected();
+						if (!list.contains(this)) {
+							list.add(this);
+						}
+						refreshList(list, window);
+						spellWindow.dispose();
 					}
-					refreshList(list, window);
-					spellWindow.dispose();
 				});
 			spellWindow.setVisible(true);
 		}

@@ -45,9 +45,11 @@ public class Skill implements Attribute {
 			editWindow.add(magSpinner, constraints);
 			JButton saveButton = new JButton("Save Skill");
 			saveButton.addActionListener((ActionEvent e) -> {
-				skill = text.getText();
-				modifier = (int) magSpinner.getValue();
-				editWindow.dispose();
+				if (!text.getText().isEmpty()) {
+					skill = text.getText();
+					modifier = (int) magSpinner.getValue();
+					editWindow.dispose();
+				}
 			});
 			constraints.gridx++;
 			editWindow.add(saveButton, constraints);

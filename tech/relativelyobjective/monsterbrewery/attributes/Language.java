@@ -37,8 +37,10 @@ public class Language implements Attribute {
 			editWindow.add(text, constraints);
 			JButton saveButton = new JButton("Save Language");
 			saveButton.addActionListener((ActionEvent e) -> {
-				lang = text.getText();
-				editWindow.dispose();
+				if (!text.getText().isEmpty()) {
+					lang = text.getText();
+					editWindow.dispose();
+				}
 			});
 			constraints.gridx++;
 			editWindow.add(saveButton, constraints);
