@@ -663,4 +663,16 @@ public class Lists {
 		"Weird",
 		"Wish"
 	};
+	public enum ActionType {
+		MELEE,
+		RANGED,
+		MISC
+	}
+	public enum RangeType {
+		LINE,
+		CONE,
+		CUBE,
+		SPHERE,
+		CYLINDER
+	}
 }
