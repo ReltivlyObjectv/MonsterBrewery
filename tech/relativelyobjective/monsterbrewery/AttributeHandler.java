@@ -3,6 +3,7 @@ package tech.relativelyobjective.monsterbrewery;
 import java.util.LinkedList;
 import java.util.List;
 import tech.relativelyobjective.monsterbrewery.attributes.Attribute;
+import tech.relativelyobjective.monsterbrewery.attributes.LegendaryActions;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 import tech.relativelyobjective.monsterbrewery.pieces.PanelMonsterAttributes;
 
@@ -117,5 +118,13 @@ public class AttributeHandler {
 	}
 	public static void updateList() {
 		display.getList().setListData(allAttributes.toArray());
+	}
+	public static LegendaryActions getLegendary() {
+		for (Attribute a : allAttributes) {
+			if (a instanceof LegendaryActions) {
+				return (LegendaryActions) a;
+			}
+		}
+		return null;
 	}
 }

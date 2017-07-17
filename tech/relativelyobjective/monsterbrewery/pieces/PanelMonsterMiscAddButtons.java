@@ -9,7 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import tech.relativelyobjective.monsterbrewery.AttributeHandler;
+import tech.relativelyobjective.monsterbrewery.attributes.Attribute;
 import tech.relativelyobjective.monsterbrewery.attributes.DamageModifier;
+import tech.relativelyobjective.monsterbrewery.attributes.LegendaryActions;
 import tech.relativelyobjective.monsterbrewery.attributes.Spellcaster;
 import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 
@@ -111,7 +114,11 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 		//TODO
 	}
 	private void addLegendary() {
-		//TODO
+		LegendaryActions addMe = AttributeHandler.getLegendary();
+		if (addMe == null) {
+			addMe = new LegendaryActions();
+		}
+		addMe.editAttribute(getMainFrame());
 	}
 	private void addSpellcaster() {
 		Spellcaster addMe = new Spellcaster();
