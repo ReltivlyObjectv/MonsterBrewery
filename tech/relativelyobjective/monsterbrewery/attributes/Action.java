@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -91,7 +92,8 @@ public class Action implements Attribute{
 		public JSpinner shapeSize;
 		public JComboBox diceTypeBox;
 		public JComboBox damageTypeBox;
-		public JComboBox attackShapeBox;
+		public JComboBox rangeShapeBox;
+		public JComboBox rangeTypeBox;
 		
 		
 		public RangedPanel() {
@@ -110,13 +112,21 @@ public class Action implements Attribute{
 			damageTypeBox = new JComboBox(Lists.DAMAGE_TYPES);
 			damageTypeBox.setSelectedItem(damageType);
 			damageTypeBox.setEditable(true);
-			attackShapeBox = new JComboBox(Lists.RangeType.values());
-			attackShapeBox.setSelectedItem(rangeType);
+			rangeShapeBox = new JComboBox(Lists.RangeShape.values());
+			rangeShapeBox.setSelectedItem(rangedShape);
+			rangeTypeBox = new JComboBox(Lists.RangeType.values());
+			rangeTypeBox.setSelectedItem(rangedType);
 			super.setLayout(new GridBagLayout());
 			GridBagConstraints constraints = new GridBagConstraints();
 			constraints.gridx = 0;
 			constraints.gridy = 0;
+			//Range Type
+			super.add(new JLabel("Action Type"), constraints);
+			constraints.gridx++;
+			super.add(rangeTypeBox, constraints);
 			//Damage
+			constraints.gridx = 0;
+			constraints.gridy++;
 			super.add(new JLabel("Damage"), constraints);
 			JPanel damagePanel = new JPanel();
 				damagePanel.setLayout(new GridBagLayout());
@@ -137,33 +147,83 @@ public class Action implements Attribute{
 			//Shape
 			constraints.gridx = 0;
 			constraints.gridy++;
-			super.add(new JLabel("Shape"), constraints);
+			JLabel shapeLabel = new JLabel("Shape");
+			super.add(shapeLabel, constraints);
 			constraints.gridx++;
-			super.add(attackShapeBox, constraints);
+			super.add(rangeShapeBox, constraints);
 			//Shape Size
 			constraints.gridx = 0;
 			constraints.gridy++;
-			super.add(new JLabel("Shape Size"), constraints);
+			JLabel shapeSizeLabel = new JLabel("Shape Size");
+			super.add(shapeSizeLabel, constraints);
 			constraints.gridx++;
 			super.add(shapeSize, constraints);
+			//Min Range
+			constraints.gridx = 0;
+			constraints.gridy++;
+			JLabel sRangeLabel = new JLabel("Standard Range");
+			super.add(sRangeLabel, constraints);
+			constraints.gridx++;
+			super.add(minRange, constraints);
+			//Max Range
+			constraints.gridx = 0;
+			constraints.gridy++;
+			JLabel lRangeLabel = new JLabel("Long Range");
+			super.add(lRangeLabel, constraints);
+			constraints.gridx++;
+			super.add(maxRange, constraints);
 			//To Hit
 			constraints.gridx = 0;
 			constraints.gridy++;
 			super.add(new JLabel("To Hit"), constraints);
 			constraints.gridx++;
 			super.add(this.toHitBox, constraints);
-			//Min Range
-			constraints.gridx = 0;
-			constraints.gridy++;
-			super.add(new JLabel("Standard Range"), constraints);
-			constraints.gridx++;
-			super.add(minRange, constraints);
-			//Max Range
-			constraints.gridx = 0;
-			constraints.gridy++;
-			super.add(new JLabel("Long Range"), constraints);
-			constraints.gridx++;
-			super.add(maxRange, constraints);
+			//Set visibility
+			if ((Lists.RangeType) rangeTypeBox.getSelectedItem() == Lists.RangeType.PHYSICAL) {
+				//Physical Attack
+				shapeLabel.setVisible(false);
+				rangeShapeBox.setVisible(false);
+				sRangeLabel.setVisible(true);
+				minRange.setVisible(true);
+				lRangeLabel.setVisible(true);
+				maxRange.setVisible(true);
+				shapeSizeLabel.setVisible(false);
+				shapeSize.setVisible(false);
+			} else {
+				//Spell Attack
+				shapeLabel.setVisible(true);
+				rangeShapeBox.setVisible(true);
+				sRangeLabel.setVisible(false);
+				minRange.setVisible(false);
+				lRangeLabel.setVisible(false);
+				maxRange.setVisible(false);
+				shapeSizeLabel.setVisible(true);
+				shapeSize.setVisible(true);
+			}
+			//Listener
+			rangeTypeBox.addActionListener((ActionEvent e) -> {
+				if ((Lists.RangeType) rangeTypeBox.getSelectedItem() == Lists.RangeType.PHYSICAL) {
+					//Physical Attack
+					shapeLabel.setVisible(false);
+					rangeShapeBox.setVisible(false);
+					sRangeLabel.setVisible(true);
+					minRange.setVisible(true);
+					lRangeLabel.setVisible(true);
+					maxRange.setVisible(true);
+					shapeSizeLabel.setVisible(false);
+					shapeSize.setVisible(false);
+				} else {
+					//Spell Attack
+					shapeLabel.setVisible(true);
+					rangeShapeBox.setVisible(true);
+					sRangeLabel.setVisible(false);
+					minRange.setVisible(false);
+					lRangeLabel.setVisible(false);
+					maxRange.setVisible(false);
+					shapeSizeLabel.setVisible(true);
+					shapeSize.setVisible(true);
+				}
+			});
 		}
 	}
 	private class MiscPanel extends JPanel {
@@ -193,7 +253,8 @@ public class Action implements Attribute{
 	//Ranged
 	private int rangedMin;
 	private int rangedMax;
-	private Lists.RangeType rangeType;
+	private Lists.RangeShape rangedShape;
+	private Lists.RangeType rangedType;
 	private int rangedSize;
 	//Melee
 	private int meleeReach;
@@ -209,7 +270,8 @@ public class Action implements Attribute{
 		rangedMin = 60;
 		rangedMax = 240;
 		rangedSize =10;
-		rangeType = Lists.RangeType.LINE;
+		rangedShape = Lists.RangeShape.LINE;
+		rangedType = Lists.RangeType.PHYSICAL;
 		meleeReach = 5;
 		damageType = "Piercing";
 		description = "";
@@ -261,6 +323,7 @@ public class Action implements Attribute{
 			constraints.gridy++;
 			editWindow.add(submitButton, constraints);
 			//Listener
+			
 			submitButton.addActionListener((ActionEvent e) -> {
 				if (!nameBox.getText().equals("")) {
 					switch (tabbedPane.getSelectedIndex()) {
@@ -291,7 +354,8 @@ public class Action implements Attribute{
 								toHit = (int) rangedPanel.toHitBox.getValue();
 								rangedMin = (int) rangedPanel.minRange.getValue();
 								rangedMax = (int) rangedPanel.maxRange.getValue();
-								rangeType = (Lists.RangeType) rangedPanel.attackShapeBox.getSelectedItem();
+								rangedShape = (Lists.RangeShape) rangedPanel.rangeShapeBox.getSelectedItem();
+								rangedType = (Lists.RangeType) rangedPanel.rangeTypeBox.getSelectedItem();
 								rangedSize = (int) rangedPanel.shapeSize.getValue();
 								damageType = (String) rangedPanel.damageTypeBox.getSelectedItem();
 								if (!AttributeHandler.contains(this)) {
@@ -325,7 +389,13 @@ public class Action implements Attribute{
 			case MELEE:
 				return String.format("Melee Attack: %s", name);
 			case RANGED:
-				return String.format("Ranged Attack: %s %d/%d", name, rangedMin, rangedMax);
+				switch (rangedType) {
+					case SPELL:
+						return String.format("Ranged Spell: %s (%d ft. %s)", 
+							name, rangedSize, Lists.formatUpperCase(rangedShape));
+					case PHYSICAL:
+						return String.format("Ranged Attack: %s (%d/%d ft.)", name, rangedMin, rangedMax);
+				}
 			default:
 				return String.format("Action: %s", name);
 		}

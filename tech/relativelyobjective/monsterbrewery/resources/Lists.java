@@ -668,11 +668,25 @@ public class Lists {
 		RANGED,
 		MISC
 	}
-	public enum RangeType {
+	public enum RangeShape {
 		LINE,
 		CONE,
 		CUBE,
 		SPHERE,
 		CYLINDER
+	}
+	public enum RangeType {
+		PHYSICAL,
+		SPELL
+	}
+	public static String formatUpperCase(Object o) {
+		String toString = o.toString();
+		toString = toString.toLowerCase();
+		String[] split = toString.split(" ");
+		String returnMe = "";
+		for (int i = 0; i < split.length; i++) {
+			returnMe += split[i].substring(0,1).toUpperCase() + split[i].substring(1).toLowerCase();
+		}
+		return returnMe;
 	}
 }
