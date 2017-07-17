@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import tech.relativelyobjective.monsterbrewery.attributes.Attribute;
 import tech.relativelyobjective.monsterbrewery.attributes.LegendaryActions;
+import tech.relativelyobjective.monsterbrewery.attributes.Spellcaster;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 import tech.relativelyobjective.monsterbrewery.pieces.PanelMonsterAttributes;
 
@@ -123,6 +124,14 @@ public class AttributeHandler {
 		for (Attribute a : allAttributes) {
 			if (a instanceof LegendaryActions) {
 				return (LegendaryActions) a;
+			}
+		}
+		return null;
+	}
+	public static Spellcaster getSpellcaster() {
+		for (Attribute a : allAttributes) {
+			if (a instanceof Spellcaster) {
+				return (Spellcaster) a;
 			}
 		}
 		return null;

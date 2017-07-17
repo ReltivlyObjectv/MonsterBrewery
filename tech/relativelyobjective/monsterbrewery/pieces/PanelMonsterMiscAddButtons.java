@@ -121,7 +121,10 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 		addMe.editAttribute(getMainFrame());
 	}
 	private void addSpellcaster() {
-		Spellcaster addMe = new Spellcaster();
+		Spellcaster addMe = AttributeHandler.getSpellcaster();
+		if (addMe == null) {
+			addMe = new Spellcaster();
+		}
 		addMe.editAttribute(getMainFrame());
 	}
 }
