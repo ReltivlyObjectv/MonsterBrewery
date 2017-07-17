@@ -32,7 +32,7 @@ public class Reaction implements Attribute {
 	public void editAttribute(FrameMain mainFrame) {
 		JDialog editWindow;
 			editWindow = new JDialog(mainFrame, "Reaction", true);
-				editWindow.setPreferredSize(new Dimension(325,350));
+			editWindow.setPreferredSize(new Dimension(325,350));
 			editWindow.setSize(editWindow.getPreferredSize());
 			editWindow.setMaximumSize(editWindow.getPreferredSize());
 			editWindow.setMinimumSize(editWindow.getPreferredSize());
