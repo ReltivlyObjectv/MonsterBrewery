@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 
 /**
@@ -53,7 +54,9 @@ public class Skill implements Attribute {
 			});
 			constraints.gridx++;
 			editWindow.add(saveButton, constraints);
-		editWindow.setVisible(true);
+		SwingUtilities.invokeLater(() -> {
+			editWindow.setVisible(true);
+		});
 	}
 	@Override
 	public String toString() {

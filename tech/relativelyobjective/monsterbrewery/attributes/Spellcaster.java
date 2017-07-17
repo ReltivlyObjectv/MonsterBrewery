@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import tech.relativelyobjective.monsterbrewery.AttributeHandler;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
@@ -105,7 +106,9 @@ public class Spellcaster implements Attribute {
 						spellWindow.dispose();
 					}
 				});
-			spellWindow.setVisible(true);
+			SwingUtilities.invokeLater(() -> {
+				spellWindow.setVisible(true);
+			});
 		}
 		private String[] getLevelSpells(int level) {
 			switch (level) {
@@ -303,7 +306,9 @@ public class Spellcaster implements Attribute {
 					}
 				}
 			});
-		editWindow.setVisible(true);
+		SwingUtilities.invokeLater(() -> {
+			editWindow.setVisible(true);
+		});
 	}
 	@Override
 	public String toString() {

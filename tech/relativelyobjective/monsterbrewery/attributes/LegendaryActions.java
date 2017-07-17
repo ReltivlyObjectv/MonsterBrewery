@@ -19,6 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
 import tech.relativelyobjective.monsterbrewery.AttributeHandler;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
@@ -82,7 +83,10 @@ public class LegendaryActions implements Attribute {
 						editWindow.dispose();
 					}
 				});
-			editWindow.setVisible(true);
+			
+			SwingUtilities.invokeLater(() -> {
+				editWindow.setVisible(true);
+			});
 		}
 		@Override
 		public String toString() {
@@ -178,7 +182,9 @@ public class LegendaryActions implements Attribute {
 					editWindow.dispose();
 				}
 			});
-		editWindow.setVisible(true);
+		SwingUtilities.invokeLater(() -> {
+			editWindow.setVisible(true);
+		});
 	}
 	@Override
 	public String toString() {

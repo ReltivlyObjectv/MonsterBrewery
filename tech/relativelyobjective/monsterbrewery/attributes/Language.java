@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 
 /**
@@ -43,8 +44,11 @@ public class Language implements Attribute {
 				}
 			});
 			constraints.gridx++;
+			
 			editWindow.add(saveButton, constraints);
-		editWindow.setVisible(true);
+		SwingUtilities.invokeLater(() -> {
+			editWindow.setVisible(true);
+		});
 	}
 	@Override
 	public String toString() {

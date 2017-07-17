@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 import tech.relativelyobjective.monsterbrewery.AttributeHandler;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 import tech.relativelyobjective.monsterbrewery.resources.Lists;
@@ -119,7 +120,9 @@ public class DamageModifier implements Attribute {
 					editWindow.dispose();
 				}
 			});
-		editWindow.setVisible(true);
+		SwingUtilities.invokeLater(() -> {
+			editWindow.setVisible(true);
+		});
 	}
 	@Override
 	public String toString() {
