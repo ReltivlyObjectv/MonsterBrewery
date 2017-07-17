@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import tech.relativelyobjective.monsterbrewery.AttributeHandler;
+import tech.relativelyobjective.monsterbrewery.attributes.Ability;
 import tech.relativelyobjective.monsterbrewery.attributes.Action;
 import tech.relativelyobjective.monsterbrewery.attributes.DamageModifier;
 import tech.relativelyobjective.monsterbrewery.attributes.LegendaryActions;
@@ -114,7 +115,8 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 		addMe.editAttribute(getMainFrame());
 	}
 	private void addAbility() {
-		//TODO
+		Ability addMe = new Ability();
+		addMe.editAttribute(getMainFrame());
 	}
 	private void addAction() {
 		Action addMe = new Action();
