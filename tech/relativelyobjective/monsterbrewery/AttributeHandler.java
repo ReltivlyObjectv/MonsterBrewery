@@ -1,4 +1,4 @@
-package tech.relativelyobjective.monsterbrewery;
+package tech.relativelyobjective.monsterbrewery.resources;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -95,6 +95,9 @@ public class AttributeHandler {
 		} else {
 			updateList(index + 1);
 		}
+	}
+	public static List<Attribute> getAllAttributesCopy() {
+		return new LinkedList<>(allAttributes);
 	}
 	public static void editItem(Attribute a, FrameMain mainFrame) {
 		a.editAttribute(mainFrame);

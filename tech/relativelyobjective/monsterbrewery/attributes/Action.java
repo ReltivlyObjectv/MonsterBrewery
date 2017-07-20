@@ -17,7 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
-import tech.relativelyobjective.monsterbrewery.AttributeHandler;
+import tech.relativelyobjective.monsterbrewery.resources.AttributeHandler;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 import tech.relativelyobjective.monsterbrewery.resources.Lists;
 
@@ -400,5 +400,43 @@ public class Action implements Attribute{
 				return String.format("Action: %s", name);
 		}
 	}
-	
+	public Lists.ActionType getActionType() {
+		return actionType;
+	}
+	public String getName() {
+		return name;
+	}
+	public String getDiceType() {
+		return diceType;
+	}
+	public int getDiceCount() {
+		return diceCount;
+	}
+	public int getToHit() {
+		return toHit;
+	}
+	public String getDamageType() {
+		return damageType;
+	}
+	public int getRangedMin() {
+		return rangedMin;
+	}
+	public int getRangedMax() {
+		return rangedMax;
+	}
+	public Lists.RangeShape getRangedShape() {
+		return rangedShape;
+	}
+	public Lists.RangeType getRangedType() {
+		return rangedType;
+	}
+	public int getRangedSize() {
+		return rangedSize;
+	}
+	public int getMeleeReach() {
+		return meleeReach;
+	}
+	public String getDescription() {
+		return description;
+	}
 }

@@ -9,7 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
-import tech.relativelyobjective.monsterbrewery.AttributeHandler;
+import tech.relativelyobjective.monsterbrewery.resources.AttributeHandler;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 import tech.relativelyobjective.monsterbrewery.resources.Lists;
 
@@ -146,6 +146,15 @@ public class DamageModifier implements Attribute {
 		}
 		returnValue += value;
 		return returnValue;
+	}
+	public DamageMods getModifier() {
+		return modifier;
+	}
+	public ModifierType getType() {
+		return type;
+	}
+	public String getValue() {
+		return value;
 	}
 	
 }

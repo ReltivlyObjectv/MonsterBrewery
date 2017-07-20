@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-import tech.relativelyobjective.monsterbrewery.AttributeHandler;
+import tech.relativelyobjective.monsterbrewery.resources.AttributeHandler;
 import tech.relativelyobjective.monsterbrewery.attributes.Ability;
 import tech.relativelyobjective.monsterbrewery.attributes.Action;
 import tech.relativelyobjective.monsterbrewery.attributes.DamageModifier;
@@ -28,6 +28,7 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 	private final PanelMonsterSenses senses;
 	private final PanelMonsterLanguages lang;
 	private final PanelMonsterSkills skills;
+	private final PanelMonsterChallengeRating challengeRating;
 	
 	public PanelMonsterMiscAddButtons() {
 		super.setLayout(new GridBagLayout());
@@ -51,6 +52,10 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 		skills = new PanelMonsterSkills();
 		constraints.gridy++;
 		super.add(skills, constraints);
+		challengeRating = new PanelMonsterChallengeRating();
+		constraints.gridy++;
+		super.add(challengeRating, constraints);
+		
 		JPanel buttonCluster = new JPanel();
 			TitledBorder clusterBorder = BorderFactory.createTitledBorder(
 				BorderFactory.createEtchedBorder(EtchedBorder.LOWERED)
@@ -98,6 +103,8 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 			});
 			buttonCluster.add(legendary, buttonCons);
 		constraints.gridx++;
+		constraints.gridy--;
+		constraints.gridheight = 2;
 		super.add(buttonCluster, constraints);
 	}
 	private FrameMain getMainFrame() {
@@ -139,5 +146,8 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 			addMe = new Spellcaster();
 		}
 		addMe.editAttribute(getMainFrame());
+	}
+	public String getChallengeRating() {
+		return challengeRating.getChallengeRating();
 	}
 }

@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import tech.relativelyobjective.monsterbrewery.AttributeHandler;
+import tech.relativelyobjective.monsterbrewery.resources.AttributeHandler;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 
@@ -79,5 +79,11 @@ public class Reaction implements Attribute {
 	@Override
 	public String toString() {
 		return String.format("Reaction: %s", name);
+	}
+	public String getName() {
+		return name;
+	}
+	public String getDescription() {
+		return description;
 	}
 }

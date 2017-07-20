@@ -69,13 +69,7 @@ public class Skill implements Attribute {
 	public String getSkill() {
 		return skill;
 	}
-	public void setSkill(String skill) {
-		this.skill = skill;
-	}
 	public int getModifier() {
 		return modifier;
-	}
-	public void setModifier(int modifier) {
-		this.modifier = modifier;
 	}
 }

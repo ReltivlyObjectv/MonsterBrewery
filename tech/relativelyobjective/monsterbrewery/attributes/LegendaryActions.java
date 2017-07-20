@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
-import tech.relativelyobjective.monsterbrewery.AttributeHandler;
+import tech.relativelyobjective.monsterbrewery.resources.AttributeHandler;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 
@@ -194,6 +194,12 @@ public class LegendaryActions implements Attribute {
 			usesPerCycle,
 			usesPerCycle == 1 ? "Use" : "Uses"
 		);
+	}
+	public List<Action> getActions() {
+		return actions;
+	}
+	public int getUsesPerCycle() {
+		return usesPerCycle;
 	}
 	
 }

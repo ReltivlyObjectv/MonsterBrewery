@@ -65,13 +65,7 @@ public class Sense implements Attribute {
 	public String getSense() {
 		return sense;
 	}
-	public void setSense(String sense) {
-		this.sense = sense;
-	}
 	public int getMagnitude() {
 		return magnitude;
-	}
-	public void setMagnitude(int mag) {
-		magnitude = mag;
 	}
 }

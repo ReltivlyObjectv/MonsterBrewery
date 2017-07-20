@@ -57,7 +57,4 @@ public class Language implements Attribute {
 	public String getLang() {
 		return lang;
 	}
-	public void setLang(String l) {
-		lang = l;
-	}
 }

@@ -22,7 +22,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
-import tech.relativelyobjective.monsterbrewery.AttributeHandler;
+import tech.relativelyobjective.monsterbrewery.resources.AttributeHandler;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 import tech.relativelyobjective.monsterbrewery.resources.Lists;
@@ -323,6 +323,27 @@ public class Spellcaster implements Attribute {
 	private void refreshList(List<Spell> list, JList display) {
 		Collections.sort(list);
 		display.setListData(list.toArray());
+	}
+	public int[] getSpellSlots() {
+		return spellSlots;
+	}
+	public List<Spell> getSpells() {
+		return spells;
+	}
+	public Lists.Abilities getSpellcastingAbility() {
+		return spellcastingAbility;
+	}
+	public int getSpellcasterLevel() {
+		return spellcasterLevel;
+	}
+	public int getSpellsaveDC() {
+		return spellsaveDC;
+	}
+	public int getToHit() {
+		return toHit;
+	}
+	public String getSpellClass() {
+		return spellClass;
 	}
 	private int[] calculateSpellLevels(int level) {
 		int spellSlots[] = new int[9];

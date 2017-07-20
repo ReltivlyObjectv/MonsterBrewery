@@ -16,6 +16,7 @@ public class Lists {
 		"Gargantuan"
 	};
 	public static final String[] ALIGNMENT = {
+		"Unaligned",
 		"Neutral Good",
 		"Neutral Evil",
 		"True Neutral",
@@ -66,7 +67,7 @@ public class Lists {
 		"Gnome",
 		"Goblinoid",
 		"Grimlock",
-		"Human",
+		"Humanoid",
 		"Kenku",
 		"Kobold",
 		"Kuo-toa",
@@ -143,6 +144,7 @@ public class Lists {
 	};
 	public static final String[] SKILLS = {
 		"",
+		"Passive Perception",
 		"Athletics",
 		"Acrobatics",
 		"Sleight of Hand",
@@ -160,8 +162,7 @@ public class Lists {
 		"Deception",
 		"Intimidation",
 		"Performance",
-		"Persuasion",
-		"Passive Perception"
+		"Persuasion"
 	};
 	public static final String[] SKILLS_ATTRIB = {
 		"",
@@ -688,5 +689,96 @@ public class Lists {
 			returnMe += split[i].substring(0,1).toUpperCase() + split[i].substring(1).toLowerCase();
 		}
 		return returnMe;
+	}
+	public static final String[] CHALLENGE_RATING = {
+		"0",
+		"1",
+		"2",
+		"3",
+		"4",
+		"5",
+		"6",
+		"7",
+		"8",
+		"9",
+		"10",
+		"11",
+		"12",
+		"13",
+		"14",
+		"15",
+		"16",
+		"17",
+		"18",
+		"20",
+		"21",
+		"22",
+		"23",
+		"24",
+		"30"
+	};
+	public static int calculateChallengeXP(String challengeRating) {
+		switch (challengeRating) {
+			case "0":
+				return 10;
+			case "1/8":
+				return 25;
+			case "1/4":
+				return 50;
+			case "1/2":
+				return 100;
+			case "1":
+				return 200;
+			case "2":
+				return 450;
+			case "3":
+				return 700;
+			case "4":
+				return 1100;
+			case "5":
+				return 1800;
+			case "6":
+				return 2300;
+			case "7":
+				return 2900;
+			case "8":
+				return 3900;
+			case "9":
+				return 5000;
+			case "10":
+				return 5900;
+			case "11":
+				return 7200;
+			case "12":
+				return 8400;
+			case "13":
+				return 10000;
+			case "14":
+				return 11500;
+			case "15":
+				return 13000;
+			case "16":
+				return 15000;
+			case "17":
+				return 18000;
+			case "18":
+				return 20000;
+			case "19":
+				return 22000;
+			case "20":
+				return 25000;
+			case "21":
+				return 33000;
+			case "22":
+				return 41000;
+			case "23":
+				return 50000;
+			case "24":
+				return 62000;
+			case "30":
+				return 115000;
+			default:
+				return 0;
+		}
 	}
 }

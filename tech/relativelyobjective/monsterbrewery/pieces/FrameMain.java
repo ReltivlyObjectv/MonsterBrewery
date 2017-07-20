@@ -18,15 +18,18 @@ public class FrameMain extends JFrame {
 		super("Monster Brewery");
 		super.setLayout(new BorderLayout());
 		monsterOptions = new PanelMonsterOptions();
-		menu = new MenuBar();
+		menu = new MenuBar(this);
 		super.add(monsterOptions, BorderLayout.NORTH);
 		super.add(menu);
 		super.setJMenuBar(menu);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		super.setPreferredSize(new Dimension(1000, 570));
+		super.setPreferredSize(new Dimension(1000, 580));
 		super.setMinimumSize(super.getPreferredSize());
 		super.setMaximumSize(super.getPreferredSize());
 		super.setSize(super.getPreferredSize());
 		super.setVisible(true);
+	}
+	public PanelMonsterOptions getMonsterOptions() {
+		return monsterOptions;
 	}
 }

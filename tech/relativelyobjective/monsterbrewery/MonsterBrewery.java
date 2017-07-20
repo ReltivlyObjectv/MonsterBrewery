@@ -4,6 +4,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
+import tech.relativelyobjective.monsterbrewery.resources.MonsterInformation;
 
 /**
  *
@@ -32,6 +33,7 @@ public class MonsterBrewery {
 		//Create main frame
 		SwingUtilities.invokeLater(() -> {
 			FrameMain mainWindow = new FrameMain();
+			MonsterInformation.initialize(mainWindow);
 		});
 	}
 }
