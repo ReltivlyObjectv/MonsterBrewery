@@ -96,6 +96,7 @@ public class ImageRenderer {
 		constraints.gridx = 1;
 		returnMe.add(nameLabel, constraints);
 		constraints.ipady = 3;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.gridy++;
 		JLabel sizeTypeTag = new JLabel(String.format("%s %s %s, %s",
 			Lists.formatUpperCase(MonsterInformation.getMonsterSize()),
@@ -120,6 +121,9 @@ public class ImageRenderer {
 		constraints.gridy++;
 		returnMe.add(getNewSeperator(), constraints);
 		constraints.gridy++;
+		returnMe.add(getAbilities(), constraints);
+		constraints.gridy++;
+		
 		
 		
 		
@@ -167,9 +171,28 @@ public class ImageRenderer {
 			JLabelBrown speedLabel = new JLabelBrown("Speed ");
 			speedLabel.setFont(FontManager.getFontBold(12));
 			speed.add(speedLabel);
-			JLabelBrown speedData = new JLabelBrown(
-				String.format("%d ft.",MonsterInformation.getWalkSpeed()
-				));
+			String speedDataString = String.format("%d ft.",
+				MonsterInformation.getWalkSpeed());
+			int speedSwim = MonsterInformation.getSwimSpeed();
+			int burrowSpeed = MonsterInformation.getBurrowSpeed();
+			int climbSpeed = MonsterInformation.getClimbSpeed();
+			int flySpeed = MonsterInformation.getFlySpeed();
+			if (speedSwim > 0) {
+				speedDataString += String.format(", swim %d ft.", speedSwim);
+			}
+			if (burrowSpeed > 0) {
+				speedDataString += String.format(", burrow %d ft.", burrowSpeed);
+			}
+			if (climbSpeed > 0) {
+				speedDataString += String.format(", climb %d ft.", climbSpeed);
+			}
+			if (flySpeed > 0) {
+				speedDataString += String.format(", fly %d ft. %s", 
+					flySpeed,
+					MonsterInformation.canHover() ? "(hover)" : "");
+			}
+			speedDataString += " ";
+			JLabelBrown speedData = new JLabelBrown(speedDataString);
 			speedData.setFont(FontManager.getFontRegular(12));
 			speed.add(speedData);
 			speed.add(Box.createHorizontalGlue());
@@ -610,6 +633,309 @@ public class ImageRenderer {
 		));
 		constraints.gridx++;
 		returnMe.add(chaL, constraints);
+		return returnMe;
+	}
+	private static JPanel getAbilities() {
+		List<Ability> abilities = MonsterInformation.getAbilities();
+		List<Spellcaster> spellcasters = MonsterInformation.getSpellcaster();
+		JPanel returnMe = new JPanel();
+			returnMe.setLayout(new GridBagLayout());
+			GridBagConstraints constraints = new GridBagConstraints();
+			constraints.gridx = 0;
+			constraints.gridy = 0;
+			constraints.weightx = 1;
+			constraints.fill = GridBagConstraints.HORIZONTAL;
+			returnMe.setOpaque(false);
+			for (Ability a : abilities) {
+				String text = String.format("<html><b><i>%s.</i></b> %s</html>", a.getName(), a.getDescription());
+				JLabel label = new JLabel(text);
+				label.setBorder(BorderFactory.createEtchedBorder());
+				label.setFont(FontManager.getFontRegular(10));
+				returnMe.add(label, constraints);
+				constraints.gridy++;
+			}
+			for (Spellcaster s : spellcasters) {
+				String text = "<html>";
+				int spellcasterLevel = s.getSpellcasterLevel();
+				int toHit = s.getToHit();
+				text += String.format(
+					"<b><i>Spellcasting.</i></b> The %s is a %d%s-level spellcaster. ",
+					MonsterInformation.getMonsterName().toLowerCase(),
+					spellcasterLevel,
+					spellcasterLevel == 1 ? "st" :
+					spellcasterLevel == 2 ? "nd" :
+					spellcasterLevel == 3 ? "rd" :
+					"th"
+					);
+				text += String.format(
+					"Its spellcasting ability is %s (spell save DC %d, %s%d to hit with spell attacks). ",
+					Lists.formatUpperCase(s.getSpellcastingAbility().toString()),
+					s.getSpellsaveDC(),
+					toHit < 0 ? "" : "+",
+					toHit
+				);
+				text += String.format(
+					"The %s has the following %s spells prepared:<br><br>",
+					MonsterInformation.getMonsterName().toLowerCase(),
+					s.getSpellClass().toLowerCase()
+					);
+				List<Spellcaster.Spell> cantrips = new LinkedList<>();
+				List<Spellcaster.Spell> lvl1 = new LinkedList<>();
+				List<Spellcaster.Spell> lvl2 = new LinkedList<>();
+				List<Spellcaster.Spell> lvl3 = new LinkedList<>();
+				List<Spellcaster.Spell> lvl4 = new LinkedList<>();
+				List<Spellcaster.Spell> lvl5 = new LinkedList<>();
+				List<Spellcaster.Spell> lvl6 = new LinkedList<>();
+				List<Spellcaster.Spell> lvl7 = new LinkedList<>();
+				List<Spellcaster.Spell> lvl8 = new LinkedList<>();
+				List<Spellcaster.Spell> lvl9 = new LinkedList<>();
+				for (Spellcaster.Spell spell : s.getSpells()) {
+					switch (spell.level) {
+						case 0:
+							cantrips.add(spell);
+							break;
+						case 1:
+							lvl1.add(spell);
+							break;
+						case 2:
+							lvl2.add(spell);
+							break;
+						case 3:
+							lvl3.add(spell);
+							break;
+						case 4:
+							lvl4.add(spell);
+							break;
+						case 5:
+							lvl5.add(spell);
+							break;
+						case 6:
+							lvl6.add(spell);
+							break;
+						case 7:
+							lvl7.add(spell);
+							break;
+						case 8:
+							lvl8.add(spell);
+							break;
+						case 9:
+							lvl9.add(spell);
+							break;
+						default:
+							throw new IndexOutOfBoundsException("Spells can only go 0-9");
+					}
+				}
+				boolean hasBeforeCombat = false;
+				if (cantrips.size() > 0) {
+					String spellList = "Cantrips (at will): ";
+					int i = 0;
+					for (Spellcaster.Spell spell : cantrips) {
+						if (i > 0) {
+							spellList += ", ";
+						}
+						spellList += spell.spell.toLowerCase();
+						if (spell.castOnCombat) {
+							spellList += "*";
+							hasBeforeCombat = true;
+						} 
+						i++;
+					}
+					spellList += "<br>";
+					text += spellList;
+				}
+				if (lvl1.size() > 0) {
+					String spellList = String.format("1st level (%d slot%s): ",
+						s.getSpellSlots()[0],
+						s.getSpellSlots()[0] > 0 ? "s" : ""
+						);
+					int i = 0;
+					for (Spellcaster.Spell spell : lvl1) {
+						if (i > 0) {
+							spellList += ", ";
+						}
+						spellList += spell.spell.toLowerCase();
+						if (spell.castOnCombat) {
+							spellList += "*";
+							hasBeforeCombat = true;
+						} 
+						i++;
+					}
+					spellList += "<br>";
+					text += spellList;
+				}
+				if (lvl2.size() > 0) {
+					String spellList = String.format("2nd level (%d slot%s): ",
+						s.getSpellSlots()[1],
+						s.getSpellSlots()[1] > 0 ? "s" : ""
+						);
+					int i = 0;
+					for (Spellcaster.Spell spell : lvl2) {
+						if (i > 0) {
+							spellList += ", ";
+						}
+						spellList += spell.spell.toLowerCase();
+						if (spell.castOnCombat) {
+							spellList += "*";
+							hasBeforeCombat = true;
+						} 
+						i++;
+					}
+					spellList += "<br>";
+					text += spellList;
+				}
+				if (lvl3.size() > 0) {
+					String spellList = String.format("3rd level (%d slot%s): ",
+						s.getSpellSlots()[2],
+						s.getSpellSlots()[2] > 0 ? "s" : ""
+						);
+					int i = 0;
+					for (Spellcaster.Spell spell : lvl3) {
+						if (i > 0) {
+							spellList += ", ";
+						}
+						spellList += spell.spell.toLowerCase();
+						if (spell.castOnCombat) {
+							spellList += "*";
+							hasBeforeCombat = true;
+						} 
+						i++;
+					}
+					spellList += "<br>";
+					text += spellList;
+				}
+				if (lvl4.size() > 0) {
+					String spellList = String.format("3rd level (%d slot%s): ",
+						s.getSpellSlots()[3],
+						s.getSpellSlots()[3] > 0 ? "s" : ""
+						);
+					int i = 0;
+					for (Spellcaster.Spell spell : lvl4) {
+						if (i > 0) {
+							spellList += ", ";
+						}
+						spellList += spell.spell.toLowerCase();
+						if (spell.castOnCombat) {
+							spellList += "*";
+							hasBeforeCombat = true;
+						} 
+						i++;
+					}
+					spellList += "<br>";
+					text += spellList;
+				}
+				if (lvl5.size() > 0) {
+					String spellList = String.format("5th level (%d slot%s): ",
+						s.getSpellSlots()[4],
+						s.getSpellSlots()[4] > 0 ? "s" : ""
+						);
+					int i = 0;
+					for (Spellcaster.Spell spell : lvl5) {
+						if (i > 0) {
+							spellList += ", ";
+						}
+						spellList += spell.spell.toLowerCase();
+						if (spell.castOnCombat) {
+							spellList += "*";
+							hasBeforeCombat = true;
+						} 
+						i++;
+					}
+					spellList += "<br>";
+					text += spellList;
+				}
+				if (lvl6.size() > 0) {
+					String spellList = String.format("6th level (%d slot%s): ",
+						s.getSpellSlots()[5],
+						s.getSpellSlots()[5] > 0 ? "s" : ""
+						);
+					int i = 0;
+					for (Spellcaster.Spell spell : lvl6) {
+						if (i > 0) {
+							spellList += ", ";
+						}
+						spellList += spell.spell.toLowerCase();
+						if (spell.castOnCombat) {
+							spellList += "*";
+							hasBeforeCombat = true;
+						} 
+						i++;
+					}
+					spellList += "<br>";
+					text += spellList;
+				}
+				if (lvl7.size() > 0) {
+					String spellList = String.format("7th level (%d slot%s): ",
+						s.getSpellSlots()[6],
+						s.getSpellSlots()[6] > 0 ? "s" : ""
+						);
+					int i = 0;
+					for (Spellcaster.Spell spell : lvl7) {
+						if (i > 0) {
+							spellList += ", ";
+						}
+						spellList += spell.spell.toLowerCase();
+						if (spell.castOnCombat) {
+							spellList += "*";
+							hasBeforeCombat = true;
+						} 
+						i++;
+					}
+					spellList += "<br>";
+					text += spellList;
+				}
+				if (lvl8.size() > 0) {
+					String spellList = String.format("8th level (%d slot%s): ",
+						s.getSpellSlots()[7],
+						s.getSpellSlots()[7] > 0 ? "s" : ""
+						);
+					int i = 0;
+					for (Spellcaster.Spell spell : lvl8) {
+						if (i > 0) {
+							spellList += ", ";
+						}
+						spellList += spell.spell.toLowerCase();
+						if (spell.castOnCombat) {
+							spellList += "*";
+							hasBeforeCombat = true;
+						} 
+						i++;
+					}
+					spellList += "<br>";
+					text += spellList;
+				}
+				if (lvl9.size() > 0) {
+					String spellList = String.format("9th level (%d slot%s): ",
+						s.getSpellSlots()[8],
+						s.getSpellSlots()[8] > 0 ? "s" : ""
+						);
+					int i = 0;
+					for (Spellcaster.Spell spell : lvl9) {
+						if (i > 0) {
+							spellList += ", ";
+						}
+						spellList += spell.spell.toLowerCase();
+						if (spell.castOnCombat) {
+							spellList += "*";
+							hasBeforeCombat = true;
+						} 
+						i++;
+					}
+					spellList += "<br>";
+					text += spellList;
+				}
+				if (hasBeforeCombat) {
+					text += String.format("*The %s casts these spells on itself before combat.",
+						MonsterInformation.getMonsterName().toLowerCase()
+						);
+				}
+				text += "</html>";
+				JLabel label = new JLabel(text);
+				label.setBorder(BorderFactory.createEtchedBorder());
+				label.setFont(FontManager.getFontRegular(10));
+				returnMe.add(label, constraints);
+				constraints.gridy++;
+				
+			}
 		return returnMe;
 	}
 	private static JLabel getNewSeperator() {

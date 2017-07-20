@@ -34,7 +34,7 @@ import tech.relativelyobjective.monsterbrewery.resources.Lists;
  * 
  */
 public class Spellcaster implements Attribute {
-	private class Spell implements Comparable {
+	public class Spell implements Comparable {
 		public int level;
 		public String spell;
 		public boolean castOnCombat;
