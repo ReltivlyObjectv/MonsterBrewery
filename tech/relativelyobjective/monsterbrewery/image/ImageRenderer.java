@@ -1,10 +1,15 @@
 package tech.relativelyobjective.monsterbrewery.image;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
@@ -17,8 +22,11 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import tech.relativelyobjective.monsterbrewery.attributes.*;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 import tech.relativelyobjective.monsterbrewery.resources.Abilities;
@@ -35,16 +43,61 @@ import tech.relativelyobjective.monsterbrewery.resources.MonsterInformation;
  */
 public class ImageRenderer {
 	private static FrameMain mainFrame;
-	
+	private static JDialog currentRenderWindow = null;
+	private static JPanel renderArea = null;
+	private static final Color transparentColor = new Color(238, 238, 238);
 	public static void initialize(FrameMain mainF) {
 		mainFrame = mainF;
 	}
-	public static BufferedImage getImage(JDialog renderWindow) {
-		return null;
+	public static void renderToFile() {
+		renderImage(mainFrame);
+		JFileChooser fileChooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG Images", "png");
+		fileChooser.setFileFilter(filter);
+		if (fileChooser.showSaveDialog(currentRenderWindow) == JFileChooser.APPROVE_OPTION) {
+			File file = fileChooser.getSelectedFile();
+			file = new File(file.toString() + ".png");
+			try {
+				BufferedImage img = getImage(renderArea);
+				for (int i = 0; i < img.getWidth(); i++) {
+					for (int j = 0; j < img.getHeight(); j++) {
+						if (img.getRGB(i, j) == transparentColor.getRGB()) {
+							img.setRGB(i, j, new Color(0,0,0,0).getRGB());
+						}
+					}
+				}
+				ImageIO.write(removeGrayBackground(img), "png", file);
+			} catch (IOException ex) {
+				Logger.getLogger(ImageRenderer.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+	}
+	private static BufferedImage removeGrayBackground(BufferedImage img) {
+		return img;
+	}
+	public static BufferedImage getImage(Component panel) {
+		BufferedImage img = new BufferedImage(
+			panel.getWidth(), panel.getHeight(), 
+		BufferedImage.TYPE_INT_ARGB);
+		Graphics g = img.createGraphics();
+		panel.paint(g);
+		return img;
 	}
 	public static void renderImage(FrameMain mainFrame) {
-		JDialog renderWindow = new JDialog(mainFrame, "Render Monster", true);
+		if (currentRenderWindow != null) {
+			currentRenderWindow.dispose();
+			currentRenderWindow = null;
+		}
+		JDialog renderWindow = new JDialog(mainFrame, "Render Monster", false);
+		currentRenderWindow = renderWindow;
+		renderWindow.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				currentRenderWindow = null;
+			}
+		});
 		JPanel windowContents = new JPanel();
+			windowContents.setBackground(transparentColor);
 			windowContents.setLayout(new GridBagLayout());
 			GridBagConstraints constraints = new GridBagConstraints();
 			constraints.gridx = 0;
@@ -52,19 +105,38 @@ public class ImageRenderer {
 			constraints.ipadx = 0;
 			constraints.ipady = 0;
 			constraints.weightx = 1;
+			JPanel buffer = new JPanel();
+			buffer.setOpaque(false);
+			buffer.setPreferredSize(new Dimension(100,50));
+			buffer.setMinimumSize(buffer.getPreferredSize());
+			windowContents.add(buffer, constraints);
+			constraints.gridy++;
 			constraints.fill = GridBagConstraints.NONE;
 			windowContents.add(getNewEndCap(), constraints);
 			constraints.gridy++;
 			windowContents.add(getWindowContents(), constraints);
 			constraints.gridy++;
 			windowContents.add(getNewEndCap(), constraints);
-		renderWindow.add(windowContents);
+			constraints.gridy++;
+			JPanel buffer2 = new JPanel();
+			buffer2.setOpaque(false);
+			buffer2.setPreferredSize(new Dimension(100,50));
+			buffer2.setMinimumSize(buffer2.getPreferredSize());
+			windowContents.add(buffer2, constraints);
 		//renderWindow.setPreferredSize(new Dimension(430, 700));
 		renderWindow.setPreferredSize(renderWindow.getPreferredSize());
-		Dimension newDimension = renderWindow.getPreferredSize();
+		Dimension newDimension = windowContents.getPreferredSize();
 		newDimension.width = 430;
-		newDimension.height += 40;
+		newDimension.height += 50;
 		renderWindow.setPreferredSize(newDimension);
+		renderWindow.setMinimumSize(new Dimension(475, 50));
+		renderWindow.setSize(newDimension);
+		windowContents.setPreferredSize(newDimension);
+		//windowContents.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		JScrollPane scroller = new JScrollPane(windowContents);
+		renderArea = windowContents;
+		//scroller.setPreferredSize(newDimension);
+		renderWindow.add(scroller);
 		//renderWindow.setSize(new Dimension(430, 700));
 		renderWindow.setSize(renderWindow.getPreferredSize());
 		renderWindow.setVisible(true);
@@ -131,6 +203,10 @@ public class ImageRenderer {
 		constraints.gridy++;
 		returnMe.add(getActions(), constraints);
 		constraints.gridy++;
+		returnMe.add(getReactions(), constraints);
+		constraints.gridy++;
+		returnMe.add(getLegendaryActions(), constraints);
+		
 		
 		
 		
@@ -1029,6 +1105,87 @@ public class ImageRenderer {
 				content.setFont(FontManager.getFontRegular(10));
 				returnMe.add(content, constraints);
 				constraints.gridy++;
+			}
+		return returnMe;
+	}
+	private static JPanel getReactions() {
+		JPanel returnMe = new JPanel();
+			returnMe.setLayout(new GridBagLayout());
+			GridBagConstraints constraints = new GridBagConstraints();
+			constraints.gridx = 0;
+			constraints.gridy = 0;
+			constraints.weightx = 1;
+			constraints.fill = GridBagConstraints.HORIZONTAL;
+			constraints.anchor = GridBagConstraints.WEST;
+			returnMe.setOpaque(false);
+			List<Reaction> reactions = MonsterInformation.getReactions();
+			if (reactions.isEmpty()) {
+				returnMe.setPreferredSize(new Dimension(0,0));
+				returnMe.setSize(returnMe.getPreferredSize());
+				return returnMe;
+			}
+			JLabel header = new JLabelBrown("Reactions");
+			header.setFont(FontManager.getFontRegularSmallCaps(17));
+			header.setBorder(BorderFactory.createMatteBorder(
+				0, 0, 1, 0, Color.decode("#902717")));
+			returnMe.add(header, constraints);
+			constraints.gridy++;
+			for (Reaction r : reactions) {
+				String reactionText = String.format("<html><b><i>%s. </i></b>%s</html>",
+					r.getName(), 
+					r.getDescription());
+				JLabel reactionLabel = new JLabel(reactionText);
+				reactionLabel.setFont(FontManager.getFontRegular(10));
+				returnMe.add(reactionLabel, constraints);
+				constraints.gridy++;
+			}
+		return returnMe;
+	}
+	private static JPanel getLegendaryActions() {
+		JPanel returnMe = new JPanel();
+			returnMe.setLayout(new GridBagLayout());
+			GridBagConstraints constraints = new GridBagConstraints();
+			constraints.gridx = 0;
+			constraints.gridy = 0;
+			constraints.weightx = 1;
+			constraints.fill = GridBagConstraints.HORIZONTAL;
+			constraints.anchor = GridBagConstraints.WEST;
+			returnMe.setOpaque(false);
+			List<LegendaryActions> actions = MonsterInformation.getLegendaryActions();
+			if (!actions.isEmpty()) {
+				returnMe.setPreferredSize(new Dimension(0,0));
+				returnMe.setSize(returnMe.getPreferredSize());
+				return returnMe;
+			}
+			for (LegendaryActions l : actions) {
+				JLabel header = new JLabelBrown("Legendary Actions");
+				header.setFont(FontManager.getFontRegularSmallCaps(17));
+				header.setBorder(BorderFactory.createMatteBorder(
+					0, 0, 1, 0, Color.decode("#902717")));
+				returnMe.add(header, constraints);
+				String legendaryOverview = String.format("<html>The %s can take %d legendary action%s, "+
+					"choosing from the options below. Only one legendary action can be used at a time "+
+					"and only at the end of another creature's turn. The %s regains spent legendary actions "+
+					"at the start of its turn<br><br></html>",
+					MonsterInformation.getMonsterName().toLowerCase(),
+					l.getUsesPerCycle(),
+					l.getUsesPerCycle() == 1 ? "" : "s",
+					MonsterInformation.getMonsterName().toLowerCase()
+					);
+				constraints.gridy++;
+				JLabel legendaryOverviewLabel = new JLabel(legendaryOverview);
+				legendaryOverviewLabel.setFont(FontManager.getFontRegular(10));
+				returnMe.add(legendaryOverviewLabel, constraints);
+				for (LegendaryActions.Action a : l.getActions()) {
+					String action = String.format("<html><b><i>%s. </i></b>%s<br></html>",
+						a.name,
+						a.text
+						);
+					constraints.gridy++;
+					JLabel actionLabel = new JLabel(action);
+					actionLabel.setFont(FontManager.getFontRegular(10));
+					returnMe.add(actionLabel, constraints);
+				}
 			}
 		return returnMe;
 	}

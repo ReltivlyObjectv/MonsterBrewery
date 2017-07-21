@@ -26,6 +26,7 @@ public class MenuBar extends JMenuBar {
 		private final JMenuItem saveAs;
 		private final JMenuItem load;
 		private final JMenuItem render;
+		private final JMenuItem renderToFile;
 		
 		public FileMenu(String title) {
 			super(title);
@@ -63,7 +64,7 @@ public class MenuBar extends JMenuBar {
 			});
 			super.add(load);
 			super.addSeparator();
-			render = new JMenuItem("Render...");
+			render = new JMenuItem("Render");
 			render.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_R, 
 				Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
@@ -71,6 +72,15 @@ public class MenuBar extends JMenuBar {
 				renderMonster();
 			});
 			super.add(render);
+			renderToFile = new JMenuItem("Render to File");
+			renderToFile.setAccelerator(KeyStroke.getKeyStroke(
+				KeyEvent.VK_R, 
+				Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()
+				| InputEvent.SHIFT_DOWN_MASK));
+			renderToFile.addActionListener((ActionEvent e) -> {
+				renderToFile();
+			});
+			super.add(renderToFile);
 		}
 	}
 	
@@ -95,5 +105,8 @@ public class MenuBar extends JMenuBar {
 	}
 	private void renderMonster() {
 		ImageRenderer.renderImage(mainFrame);
+	}
+	private void renderToFile() {
+		ImageRenderer.renderToFile();
 	}
 }

@@ -2,6 +2,8 @@ package tech.relativelyobjective.monsterbrewery.resources;
 
 import java.util.LinkedList;
 import java.util.List;
+import tech.relativelyobjective.monsterbrewery.attributes.Action;
+import tech.relativelyobjective.monsterbrewery.attributes.Spellcaster;
 
 /**
  *
@@ -16,8 +18,25 @@ public class ChallengeRatingCalculator {
 		) {
 		double defensiveCR = getDefensiveCR(armorClass, hitPoints);
 		double offensiveCR = getOffensiveCR(attackBonus, damPerRound);
-		//Offensive CR
-		return offensiveCR;
+		double finalCR = (offensiveCR + defensiveCR) / 2;
+		if (finalCR >= 1.0 && (finalCR / 1.0) != 0.0) {
+			//Round up
+			finalCR += 1- (finalCR / 1.0);
+		} else if (finalCR < 1.0) {
+			//Round decimal CRs
+			if (finalCR > 0.5) {
+				finalCR = 1;
+			} else if (finalCR > 0.25) {
+				finalCR = 0.5;
+			} else if (finalCR > 0.125) {
+				finalCR = 0.25;
+			} else if (finalCR > (0.125 / 2)) {
+				finalCR = 0.125;
+			} else {
+				finalCR = 0;
+			}
+		}
+		return finalCR;
 	}
 	private static double getOffensiveCR(int attackBonus, int damPerRound) {
 		double dpsCR = getDamagePerRoundCR(damPerRound);
@@ -105,7 +124,7 @@ public class ChallengeRatingCalculator {
 					}
 				}
 			}
-		}else if (hpCR > getLowestFromList(acCR, hpCR)) {
+		}else if (hpCR > getHighestFromList(acCR, hpCR)) {
 			//Armor CR too low
 			//System.out.printf("AC CR is too low\n");
 			int loopsGoneThrough = 0;
@@ -479,5 +498,37 @@ public class ChallengeRatingCalculator {
 			}
 		}
 		return highest;
+	}
+	private static int getAverageFromList(List<Integer> list) {
+		if (list.isEmpty()) {
+			return 0;
+		}
+		int runningTotal = 0;
+		for (Integer i : list) {
+			runningTotal += i;
+		}
+		runningTotal /= list.size();
+		return runningTotal;
+	}
+	public static int guessAttackBonus() {
+		List<Integer> attackBonuses = new LinkedList<>();
+		for (Spellcaster s : MonsterInformation.getSpellcaster()) {
+			attackBonuses.add(s.getToHit());
+		}
+		for (Action a : MonsterInformation.getActions()) {
+			attackBonuses.add(a.getToHit());
+		}
+		return getAverageFromList(attackBonuses);
+	}
+	public static int guessDamagePerRound() {
+		List<Integer> damagePerRound = new LinkedList<>();
+		for (Action a : MonsterInformation.getActions()) {
+			try {
+				damagePerRound.add(a.getDiceCount() * Integer.parseInt(a.getDiceType().replace("d", "")));
+			} catch (NumberFormatException e) {
+				System.out.printf("Could not parse number: %s", a.getDiceType().replace("d", ""));
+			}
+		}
+		return getAverageFromList(damagePerRound);
 	}
 }

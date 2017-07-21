@@ -31,7 +31,7 @@ import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
  * 
  */
 public class LegendaryActions implements Attribute {
-	private class Action {
+	public class Action {
 		public String name;
 		public String text;
 		public Action() {

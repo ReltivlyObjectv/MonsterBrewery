@@ -16,6 +16,9 @@ public class MonsterInformation {
 	public static void initialize(FrameMain mainF) {
 		mainFrame = mainF;
 	}
+	public static FrameMain getMainFrame() {
+		return mainFrame;
+	}
 	//Overview
 	public static String getMonsterName() {
 		return mainFrame.getMonsterOptions().getMonsterName();
