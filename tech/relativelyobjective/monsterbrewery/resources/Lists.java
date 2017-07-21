@@ -669,6 +669,10 @@ public class Lists {
 		RANGED,
 		MISC
 	}
+	public enum RangeDelivery {
+		FIRE_AND_FORGET,
+		SHAPE
+	}
 	public enum RangeShape {
 		LINE,
 		CONE,

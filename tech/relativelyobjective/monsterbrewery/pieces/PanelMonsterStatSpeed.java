@@ -31,7 +31,7 @@ public class PanelMonsterStatSpeed extends JPanel {
 		speeds = new JSpinner[5];
 		for(int i = 0; i < Lists.SPEED_TYPES.length - 1; i++) {
 			constraints.gridx = i;
-			int defaultSpeed = i < 4 ? 5 : 0; //Fly speed of zero
+			int defaultSpeed = i == 0 ? 5 : 0; //Non-walk speed is 0
 			speeds[i] = new JSpinner(new SpinnerNumberModel(defaultSpeed,0,2500,5));
 			super.add(speeds[i], constraints);
 		}

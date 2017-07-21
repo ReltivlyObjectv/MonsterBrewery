@@ -59,8 +59,14 @@ public class ImageRenderer {
 			constraints.gridy++;
 			windowContents.add(getNewEndCap(), constraints);
 		renderWindow.add(windowContents);
-		renderWindow.setPreferredSize(new Dimension(430, 700));
-		renderWindow.setSize(new Dimension(430, 700));
+		//renderWindow.setPreferredSize(new Dimension(430, 700));
+		renderWindow.setPreferredSize(renderWindow.getPreferredSize());
+		Dimension newDimension = renderWindow.getPreferredSize();
+		newDimension.width = 430;
+		newDimension.height += 40;
+		renderWindow.setPreferredSize(newDimension);
+		//renderWindow.setSize(new Dimension(430, 700));
+		renderWindow.setSize(renderWindow.getPreferredSize());
 		renderWindow.setVisible(true);
 	}
 	private static JPanel getNewEndCap() {
@@ -122,6 +128,8 @@ public class ImageRenderer {
 		returnMe.add(getNewSeperator(), constraints);
 		constraints.gridy++;
 		returnMe.add(getAbilities(), constraints);
+		constraints.gridy++;
+		returnMe.add(getActions(), constraints);
 		constraints.gridy++;
 		
 		
@@ -647,9 +655,10 @@ public class ImageRenderer {
 			constraints.fill = GridBagConstraints.HORIZONTAL;
 			returnMe.setOpaque(false);
 			for (Ability a : abilities) {
-				String text = String.format("<html><b><i>%s.</i></b> %s</html>", a.getName(), a.getDescription());
+				String text = String.format("<html><b><i>%s.</i></b> %s<br><br></html>", 
+					a.getName(), a.getDescription());
 				JLabel label = new JLabel(text);
-				label.setBorder(BorderFactory.createEtchedBorder());
+				//label.setBorder(BorderFactory.createEtchedBorder());
 				label.setFont(FontManager.getFontRegular(10));
 				returnMe.add(label, constraints);
 				constraints.gridy++;
@@ -924,17 +933,102 @@ public class ImageRenderer {
 					text += spellList;
 				}
 				if (hasBeforeCombat) {
-					text += String.format("*The %s casts these spells on itself before combat.",
+					text += String.format("<br>*The %s casts these spells on itself before combat.",
 						MonsterInformation.getMonsterName().toLowerCase()
 						);
 				}
 				text += "</html>";
 				JLabel label = new JLabel(text);
-				label.setBorder(BorderFactory.createEtchedBorder());
+				//label.setBorder(BorderFactory.createEtchedBorder());
 				label.setFont(FontManager.getFontRegular(10));
 				returnMe.add(label, constraints);
 				constraints.gridy++;
+			}
+		return returnMe;
+	}
+	private static JPanel getActions() {
+		JPanel returnMe = new JPanel();
+			returnMe.setLayout(new GridBagLayout());
+			GridBagConstraints constraints = new GridBagConstraints();
+			constraints.gridx = 0;
+			constraints.gridy = 0;
+			constraints.weightx = 1;
+			constraints.fill = GridBagConstraints.HORIZONTAL;
+			constraints.anchor = GridBagConstraints.WEST;
+			returnMe.setOpaque(false);
+			List<Action> actions = MonsterInformation.getActions();
+			if (actions.size() > 0) {
+				JLabel header = new JLabelBrown("Actions");
+				header.setFont(FontManager.getFontRegularSmallCaps(17));
+				header.setBorder(BorderFactory.createMatteBorder(
+					0, 0, 1, 0, Color.decode("#902717")));
+				returnMe.add(header, constraints);
+				constraints.gridy++;
+			}
+			for (Action a : actions) {
+				String description = "";
+				int toHit = a.getToHit();
+				int diceType, diceCount, averageDice;
+				diceType = Integer.parseInt(a.getDiceType().replace("d", ""));
+				diceCount = a.getDiceCount();
+				averageDice = (diceType * diceCount) / 2;
 				
+				if (a.getActionType() == Lists.ActionType.MELEE) {
+					//Melee attack
+					description += "<i>Melee Weapon Attack</i>: ";
+					description += String.format(
+						"%s%d to hit, reach %d ft., %s. ",
+						toHit < 0 ? "" : "+",
+						toHit,
+						a.getMeleeReach(),
+						"one target"
+						);
+					description += String.format("<i>Hit:</i> %d (%dd%d) %s damage.",
+						averageDice,
+						diceCount,
+						diceType,
+						a.getDamageType().toLowerCase()
+						);
+				} else if (a.getActionType() == Lists.ActionType.RANGED) {
+					//Ranged attack
+					description += String.format("<i>Ranged %s Attack: </i>",
+						a.getRangedType() == Lists.RangeType.SPELL ? "Spell" : "Weapon"
+						);
+					if (a.getRangedDelivery() == Lists.RangeDelivery.FIRE_AND_FORGET) {
+						//Fire and Forget (min/max range)
+						description += String.format(
+							"%s%d to hit, reach %d/%d ft., %s. ",
+							toHit < 0 ? "" : "+",
+							toHit,
+							a.getRangedMin(),
+							a.getRangedMax(),
+							"one target"
+							);
+					} else {
+						//Shape
+						description += String.format("%s%d to hit, %d foot %s. ",
+							toHit < 0 ? "" : "+",
+							toHit,
+							a.getRangedSize(),
+							a.getRangedShape().toString().toLowerCase()
+							);
+					}
+					description += String.format("<i>Hit:</i> %d (%dd%d) %s damage.",
+						averageDice,
+						diceCount,
+						diceType,
+						a.getDamageType().toLowerCase()
+						);
+				} else {
+					//Misc action
+					description += a.getDescription();
+				}
+				description += "<br><br>";
+				JLabel content = new JLabel(String.format("<html><b><i>%s.</i></b> %s</html>",
+					a.getName(), description));
+				content.setFont(FontManager.getFontRegular(10));
+				returnMe.add(content, constraints);
+				constraints.gridy++;
 			}
 		return returnMe;
 	}

@@ -15,6 +15,21 @@ import java.util.logging.Logger;
  */
 public class FontManager {
 	public static Font getFontTitle(double fontSize) {
+		//TODO
+		InputStream istream;
+		istream = FontManager.class.getResourceAsStream("/OpenSans-Regular.ttf");
+		Font myFont;
+		try {
+			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
+		} catch (FontFormatException | IOException ex) {
+			Logger.getLogger(FontManager.class.getName()).log(Level.SEVERE, null, ex);
+			return null;
+		}
+		myFont = myFont.deriveFont((float) fontSize);
+		return myFont;
+	}
+	public static Font getFontRegularSmallCaps(double fontSize) {
+		//TODO
 		InputStream istream;
 		istream = FontManager.class.getResourceAsStream("/OpenSans-Regular.ttf");
 		Font myFont;

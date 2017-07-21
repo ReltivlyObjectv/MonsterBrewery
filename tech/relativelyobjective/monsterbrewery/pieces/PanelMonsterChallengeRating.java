@@ -3,10 +3,10 @@ package tech.relativelyobjective.monsterbrewery.pieces;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
-import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import tech.relativelyobjective.monsterbrewery.resources.ChallengeRatingCalculator;
 import tech.relativelyobjective.monsterbrewery.resources.JLabelBold;
 import tech.relativelyobjective.monsterbrewery.resources.Lists;
 
@@ -43,7 +43,8 @@ public class PanelMonsterChallengeRating extends JPanel {
 		return (String) value.getSelectedItem();
 	}
 	private void calculateChallengeRating() {
-		//TODO
+		double challengeRating = ChallengeRatingCalculator.getChallengeRating(0, 0, 1, 6);
+		System.out.printf("%f",challengeRating);
 		value.setSelectedItem("15");
 	}
 	

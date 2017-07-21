@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -92,6 +91,7 @@ public class Action implements Attribute{
 		public JSpinner shapeSize;
 		public JComboBox diceTypeBox;
 		public JComboBox damageTypeBox;
+		public JComboBox rangeDeliveryBox;
 		public JComboBox rangeShapeBox;
 		public JComboBox rangeTypeBox;
 		
@@ -116,6 +116,8 @@ public class Action implements Attribute{
 			rangeShapeBox.setSelectedItem(rangedShape);
 			rangeTypeBox = new JComboBox(Lists.RangeType.values());
 			rangeTypeBox.setSelectedItem(rangedType);
+			rangeDeliveryBox = new JComboBox(Lists.RangeDelivery.values());
+			rangeDeliveryBox.setSelectedItem(rangedDelivery);
 			super.setLayout(new GridBagLayout());
 			GridBagConstraints constraints = new GridBagConstraints();
 			constraints.gridx = 0;
@@ -124,6 +126,12 @@ public class Action implements Attribute{
 			super.add(new JLabel("Action Type"), constraints);
 			constraints.gridx++;
 			super.add(rangeTypeBox, constraints);
+			//Delivery
+			constraints.gridx = 0;
+			constraints.gridy++;
+			super.add(new JLabel("Delivery"), constraints);
+			constraints.gridx++;
+			super.add(rangeDeliveryBox, constraints);
 			//Damage
 			constraints.gridx = 0;
 			constraints.gridy++;
@@ -179,8 +187,8 @@ public class Action implements Attribute{
 			constraints.gridx++;
 			super.add(this.toHitBox, constraints);
 			//Set visibility
-			if ((Lists.RangeType) rangeTypeBox.getSelectedItem() == Lists.RangeType.PHYSICAL) {
-				//Physical Attack
+			if ((Lists.RangeDelivery) rangeDeliveryBox.getSelectedItem() == Lists.RangeDelivery.FIRE_AND_FORGET) {
+				//An attack with min/max range
 				shapeLabel.setVisible(false);
 				rangeShapeBox.setVisible(false);
 				sRangeLabel.setVisible(true);
@@ -190,7 +198,7 @@ public class Action implements Attribute{
 				shapeSizeLabel.setVisible(false);
 				shapeSize.setVisible(false);
 			} else {
-				//Spell Attack
+				//An attack with a cone, box, etc
 				shapeLabel.setVisible(true);
 				rangeShapeBox.setVisible(true);
 				sRangeLabel.setVisible(false);
@@ -201,9 +209,9 @@ public class Action implements Attribute{
 				shapeSize.setVisible(true);
 			}
 			//Listener
-			rangeTypeBox.addActionListener((ActionEvent e) -> {
-				if ((Lists.RangeType) rangeTypeBox.getSelectedItem() == Lists.RangeType.PHYSICAL) {
-					//Physical Attack
+			rangeDeliveryBox.addActionListener((ActionEvent e) -> {
+				if ((Lists.RangeDelivery) rangeDeliveryBox.getSelectedItem() == Lists.RangeDelivery.FIRE_AND_FORGET) {
+					//An attack with min/max range
 					shapeLabel.setVisible(false);
 					rangeShapeBox.setVisible(false);
 					sRangeLabel.setVisible(true);
@@ -213,7 +221,7 @@ public class Action implements Attribute{
 					shapeSizeLabel.setVisible(false);
 					shapeSize.setVisible(false);
 				} else {
-					//Spell Attack
+					//An attack with a cone, box, etc
 					shapeLabel.setVisible(true);
 					rangeShapeBox.setVisible(true);
 					sRangeLabel.setVisible(false);
@@ -255,6 +263,7 @@ public class Action implements Attribute{
 	private int rangedMax;
 	private Lists.RangeShape rangedShape;
 	private Lists.RangeType rangedType;
+	private Lists.RangeDelivery rangedDelivery;
 	private int rangedSize;
 	//Melee
 	private int meleeReach;
@@ -272,6 +281,7 @@ public class Action implements Attribute{
 		rangedSize =10;
 		rangedShape = Lists.RangeShape.LINE;
 		rangedType = Lists.RangeType.PHYSICAL;
+		rangedDelivery = Lists.RangeDelivery.FIRE_AND_FORGET;
 		meleeReach = 5;
 		damageType = "Piercing";
 		description = "";
@@ -357,6 +367,7 @@ public class Action implements Attribute{
 								rangedShape = (Lists.RangeShape) rangedPanel.rangeShapeBox.getSelectedItem();
 								rangedType = (Lists.RangeType) rangedPanel.rangeTypeBox.getSelectedItem();
 								rangedSize = (int) rangedPanel.shapeSize.getValue();
+								rangedDelivery = (Lists.RangeDelivery) rangedPanel.rangeDeliveryBox.getSelectedItem();
 								damageType = (String) rangedPanel.damageTypeBox.getSelectedItem();
 								if (!AttributeHandler.contains(this)) {
 									AttributeHandler.addAttribute(this);
@@ -389,12 +400,15 @@ public class Action implements Attribute{
 			case MELEE:
 				return String.format("Melee Attack: %s", name);
 			case RANGED:
-				switch (rangedType) {
-					case SPELL:
-						return String.format("Ranged Spell: %s (%d ft. %s)", 
+				switch (rangedDelivery) {
+					case SHAPE:
+						return String.format("Ranged %s: %s (%d ft. %s)", 
+							rangedType == Lists.RangeType.SPELL ? "Spell" : "Attack",
 							name, rangedSize, Lists.formatUpperCase(rangedShape));
-					case PHYSICAL:
-						return String.format("Ranged Attack: %s (%d/%d ft.)", name, rangedMin, rangedMax);
+					case FIRE_AND_FORGET:
+						return String.format("Ranged %s: %s (%d/%d ft.)",
+							rangedType == Lists.RangeType.SPELL ? "Spell" : "Attack",
+							name, rangedMin, rangedMax);
 				}
 			default:
 				return String.format("Action: %s", name);
@@ -429,6 +443,9 @@ public class Action implements Attribute{
 	}
 	public Lists.RangeType getRangedType() {
 		return rangedType;
+	}
+	public Lists.RangeDelivery getRangedDelivery() {
+		return rangedDelivery;
 	}
 	public int getRangedSize() {
 		return rangedSize;
