@@ -1,6 +1,5 @@
 package tech.relativelyobjective.monsterbrewery.pieces;
 
-import java.awt.Event;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
@@ -9,6 +8,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+import tech.relativelyobjective.monsterbrewery.filestorage.SaveCreator;
 import tech.relativelyobjective.monsterbrewery.image.ImageRenderer;
 
 /**
@@ -95,10 +95,10 @@ public class MenuBar extends JMenuBar {
 		System.out.printf("Not implemented: New\n");
 	}
 	private void saveMonster() {
-		System.out.printf("Not implemented: Save\n");
+		SaveCreator.saveToLocation(mainFrame);
 	}
 	private void saveMonsterAs() {
-		System.out.printf("Not implemented: Save As\n");
+		SaveCreator.openSavePrompt(mainFrame);
 	}
 	private void loadMonster() {
 		System.out.printf("Not implemented: Load\n");

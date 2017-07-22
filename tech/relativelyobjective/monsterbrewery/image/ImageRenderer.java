@@ -1152,7 +1152,7 @@ public class ImageRenderer {
 			constraints.anchor = GridBagConstraints.WEST;
 			returnMe.setOpaque(false);
 			List<LegendaryActions> actions = MonsterInformation.getLegendaryActions();
-			if (!actions.isEmpty()) {
+			if (actions.isEmpty()) {
 				returnMe.setPreferredSize(new Dimension(0,0));
 				returnMe.setSize(returnMe.getPreferredSize());
 				return returnMe;
