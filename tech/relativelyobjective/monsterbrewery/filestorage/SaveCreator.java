@@ -29,6 +29,10 @@ import tech.relativelyobjective.monsterbrewery.resources.MonsterInformation;
 public class SaveCreator {
 	private static File saveLocation = null;
 	
+	public static void setFileLocation(File newSaveLocation, FrameMain mainFrame) {
+		mainFrame.setTitle(String.format("Monster Brewery (%s)",newSaveLocation.getName()));
+		saveLocation = newSaveLocation;
+	}
 	public static void saveToLocation(FrameMain mainFrame) {
 		if (saveLocation == null) {
 			openSavePrompt(mainFrame);
@@ -42,8 +46,11 @@ public class SaveCreator {
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("MonsterBrewery Files", "monsterbrewery");
 		fileChooser.setFileFilter(filter);
 		if (fileChooser.showSaveDialog(mainFrame) == JFileChooser.APPROVE_OPTION) {
-			saveLocation = fileChooser.getSelectedFile();
-			saveLocation = new File(saveLocation.toString() + ".monsterbrewery");
+			File tempSaveLocation = fileChooser.getSelectedFile();
+			if (!tempSaveLocation.toString().contains(".monsterbrewery")) {
+				tempSaveLocation = new File(tempSaveLocation.toString() + ".monsterbrewery");
+			}
+			setFileLocation(tempSaveLocation, mainFrame);
 			saveToLocation(saveLocation);
 		}
 	}

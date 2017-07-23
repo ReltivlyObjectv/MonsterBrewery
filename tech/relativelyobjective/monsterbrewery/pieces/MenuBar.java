@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import tech.relativelyobjective.monsterbrewery.filestorage.SaveCreator;
+import tech.relativelyobjective.monsterbrewery.filestorage.SaveLoader;
 import tech.relativelyobjective.monsterbrewery.image.ImageRenderer;
 
 /**
@@ -101,7 +102,7 @@ public class MenuBar extends JMenuBar {
 		SaveCreator.openSavePrompt(mainFrame);
 	}
 	private void loadMonster() {
-		System.out.printf("Not implemented: Load\n");
+		SaveLoader.openLoadPrompt(mainFrame);
 	}
 	private void renderMonster() {
 		ImageRenderer.renderImage(mainFrame);
