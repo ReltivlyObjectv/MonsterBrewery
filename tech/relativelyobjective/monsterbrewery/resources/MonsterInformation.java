@@ -16,6 +16,7 @@ public class MonsterInformation {
 	public static void initialize(FrameMain mainF) {
 		mainFrame = mainF;
 	}
+	//-----GETTERS-----
 	public static FrameMain getMainFrame() {
 		return mainFrame;
 	}
@@ -192,5 +193,87 @@ public class MonsterInformation {
 	}
 	public static int getFlySpeed() {
 		return mainFrame.getMonsterOptions().getFlySpeed();
+	}
+	//-----SETTERS-----
+	//Overview
+	public static void setMonsterName(String name) {
+	}
+	public static void setArmorType(String type) {
+	}
+	public static void setMonsterSize(String size) {
+	}
+	public static void setMonsterType(String type) {
+	}
+	public static void setMonsterTag(String tag) {
+	}
+	public static void setAlignment(String alignment) {
+	}
+	public static void setHitPointString(String hp) {
+	}
+	public static void setHitPointDiceCount(int diceCount) {
+	}
+	public static void setHitPointDiceType(String dice) {
+	}
+	public static void setArmorClass(int ac) {
+	}
+	public static void setChallengeRating(String cr) {
+	}
+	//Attributes
+	public static void addAttribute(Attribute a) {
+	}
+	public static void addAbility(Ability a) {
+	}
+	public static void addAction(Action a) {
+	}
+	public static void addDamageModifier(DamageModifier d) {
+	}
+	public static void addLanguage(Language l) {
+	}
+	public static void addLegendaryActions(LegendaryActions l) {
+	}
+	public static void addReaction(Reaction r) {
+	}
+	public static void addSense(Sense s) {
+	}
+	public static void addSkill(Skill s) {
+	}
+	public static void addSpellcaster(Spellcaster s) {
+	}
+	//Stats
+	public static void setStrength(int s) {
+	}
+	public static void getDexterity(int d) {
+	}
+	public static void getConstitution(int c) {
+	}
+	public static void getIntelligence(int i) {
+	}
+	public static void getWisdom(int w) {
+	}
+	public static void getCharisma(int c) {
+	}
+	public static void getStrengthSave(int s) {
+	}
+	public static void getDexteritySave(int d) {
+	}
+	public static void getConstitutionSave(int c) {
+	}
+	public static void getIntelligenceSave(int i) {
+	}
+	public static void getWisdomSave(int s) {
+	}
+	public static void getCharismaSave(int c) {
+	}
+	public static void setCanHover(boolean canHover) {
+	}
+	public static void setWalkSpeed(int speed) {
+	}
+	public static void getSwimSpeed(int speed) {
+	}
+	public static void getBurrowSpeed(int speed) {
+	}
+	public static void getClimbSpeed(int speed) {
+	}
+	public static void getFlySpeed(int speed) {
 	}
 }
