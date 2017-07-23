@@ -182,12 +182,6 @@ public class PanelMonsterChallengeRating extends JPanel {
 			challengePrompt.add(calculateButton, constraints);
 			//Listeners
 			calculateButton.addActionListener((ActionEvent e) -> {
-				/*
-				System.out.printf("Armor Class: %d\n", armorClass.getValue());
-				System.out.printf("Total HP: %d\n", hitPoints.getValue());
-				System.out.printf("Attack Bonus: %d\n", attackBonus.getValue());
-				System.out.printf("Damage Per Round: %d\n", damagePerRound.getValue());
-				*/
 				setChallengeRating(ChallengeRatingCalculator.getChallengeRating(
 					(int) armorClass.getValue(), 
 					(int) hitPoints.getValue(), 
