@@ -63,11 +63,9 @@ public class SaveCreator {
 			   dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.newDocument();
 			//Root
-			//System.out.printf("%s\n", "Root");
 			Element rootElement = doc.createElement("monster");
 			doc.appendChild(rootElement);
 			//Overview
-			//System.out.printf("%s\n", "Overview");
 			Element overview = doc.createElement("overview");
 			rootElement.appendChild(overview);
 				//Name
@@ -115,7 +113,6 @@ public class SaveCreator {
 				challengeRating.appendChild(doc.createTextNode(MonsterInformation.getChallengeRating()));
 				overview.appendChild(challengeRating);
 			//Ability Scores
-			//System.out.printf("%s\n", "Ability Scores");
 			Element abilityscores = doc.createElement("abilityscores");
 			rootElement.appendChild(abilityscores);
 				//Strength
@@ -143,7 +140,6 @@ public class SaveCreator {
 				cha.appendChild(doc.createTextNode(""+MonsterInformation.getCharisma()));
 				abilityscores.appendChild(cha);
 			//Saving Throws
-			//System.out.printf("%s\n", "Saving Throws");
 			Element saves = doc.createElement("saves");
 			rootElement.appendChild(saves);
 				//Strength
@@ -171,7 +167,6 @@ public class SaveCreator {
 				chaSave.appendChild(doc.createTextNode(""+MonsterInformation.getCharismaSave()));
 				saves.appendChild(chaSave);
 			//Speed
-			//System.out.printf("%s\n", "Speed");
 			Element speed = doc.createElement("speed");
 			rootElement.appendChild(speed);
 				//Walk
@@ -199,7 +194,6 @@ public class SaveCreator {
 				hover.appendChild(doc.createTextNode(MonsterInformation.canHover() ? "true" : "false"));
 				speed.appendChild(hover);
 			//Abilities
-			//System.out.printf("%s\n", "Abilities");
 			Element abilities = doc.createElement("abilities");
 			for (Ability a : MonsterInformation.getAbilities()) {
 				Element ability = doc.createElement("ability");
@@ -215,7 +209,6 @@ public class SaveCreator {
 			}
 			rootElement.appendChild(abilities);
 			//Actions
-			//System.out.printf("%s\n", "Actions");
 			Element actions = doc.createElement("actions");
 			for (Action a : MonsterInformation.getActions()) {
 				Element action = doc.createElement("action");
@@ -275,7 +268,6 @@ public class SaveCreator {
 			}
 			rootElement.appendChild(actions);
 			//Damage Modifier
-			//System.out.printf("%s\n", "Damage Modifiers");
 			Element damageModifiers = doc.createElement("damagemodifiers");
 			for (DamageModifier d : MonsterInformation.getDamageModifiers()) {
 				Element damageModifier = doc.createElement("damagemodifier");
@@ -295,7 +287,6 @@ public class SaveCreator {
 			}
 			rootElement.appendChild(damageModifiers);
 			//Languages
-			//System.out.printf("%s\n", "Languages");
 			Element languages = doc.createElement("languages");
 			for (Language l : MonsterInformation.getLanguages()) {
 				Element language = doc.createElement("language");
@@ -305,19 +296,15 @@ public class SaveCreator {
 			}
 			rootElement.appendChild(languages);
 			//Legendary Actions
-			//System.out.printf("%s\n", "Legendary Actions");
 			Element legendaryActions = doc.createElement("legendaryactions");
 			for (LegendaryActions l : MonsterInformation.getLegendaryActions()) {
-				//System.out.printf("%s\n", "-Legendary Action Set");
 				Element legendaryActionSet = doc.createElement("actionset");
 				//Number of moves
 				Attr numberOfMoves = doc.createAttribute("numberofmoves");
 				numberOfMoves.setValue(""+l.getUsesPerCycle());
 				legendaryActionSet.setAttributeNode(numberOfMoves);
-				//System.out.printf("%s\n", "-Appended number of moves");
 				//Individual Actions
 				for (LegendaryActions.Action a : l.getActions()) {
-					System.out.printf("%s\n", "--Legendary Action");
 					Element action = doc.createElement("action");
 					legendaryActionSet.appendChild(action);
 					//Name
@@ -333,7 +320,6 @@ public class SaveCreator {
 			}
 			rootElement.appendChild(legendaryActions);
 			//Reactions
-			//System.out.printf("%s\n", "Reactions");
 			Element reactions = doc.createElement("reactions");
 			for (Reaction r : MonsterInformation.getReactions()) {
 				Element reaction = doc.createElement("reaction");
@@ -349,7 +335,6 @@ public class SaveCreator {
 			}
 			rootElement.appendChild(reactions);
 			//Senses
-			//System.out.printf("%s\n", "Senses");
 			Element senses = doc.createElement("senses");
 			for (Sense s : MonsterInformation.getSenses()) {
 				Element sense = doc.createElement("sense");
@@ -365,7 +350,6 @@ public class SaveCreator {
 			}
 			rootElement.appendChild(senses);
 			//Skill
-			//System.out.printf("%s\n", "Skills");
 			Element skills = doc.createElement("skills");
 			for (Skill s : MonsterInformation.getSkills()) {
 				Element skill = doc.createElement("skill");
@@ -381,7 +365,6 @@ public class SaveCreator {
 			}
 			rootElement.appendChild(skills);
 			//Spellcaster
-			//System.out.printf("%s\n", "Spellcaster");
 			Element spellcasters = doc.createElement("spellcasters");
 			for (Spellcaster s : MonsterInformation.getSpellcaster()) {
 				Element spellcaster = doc.createElement("spellcaster");
@@ -440,9 +423,6 @@ public class SaveCreator {
 			DOMSource source = new DOMSource(doc);
 			StreamResult result = new StreamResult(file);
 			transformer.transform(source, result);
-			// Output to console for testing
-			//StreamResult consoleResult = new StreamResult(System.out);
-			//transformer.transform(source, consoleResult);
 		} catch (ParserConfigurationException | TransformerException ex) {
 			Logger.getLogger(SaveCreator.class.getName()).log(Level.SEVERE, null, ex);
 		}
