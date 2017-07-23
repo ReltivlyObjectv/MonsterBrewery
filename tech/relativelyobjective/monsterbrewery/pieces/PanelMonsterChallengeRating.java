@@ -44,28 +44,91 @@ public class PanelMonsterChallengeRating extends JPanel {
 		});
 		constraints.gridx++;
 		super.add(calculateButton, constraints);
-		
 	}
 	public String getChallengeRating() {
 		return (String) value.getSelectedItem();
 	}
 	private void setChallengeRating(double challengeRating) {
-		//TODO parse double into string of text, then adjust panel
+		if (challengeRating < (1/8)) {
+			value.setSelectedItem("0");
+		} else if (challengeRating < (1/4)) {
+			value.setSelectedItem("1/8");
+		} else if (challengeRating < (1/2)) {
+			value.setSelectedItem("1/4");
+		} else if (challengeRating < (1)) {
+			value.setSelectedItem("1/2");
+		} else if (challengeRating < (2)) {
+			value.setSelectedItem("1");
+		} else if (challengeRating < (3)) {
+			value.setSelectedItem("2");
+		} else if (challengeRating < (4)) {
+			value.setSelectedItem("3");
+		} else if (challengeRating < (5)) {
+			value.setSelectedItem("4");
+		} else if (challengeRating < (6)) {
+			value.setSelectedItem("5");
+		} else if (challengeRating < (7)) {
+			value.setSelectedItem("6");
+		} else if (challengeRating < (8)) {
+			value.setSelectedItem("7");
+		} else if (challengeRating < (9)) {
+			value.setSelectedItem("8");
+		} else if (challengeRating < (10)) {
+			value.setSelectedItem("9");
+		} else if (challengeRating < (11)) {
+			value.setSelectedItem("10");
+		} else if (challengeRating < (12)) {
+			value.setSelectedItem("11");
+		} else if (challengeRating < (13)) {
+			value.setSelectedItem("12");
+		} else if (challengeRating < (14)) {
+			value.setSelectedItem("13");
+		} else if (challengeRating < (15)) {
+			value.setSelectedItem("14");
+		} else if (challengeRating < (16)) {
+			value.setSelectedItem("15");
+		} else if (challengeRating < (17)) {
+			value.setSelectedItem("16");
+		} else if (challengeRating < (18)) {
+			value.setSelectedItem("17");
+		} else if (challengeRating < (19)) {
+			value.setSelectedItem("18");
+		} else if (challengeRating < (20)) {
+			value.setSelectedItem("19");
+		} else if (challengeRating < (21)) {
+			value.setSelectedItem("20");
+		} else if (challengeRating < (22)) {
+			value.setSelectedItem("21");
+		} else if (challengeRating < (23)) {
+			value.setSelectedItem("22");
+		} else if (challengeRating < (24)) {
+			value.setSelectedItem("23");
+		} else if (challengeRating < (25)) {
+			value.setSelectedItem("24");
+		} else if (challengeRating < (26)) {
+			value.setSelectedItem("25");
+		} else if (challengeRating < (27)) {
+			value.setSelectedItem("26");
+		} else if (challengeRating < (28)) {
+			value.setSelectedItem("27");
+		} else if (challengeRating < (29)) {
+			value.setSelectedItem("28");
+		} else if (challengeRating < (30)) {
+			value.setSelectedItem("29");
+		} else {
+			value.setSelectedItem("30");
+		}
 	}
 	private void calculateChallengeRating() {
-		//double challengeRating = ChallengeRatingCalculator.getChallengeRating(0, 0, 1, 6);
-		//System.out.printf("%f",challengeRating);
-		//value.setSelectedItem("15");
 		openChallengePrompt(MonsterInformation.getMainFrame());
 	}
 	private void openChallengePrompt(FrameMain mainFrame) {
 		JDialog challengePrompt = new JDialog(mainFrame, "Calculate Challenge Rating", true);
 			//TODO fix spinners and set calculated values
-			JSpinner armorClass = new JSpinner(new SpinnerNumberModel(1,1,1000,1));
+			JSpinner armorClass = new JSpinner(new SpinnerNumberModel(0,0,1000,1));
 			int ac = MonsterInformation.getArmorClass();
-			System.out.printf("Armor Class: %d\n", ac);
 			armorClass.setValue(ac);
-			JSpinner hitPoints = new JSpinner(new SpinnerNumberModel(1,1,1000,1));
+			JSpinner hitPoints = new JSpinner(new SpinnerNumberModel(0,0,1000,1));
 			String hitPointString = MonsterInformation.getHitPointString();
 			String totalHitPointString;
 			try {
@@ -79,15 +142,12 @@ public class PanelMonsterChallengeRating extends JPanel {
 			} catch (NumberFormatException e) {
 				totalHP = 1;
 			}
-			System.out.printf("Total HP: %d\n", totalHP);
 			hitPoints.setValue(totalHP);
-			JSpinner attackBonus = new JSpinner(new SpinnerNumberModel(1,1,1000,1));
+			JSpinner attackBonus = new JSpinner(new SpinnerNumberModel(0,0,1000,1));
 			int attk = ChallengeRatingCalculator.guessAttackBonus();
-			System.out.printf("Attack Bonus: %d\n", attk);
 			attackBonus.setValue(attk);
-			JSpinner damagePerRound = new JSpinner(new SpinnerNumberModel(1,1,1000,1));
+			JSpinner damagePerRound = new JSpinner(new SpinnerNumberModel(0,0,1000,1));
 			int dps = ChallengeRatingCalculator.guessDamagePerRound();
-			System.out.printf("Damage Per Round: %d\n", attk);
 			damagePerRound.setValue(dps);
 			JButton calculateButton = new JButton("Calculate");
 			challengePrompt.setLayout(new GridBagLayout());
@@ -122,6 +182,12 @@ public class PanelMonsterChallengeRating extends JPanel {
 			challengePrompt.add(calculateButton, constraints);
 			//Listeners
 			calculateButton.addActionListener((ActionEvent e) -> {
+				/*
+				System.out.printf("Armor Class: %d\n", armorClass.getValue());
+				System.out.printf("Total HP: %d\n", hitPoints.getValue());
+				System.out.printf("Attack Bonus: %d\n", attackBonus.getValue());
+				System.out.printf("Damage Per Round: %d\n", damagePerRound.getValue());
+				*/
 				setChallengeRating(ChallengeRatingCalculator.getChallengeRating(
 					(int) armorClass.getValue(), 
 					(int) hitPoints.getValue(), 

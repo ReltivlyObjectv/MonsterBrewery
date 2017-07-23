@@ -19,7 +19,9 @@ public class ChallengeRatingCalculator {
 		double defensiveCR = getDefensiveCR(armorClass, hitPoints);
 		double offensiveCR = getOffensiveCR(attackBonus, damPerRound);
 		double finalCR = (offensiveCR + defensiveCR) / 2;
+		/*
 		if (finalCR >= 1.0 && (finalCR / 1.0) != 0.0) {
+		System.out.printf("Raw Challenge Rating: %f\n", finalCR);
 			//Round up
 			finalCR += 1- (finalCR / 1.0);
 		} else if (finalCR < 1.0) {
@@ -36,6 +38,8 @@ public class ChallengeRatingCalculator {
 				finalCR = 0;
 			}
 		}
+		System.out.printf("New Challenge Rating: %f\n", finalCR);
+		*/
 		return finalCR;
 	}
 	private static double getOffensiveCR(int attackBonus, int damPerRound) {
@@ -91,6 +95,7 @@ public class ChallengeRatingCalculator {
 		} else {
 			System.out.printf("Error calculating offensive CR\n");
 		}
+		//System.out.printf("Offensive Challenge Rating: %f\n", offensiveCR);
 		return offensiveCR;
 	}
 	private static double getDefensiveCR(int armorClass, int hitPoints) {
@@ -153,6 +158,7 @@ public class ChallengeRatingCalculator {
 		} else {
 			System.out.printf("Error calculating defensive CR\n");
 		}
+		//System.out.printf("Defensive Challenge Rating: %f\n", defensiveCR);
 		return defensiveCR;
 	}
 	public static List<Double> getArmorCR(int armorClass) {

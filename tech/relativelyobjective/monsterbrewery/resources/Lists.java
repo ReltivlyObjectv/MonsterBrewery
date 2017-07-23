@@ -696,6 +696,9 @@ public class Lists {
 	}
 	public static final String[] CHALLENGE_RATING = {
 		"0",
+		"1/8",
+		"1/4",
+		"1/2",
 		"1",
 		"2",
 		"3",
@@ -719,6 +722,11 @@ public class Lists {
 		"22",
 		"23",
 		"24",
+		"25",
+		"26",
+		"27",
+		"28",
+		"29",
 		"30"
 	};
 	public static int calculateChallengeXP(String challengeRating) {
