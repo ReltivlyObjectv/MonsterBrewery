@@ -94,4 +94,58 @@ public class PanelMonsterStatLists extends JPanel {
 	public int getFlySpeed() {
 		return speed.getFlySpeed();
 	}
+	public void setStrength(int s) {
+		abilities.setStrength(s);
+	}
+	public void setDexterity(int d) {
+		abilities.setDexterity(d);
+	}
+	public void setConstitution(int c) {
+		abilities.setConstitution(c);
+	}
+	public void setIntelligence(int i) {
+		abilities.setIntelligence(i);
+	}
+	public void setWisdom(int w) {
+		abilities.setWisdom(w);
+	}
+	public void setCharisma(int c) {
+		abilities.setCharisma(c);
+	}
+	public void setStrengthSave(int s) {
+		savingThrows.setStrengthSave(s);
+	}
+	public void setDexteritySave(int d) {
+		savingThrows.setDexteritySave(d);
+	}
+	public void setConstitutionSave(int c) {
+		savingThrows.setConstitutionSave(c);
+	}
+	public void setIntelligenceSave(int i) {
+		savingThrows.setIntelligenceSave(i);
+	}
+	public void setWisdomSave(int w) {
+		savingThrows.setWisdomSave(w);
+	}
+	public void setCharismaSave(int c) {
+		savingThrows.setCharismaSave(c);
+	}
+	public void setCanHover(boolean c) {
+		speed.setCanHover(c);
+	}
+	public void setWalkSpeed(int w) {
+		speed.setWalkSpeed(w);
+	}
+	public void setSwimSpeed(int s) {
+		speed.setSwimSpeed(s);
+	}
+	public void setBurrowSpeed(int b) {
+		speed.setBurrowSpeed(b);
+	}
+	public void setClimbSpeed(int c) {
+		speed.setClimbSpeed(c);
+	}
+	public void setFlySpeed(int f) {
+		speed.setFlySpeed(f);
+	}
 }

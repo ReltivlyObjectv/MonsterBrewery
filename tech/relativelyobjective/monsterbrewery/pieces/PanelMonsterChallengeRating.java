@@ -48,7 +48,7 @@ public class PanelMonsterChallengeRating extends JPanel {
 	public String getChallengeRating() {
 		return (String) value.getSelectedItem();
 	}
-	private void setChallengeRating(double challengeRating) {
+	public void setChallengeRating(double challengeRating) {
 		if (challengeRating < (1/8)) {
 			value.setSelectedItem("0");
 		} else if (challengeRating < (1/4)) {

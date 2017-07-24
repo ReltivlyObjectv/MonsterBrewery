@@ -33,6 +33,11 @@ public class DamageModifier implements Attribute {
 		RESISTANT,
 		VULNERABLE
 	}
+	public DamageModifier() {
+		modifier = DamageMods.IMMUNE;
+		type = ModifierType.CONDITION;
+		value = "";
+	}
 	public DamageModifier(DamageMods modifier, ModifierType type, String value) {
 		if (modifier == null) {
 			modifier = DamageMods.IMMUNE;
@@ -156,5 +161,21 @@ public class DamageModifier implements Attribute {
 	public String getValue() {
 		return value;
 	}
-	
+	public void setModifier(String modifier) {
+		for (DamageMods m : DamageMods.values()) {
+			if (m.toString().equals(modifier)) {
+				this.modifier = m;
+			}
+		}
+	}
+	public void setType(String type) {
+		for (ModifierType t : ModifierType.values()) {
+			if (t.toString().equals(type)) {
+				this.type = t;
+			}
+		}
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
 }

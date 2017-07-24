@@ -86,4 +86,10 @@ public class Reaction implements Attribute {
 	public String getDescription() {
 		return description;
 	}
+	public void setName(String n) {
+		name = n;
+	}
+	public void setDescription(String d) {
+		description = d;
+	}
 }

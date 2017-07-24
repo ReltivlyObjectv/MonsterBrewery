@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import tech.relativelyobjective.monsterbrewery.filestorage.SaveCreator;
 import tech.relativelyobjective.monsterbrewery.filestorage.SaveLoader;
+import tech.relativelyobjective.monsterbrewery.filestorage.SaveWiper;
 import tech.relativelyobjective.monsterbrewery.image.ImageRenderer;
 
 /**
@@ -93,7 +94,7 @@ public class MenuBar extends JMenuBar {
 		super.add(fileMenu);
 	}
 	private void newMonster() {
-		System.out.printf("Not implemented: New\n");
+		SaveWiper.resetProgram(mainFrame);
 	}
 	private void saveMonster() {
 		SaveCreator.saveToLocation(mainFrame);

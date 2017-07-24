@@ -125,4 +125,91 @@ public class PanelMonsterOptions extends JPanel {
 	public String getChallengeRating() {
 		return miscButtons.getChallengeRating();
 	}
+	public void setMonsterName(String name) {
+		overview.setMonsterName(name);
+	}
+	public void setArmorType(String type) {
+		overview.setArmorType(type);
+	}
+	public void setMonsterSize(String size) {
+		overview.setMonsterSize(size);
+	}
+	public void setMonsterType(String type) {
+		overview.setMonsterType(type);
+	}
+	public void setMonsterTag(String tag) {
+		overview.setMonsterTag(tag);
+	}
+	public void setAlignment(String alignment) {
+		overview.setAlignment(alignment);
+	}
+	public void setHitPointString(String text) {
+		overview.setHitPointString(text);
+	}
+	public void setHitPointDiceCount(int diceCount) {
+		overview.setHitPointDiceCount(diceCount);
+	}
+	public void setHitPointDiceType(String diceType) {
+		overview.setHitPointDiceType(diceType);
+	}
+	public void setArmorClass(int ac) {
+		overview.setArmorClass(ac);
+	}
+	public void setChallengeRating(double cr) {
+		miscButtons.setChallengeRating(cr);
+	}
+	public void setStrength(int s) {
+		statLists.setStrength(s);
+	}
+	public void setDexterity(int d) {
+		statLists.setDexterity(d);
+	}
+	public void setConstitution(int c) {
+		statLists.setConstitution(c);
+	}
+	public void setIntelligence(int i) {
+		statLists.setIntelligence(i);
+	}
+	public void setWisdom(int w) {
+		statLists.setWisdom(w);
+	}
+	public void setCharisma(int c) {
+		statLists.setCharisma(c);
+	}
+	public void setStrengthSave(int s) {
+		statLists.setStrengthSave(s);
+	}
+	public void setDexteritySave(int d) {
+		statLists.setDexteritySave(d);
+	}
+	public void setConstitutionSave(int c) {
+		statLists.setConstitutionSave(c);
+	}
+	public void setIntelligenceSave(int i) {
+		statLists.setIntelligenceSave(i);
+	}
+	public void setWisdomSave(int w) {
+		statLists.setWisdomSave(w);
+	}
+	public void setCharismaSave(int c) {
+		statLists.setCharismaSave(c);
+	}
+	public void setCanHover(boolean c) {
+		statLists.setCanHover(c);
+	}
+	public void setWalkSpeed(int w) {
+		statLists.setWalkSpeed(w);
+	}
+	public void setSwimSpeed(int s) {
+		statLists.setSwimSpeed(s);
+	}
+	public void setBurrowSpeed(int b) {
+		statLists.setBurrowSpeed(b);
+	}
+	public void setClimbSpeed(int c) {
+		statLists.setClimbSpeed(c);
+	}
+	public void setFlySpeed(int f) {
+		statLists.setFlySpeed(f);
+	}
 }

@@ -26,6 +26,10 @@ public class Skill implements Attribute {
 		skill = s;
 		modifier = m;
 	}
+	public Skill() {
+		skill = "";
+		modifier = 0;
+	}
 	@Override
 	public void editAttribute(FrameMain mainFrame) {
 		JDialog editWindow = new JDialog(mainFrame, "Edit Skill", true);
@@ -71,5 +75,18 @@ public class Skill implements Attribute {
 	}
 	public int getModifier() {
 		return modifier;
+	}
+	public void setSkill(String s) {
+		skill = s;
+	}
+	public void setModifier(int mod) {
+		modifier = mod;
+	}
+	public void setModifier(String mod) {
+		try {
+			setModifier(Integer.parseInt(mod));
+		} catch (NumberFormatException e) {
+			//Do Nothing
+		}
 	}
 }

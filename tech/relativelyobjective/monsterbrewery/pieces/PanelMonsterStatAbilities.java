@@ -37,6 +37,9 @@ public class PanelMonsterStatAbilities extends JPanel {
 		public int getValue() {
 			return (int) valueSpinner.getValue();
 		}
+		public void setValue(int v) {
+			valueSpinner.setValue(v);
+		}
 	}
 	private final AbilityBox[] abilityScores = new AbilityBox[6];
 	public PanelMonsterStatAbilities() {
@@ -71,5 +74,23 @@ public class PanelMonsterStatAbilities extends JPanel {
 	}
 	public int getCharisma() {
 		return abilityScores[5].getValue();
+	}
+	public void setStrength(int s) {
+		abilityScores[0].setValue(s);
+	}
+	public void setDexterity(int d) {
+		abilityScores[1].setValue(d);
+	}
+	public void setConstitution(int c) {
+		abilityScores[2].setValue(c);
+	}
+	public void setIntelligence(int i) {
+		abilityScores[3].setValue(i);
+	}
+	public void setWisdom(int w) {
+		abilityScores[4].setValue(w);
+	}
+	public void setCharisma(int c) {
+		abilityScores[5].setValue(c);
 	}
 }

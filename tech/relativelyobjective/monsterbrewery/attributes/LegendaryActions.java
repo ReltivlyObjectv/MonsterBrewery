@@ -38,6 +38,12 @@ public class LegendaryActions implements Attribute {
 			name = "";
 			text = "";
 		}
+		public void setName(String n) {
+			name = n;
+		}
+		public void setText(String t) {
+			text = t;
+		}
 		public void editAction(JDialog parent, JList actionList, List<Action> tempActions) {
 			JDialog editWindow = new JDialog(parent, "Action", true);
 				editWindow.setPreferredSize(new Dimension(325,350));
@@ -198,8 +204,21 @@ public class LegendaryActions implements Attribute {
 	public List<Action> getActions() {
 		return actions;
 	}
+	public void addAction(Action a) {
+		actions.add(a);
+	}
 	public int getUsesPerCycle() {
 		return usesPerCycle;
+	}
+	public void setUsesPerCycle(int uses) {
+		usesPerCycle = uses;
+	}
+	public void setUsesPerCycle(String uses) {
+		try {
+			setUsesPerCycle(Integer.parseInt(uses));
+		} catch (NumberFormatException e) {
+			//Do Nothing
+		}
 	}
 	
 }

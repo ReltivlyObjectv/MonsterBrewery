@@ -56,4 +56,22 @@ public class PanelMonsterStatSaving extends JPanel {
 	public int getCharismaSave() {
 		return (int) savingBonuses[5].getValue();
 	}
+	public void setStrengthSave(int s) {
+		savingBonuses[0].setValue(s);
+	}
+	public void setDexteritySave(int d) {
+		savingBonuses[1].setValue(d);
+	}
+	public void setConstitutionSave(int c) {
+		savingBonuses[2].setValue(c);
+	}
+	public void setIntelligenceSave(int i) {
+		savingBonuses[3].setValue(i);
+	}
+	public void setWisdomSave(int w) {
+		savingBonuses[4].setValue(w);
+	}
+	public void setCharismaSave(int c) {
+		savingBonuses[5].setValue(c);
+	}
 }

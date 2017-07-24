@@ -86,4 +86,10 @@ public class Ability implements Attribute {
 	public String getDescription() {
 		return description;
 	}
+	public void setDescription(String desc) {
+		description = desc;
+	}
+	public void setName(String n) {
+		name = n;
+	}
 }

@@ -57,4 +57,22 @@ public class PanelMonsterStatSpeed extends JPanel {
 	public int getFlySpeed() {
 		return (int) speeds[4].getValue();
 	}
+	public void setCanHover(boolean canH) {
+		hover.setSelected(canH);
+	}
+	public void setWalkSpeed(int s) {
+		speeds[0].setValue(s);
+	}
+	public void setSwimSpeed(int s) {
+		speeds[1].setValue(s);
+	}
+	public void setBurrowSpeed(int s) {
+		speeds[2].setValue(s);
+	}
+	public void setClimbSpeed(int s) {
+		speeds[3].setValue(s);
+	}
+	public void setFlySpeed(int s) {
+		speeds[4].setValue(s);
+	}
 }

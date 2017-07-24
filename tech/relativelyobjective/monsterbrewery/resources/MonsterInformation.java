@@ -197,83 +197,185 @@ public class MonsterInformation {
 	//-----SETTERS-----
 	//Overview
 	public static void setMonsterName(String name) {
+		mainFrame.getMonsterOptions().setMonsterName(name);
 	}
 	public static void setArmorType(String type) {
+		mainFrame.getMonsterOptions().setArmorType(type);
 	}
 	public static void setMonsterSize(String size) {
+		mainFrame.getMonsterOptions().setMonsterSize(size);
 	}
 	public static void setMonsterType(String type) {
+		mainFrame.getMonsterOptions().setMonsterType(type);
 	}
 	public static void setMonsterTag(String tag) {
+		mainFrame.getMonsterOptions().setMonsterTag(tag);
 	}
 	public static void setAlignment(String alignment) {
+		mainFrame.getMonsterOptions().setAlignment(alignment);
 	}
 	public static void setHitPointString(String hp) {
+		mainFrame.getMonsterOptions().setHitPointString(hp);
 	}
-	public static void setHitPointDiceCount(int diceCount) {
+	public static void setHitPointDiceCount(String diceCount) {
+		try {
+			mainFrame.getMonsterOptions().setHitPointDiceCount(Integer.parseInt(diceCount));
+		} catch (NumberFormatException e) {
+			//Do Nothing
+		}
 	}
 	public static void setHitPointDiceType(String dice) {
+		mainFrame.getMonsterOptions().setHitPointDiceType(dice);
 	}
-	public static void setArmorClass(int ac) {
+	public static void setArmorClass(String ac) {
+		try {
+			mainFrame.getMonsterOptions().setArmorClass(Integer.parseInt(ac));
+		} catch (NumberFormatException e) {
+			//Do Nothing
+		}
 	}
 	public static void setChallengeRating(String cr) {
-	}
-	//Attributes
-	public static void addAttribute(Attribute a) {
-	}
-	public static void addAbility(Ability a) {
-	}
-	public static void addAction(Action a) {
-	}
-	public static void addDamageModifier(DamageModifier d) {
-	}
-	public static void addLanguage(Language l) {
-	}
-	public static void addLegendaryActions(LegendaryActions l) {
-	}
-	public static void addReaction(Reaction r) {
-	}
-	public static void addSense(Sense s) {
-	}
-	public static void addSkill(Skill s) {
-	}
-	public static void addSpellcaster(Spellcaster s) {
+		if (cr.equals("0")) {
+			mainFrame.getMonsterOptions().setChallengeRating(0.0);
+		} else if (cr.equals("1/8")) {
+			mainFrame.getMonsterOptions().setChallengeRating(1.0/8.0);
+		} else if (cr.equals("1/4")) {
+			mainFrame.getMonsterOptions().setChallengeRating(1.0/4.0);
+		} else if (cr.equals("1/2")) {
+			mainFrame.getMonsterOptions().setChallengeRating(1.0/2.0);
+		} else {
+			try {
+				mainFrame.getMonsterOptions().setChallengeRating(Double.parseDouble(cr));
+			} catch (NumberFormatException e) {
+				//Do Nothing
+			}
+		}
 	}
 	//Stats
-	public static void setStrength(int s) {
+	public static void setStrength(String s) {
+		try{
+			mainFrame.getMonsterOptions().setStrength(Integer.parseInt(s));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getDexterity(int d) {
+	public static void setDexterity(String d) {
+		try{
+			mainFrame.getMonsterOptions().setDexterity(Integer.parseInt(d));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getConstitution(int c) {
+	public static void setConstitution(String c) {
+		try{
+			mainFrame.getMonsterOptions().setConstitution(Integer.parseInt(c));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getIntelligence(int i) {
+	public static void setIntelligence(String i) {
+		try{
+			mainFrame.getMonsterOptions().setIntelligence(Integer.parseInt(i));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getWisdom(int w) {
+	public static void setWisdom(String w) {
+		try{
+			mainFrame.getMonsterOptions().setWisdom(Integer.parseInt(w));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getCharisma(int c) {
+	public static void setCharisma(String c) {
+		try{
+			mainFrame.getMonsterOptions().setCharisma(Integer.parseInt(c));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getStrengthSave(int s) {
+	public static void setStrengthSave(String s) {
+		try{
+			mainFrame.getMonsterOptions().setStrengthSave(Integer.parseInt(s));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getDexteritySave(int d) {
+	public static void setDexteritySave(String d) {
+		try{
+			mainFrame.getMonsterOptions().setDexteritySave(Integer.parseInt(d));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getConstitutionSave(int c) {
+	public static void setConstitutionSave(String c) {
+		try{
+			mainFrame.getMonsterOptions().setConstitutionSave(Integer.parseInt(c));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getIntelligenceSave(int i) {
+	public static void setIntelligenceSave(String i) {
+		try{
+			mainFrame.getMonsterOptions().setIntelligenceSave(Integer.parseInt(i));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getWisdomSave(int s) {
+	public static void setWisdomSave(String w) {
+		try{
+			mainFrame.getMonsterOptions().setWisdomSave(Integer.parseInt(w));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getCharismaSave(int c) {
+	public static void setCharismaSave(String c) {
+		try{
+			mainFrame.getMonsterOptions().setCharismaSave(Integer.parseInt(c));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void setCanHover(boolean canHover) {
+	public static void setCanHover(String c) {
+		try{
+			mainFrame.getMonsterOptions().setCanHover(Boolean.parseBoolean(c));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void setWalkSpeed(int speed) {
+	public static void setWalkSpeed(String w) {
+		try{
+			mainFrame.getMonsterOptions().setWalkSpeed(Integer.parseInt(w));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getSwimSpeed(int speed) {
+	public static void setSwimSpeed(String s) {
+		try{
+			mainFrame.getMonsterOptions().setSwimSpeed(Integer.parseInt(s));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getBurrowSpeed(int speed) {
+	public static void setBurrowSpeed(String b) {
+		try{
+			mainFrame.getMonsterOptions().setBurrowSpeed(Integer.parseInt(b));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getClimbSpeed(int speed) {
+	public static void setClimbSpeed(String c) {
+		try{
+			mainFrame.getMonsterOptions().setClimbSpeed(Integer.parseInt(c));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
-	public static void getFlySpeed(int speed) {
+	public static void setFlySpeed(String f) {
+		try{
+			mainFrame.getMonsterOptions().setFlySpeed(Integer.parseInt(f));
+		} catch(NumberFormatException e) {
+			//Do Nothing
+		}
 	}
 }

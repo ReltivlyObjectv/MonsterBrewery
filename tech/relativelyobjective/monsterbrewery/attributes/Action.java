@@ -251,6 +251,7 @@ public class Action implements Attribute{
 			super.add(scroller, constraints);
 		}
 	}
+
 	//Overall
 	private Lists.ActionType actionType;
 	private String name;
@@ -414,6 +415,7 @@ public class Action implements Attribute{
 				return String.format("Action: %s", name);
 		}
 	}
+	//Getters
 	public Lists.ActionType getActionType() {
 		return actionType;
 	}
@@ -455,5 +457,88 @@ public class Action implements Attribute{
 	}
 	public String getDescription() {
 		return description;
+	}
+	//Setters
+	public void setActionType(String actionType) {
+		for (Lists.ActionType a : Lists.ActionType.values()) {
+			if (a.toString().equalsIgnoreCase(actionType)) {
+				this.actionType = a;
+			}
+		}
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setDiceType(String diceType) {
+		this.diceType = diceType;
+	}
+	public void setDiceCount(String diceCount) {
+		try {
+			this.diceCount = Integer.parseInt(diceCount);
+		} catch (NumberFormatException e) {
+			//Do nothing
+		}
+	}
+	public void setToHit(String toHit) {
+		try {
+			this.toHit = Integer.parseInt(toHit);
+		} catch (NumberFormatException e) {
+			//Do nothing
+		}
+	}
+	public void setDamageType(String damageType) {
+		this.damageType = damageType;
+	}
+	public void setRangedMin(String rangedMin) {
+		try {
+			this.rangedMin = Integer.parseInt(rangedMin);
+		} catch (NumberFormatException e) {
+			//Do nothing
+		}
+	}
+	public void setRangedMax(String rangedMax) {
+		try {
+			this.rangedMax = Integer.parseInt(rangedMax);
+		} catch (NumberFormatException e) {
+			//Do nothing
+		}
+	}
+	public void setRangedShape(String rangedShape) {
+		for (Lists.RangeShape s : Lists.RangeShape.values()) {
+			if (s.toString().equalsIgnoreCase(rangedShape)) {
+				this.rangedShape = s;
+			}
+		}
+	}
+	public void setRangedType(String rangedType) {
+		for (Lists.RangeType t : Lists.RangeType.values()) {
+			if (t.toString().equalsIgnoreCase(rangedType)) {
+				this.rangedType = t;
+			}
+		}
+	}
+	public void setRangedDelivery(String rangedDelivery) {
+		for (Lists.RangeDelivery d : Lists.RangeDelivery.values()) {
+			if (d.toString().equalsIgnoreCase(rangedDelivery)) {
+				this.rangedDelivery = d;
+			}
+		}
+	}
+	public void setRangedSize(String rangedSize) {
+		try {
+			this.rangedSize = Integer.parseInt(rangedSize);
+		} catch (NumberFormatException e) {
+			//Do nothing
+		}
+	}
+	public void setMeleeReach(String meleeReach) {
+		try {
+			this.meleeReach = Integer.parseInt(meleeReach);
+		} catch (NumberFormatException e) {
+			//Do nothing
+		}
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

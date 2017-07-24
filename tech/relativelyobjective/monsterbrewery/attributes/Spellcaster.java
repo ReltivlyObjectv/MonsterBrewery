@@ -345,6 +345,56 @@ public class Spellcaster implements Attribute {
 	public String getSpellClass() {
 		return spellClass;
 	}
+	public void setSpellSlots(int pos, int count) {
+		if (pos < 1 || pos > 9) {
+			return;
+		}
+		spellSlots[pos-1] = count;
+	}
+	public void addSpell(Spell s) {
+		spells.add(s);
+	}
+	public void setSpellcastingAbility(String a) {
+		for (Lists.Abilities ability : Lists.Abilities.values()) {
+			if (ability.toString().equals(a)) {
+				spellcastingAbility = ability;
+			}
+		}
+	}
+	public void setSpellcasterLevel(int level) {
+		spellcasterLevel = level;
+	}
+	public void setSpellcasterLevel(String s) {
+		try {
+			spellcasterLevel = Integer.parseInt(s);
+		} catch (NumberFormatException e) {
+			//Do Nothing
+		}
+	}
+	public void setSpellsaveDC(int dc) {
+		spellsaveDC = dc;
+	}
+	public void setSpellsaveDC(String dc) {
+		try {
+			setSpellsaveDC(Integer.parseInt(dc));
+		} catch (NumberFormatException e) {
+			//Do Nothing
+		}
+	}
+	public void setToHit(int toHit) {
+		this.toHit = toHit;
+	}
+	public void setToHit(String toHit) {
+		try {
+			setToHit(Integer.parseInt(toHit));
+		} catch (NumberFormatException e) {
+			//Do Nothing
+		}
+	
+	}
+	public void setSpellClass(String c) {
+		spellClass = c;
+	}
 	private int[] calculateSpellLevels(int level) {
 		int spellSlots[] = new int[9];
 		for (int i = 0; i < 9; i++) {

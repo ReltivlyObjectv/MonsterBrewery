@@ -26,6 +26,10 @@ public class Sense implements Attribute {
 		sense = value;
 		magnitude = mag;
 	}
+	public Sense() {
+		sense = "";
+		magnitude = 0;
+	}
 	@Override
 	public void editAttribute(FrameMain mainFrame) {
 		JDialog editWindow = new JDialog(mainFrame, "Edit Sense", true);
@@ -67,5 +71,18 @@ public class Sense implements Attribute {
 	}
 	public int getMagnitude() {
 		return magnitude;
+	}
+	public void setSense(String s) {
+		sense = s;
+	}
+	public void setMagnitude(int m) {
+		magnitude = m;
+	}
+	public void setMagnitude(String m) {
+		try {
+			setMagnitude(Integer.parseInt(m));
+		} catch (NumberFormatException e) {
+			//Do Nothing
+		}
 	}
 }

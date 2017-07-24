@@ -150,4 +150,7 @@ public class PanelMonsterMiscAddButtons extends JPanel {
 	public String getChallengeRating() {
 		return challengeRating.getChallengeRating();
 	}
+	public void setChallengeRating(double cr) {
+		challengeRating.setChallengeRating(cr);
+	}
 }

@@ -104,6 +104,7 @@ public class PanelMonsterOverview extends JPanel {
 			hitPointDiceCount = new JSpinner(new SpinnerNumberModel(0,0,50,1));
 			hitPointRow.add(hitPointDiceCount, BorderLayout.WEST);
 			hitPointDiceType = new JComboBox(Lists.DICE);
+			hitPointDiceType.setEditable(true);
 			hitPointRow.add(hitPointDiceType, BorderLayout.CENTER);
 			hitPointCount = new JTextField(9);
 			hitPointRow.add(hitPointCount, BorderLayout.EAST);
@@ -164,6 +165,40 @@ public class PanelMonsterOverview extends JPanel {
 	}
 	public int getArmorClass() {
 		return (int) armorClass.getValue();
+	}
+	public void setMonsterName(String name) {
+		this.name.setText(name);
+	}
+	public void setArmorType(String type) {
+		this.armorType.setText(type);
+	}
+	public void setMonsterSize(String size) {
+		this.size.setSelectedItem(size);
+	}
+	public void setMonsterType(String type) {
+		this.type.setSelectedItem(type);
+	}
+	public void setMonsterTag(String tag) {
+		this.tag.setSelectedItem(tag);
+	}
+	public void setAlignment(String alignment) {
+		this.alignment.setSelectedItem(alignment);
+	}
+	public void setHitPointString(String text) {
+		this.hitPointCount.setText(text);
+	}
+	public void setHitPointDiceCount(int diceCount) {
+		this.hitPointDiceCount.setValue(diceCount);
+	}
+	public void setHitPointDiceType(String diceType) {
+		for(int i = 0; i < Lists.DICE.length; i++) {
+			if (Lists.DICE[i].equalsIgnoreCase(diceType)) {
+				this.hitPointDiceType.setSelectedItem(Lists.DICE[i]);
+			}
+		}
+	}
+	public void setArmorClass(int ac) {
+		this.armorClass.setValue(ac);
 	}
 	public void calculateHitPointString() {
 		int hitPointDiceCountInt = getHitPointDiceCount();
