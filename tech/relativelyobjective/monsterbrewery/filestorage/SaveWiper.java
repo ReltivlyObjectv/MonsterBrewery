@@ -24,12 +24,12 @@ public class SaveWiper {
 		MonsterInformation.setChallengeRating(Lists.CHALLENGE_RATING[0]);
 		MonsterInformation.setCharisma("1");
 		MonsterInformation.setCharismaSave("0");
-		MonsterInformation.setClimbSpeed("1");
+		MonsterInformation.setClimbSpeed("0");
 		MonsterInformation.setConstitution("1");
 		MonsterInformation.setConstitutionSave("0");
 		MonsterInformation.setDexterity("1");
 		MonsterInformation.setDexteritySave("0");
-		MonsterInformation.setFlySpeed("1");
+		MonsterInformation.setFlySpeed("0");
 		MonsterInformation.setHitPointDiceCount("1");
 		MonsterInformation.setHitPointDiceType(Lists.DICE[0]);
 		MonsterInformation.setHitPointString("");
