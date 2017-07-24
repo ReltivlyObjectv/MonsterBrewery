@@ -168,8 +168,8 @@ public class ImageRenderer {
 		//Actual content
 		String nameData = MonsterInformation.getMonsterName();
 		nameData = nameData.equals("") ? "No Name" : nameData;
-		JLabel nameLabel = new JLabel(nameData);
-		nameLabel.setFont(FontManager.getFontTitle(18));
+		JLabelBrown nameLabel = new JLabelBrown(nameData);
+		nameLabel.setFont(FontManager.getFontTitle(20));
 		constraints.gridy++;
 		constraints.gridx = 1;
 		returnMe.add(nameLabel, constraints);

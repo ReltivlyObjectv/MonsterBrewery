@@ -17,7 +17,7 @@ public class FontManager {
 	public static Font getFontTitle(double fontSize) {
 		//TODO
 		InputStream istream;
-		istream = FontManager.class.getResourceAsStream("/OpenSans-Regular.ttf");
+		istream = FontManager.class.getResourceAsStream("/alegreya/AlegreyaSC-Regular.otf");
 		Font myFont;
 		try {
 			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
@@ -31,7 +31,7 @@ public class FontManager {
 	public static Font getFontRegularSmallCaps(double fontSize) {
 		//TODO
 		InputStream istream;
-		istream = FontManager.class.getResourceAsStream("/OpenSans-Regular.ttf");
+		istream = FontManager.class.getResourceAsStream("/opensans/OpenSans-Regular.ttf");
 		Font myFont;
 		try {
 			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
@@ -44,7 +44,7 @@ public class FontManager {
 	}
 	public static Font getFontBold(double fontSize) {
 		InputStream istream;
-		istream = FontManager.class.getResourceAsStream("/OpenSans-Bold.ttf");
+		istream = FontManager.class.getResourceAsStream("/opensans/OpenSans-Bold.ttf");
 		Font myFont;
 		try {
 			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
@@ -57,7 +57,7 @@ public class FontManager {
 	}
 	public static Font getFontBoldItalic(double fontSize) {
 		InputStream istream;
-		istream = FontManager.class.getResourceAsStream("/OpenSans-BoldItalic.ttf");
+		istream = FontManager.class.getResourceAsStream("/opensans/OpenSans-BoldItalic.ttf");
 		Font myFont;
 		try {
 			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
@@ -70,7 +70,7 @@ public class FontManager {
 	}
 	public static Font getFontExtraBold(double fontSize) {
 		InputStream istream;
-		istream = FontManager.class.getResourceAsStream("/OpenSans-ExtraBold.ttf");
+		istream = FontManager.class.getResourceAsStream("/opensans/OpenSans-ExtraBold.ttf");
 		Font myFont;
 		try {
 			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
@@ -83,7 +83,7 @@ public class FontManager {
 	}
 	public static Font getFontExtraBoldItalic(double fontSize) {
 		InputStream istream;
-		istream = FontManager.class.getResourceAsStream("/OpenSans-ExtraBoldItalic.ttf");
+		istream = FontManager.class.getResourceAsStream("/opensans/OpenSans-ExtraBoldItalic.ttf");
 		Font myFont;
 		try {
 			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
@@ -96,7 +96,7 @@ public class FontManager {
 	}
 	public static Font getFontItalic(double fontSize) {
 		InputStream istream;
-		istream = FontManager.class.getResourceAsStream("/OpenSans-Italic.ttf");
+		istream = FontManager.class.getResourceAsStream("/opensans/OpenSans-Italic.ttf");
 		Font myFont;
 		try {
 			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
@@ -109,7 +109,7 @@ public class FontManager {
 	}
 	public static Font getFontLight(double fontSize) {
 		InputStream istream;
-		istream = FontManager.class.getResourceAsStream("/OpenSans-Light.ttf");
+		istream = FontManager.class.getResourceAsStream("/opensans/OpenSans-Light.ttf");
 		Font myFont;
 		try {
 			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
@@ -122,7 +122,7 @@ public class FontManager {
 	}
 	public static Font getFontLightItalic(double fontSize) {
 		InputStream istream;
-		istream = FontManager.class.getResourceAsStream("/OpenSans-LightItalic.ttf");
+		istream = FontManager.class.getResourceAsStream("/opensans/OpenSans-LightItalic.ttf");
 		Font myFont;
 		try {
 			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
@@ -135,7 +135,7 @@ public class FontManager {
 	}
 	public static Font getFontRegular(double fontSize) {
 		InputStream istream;
-		istream = FontManager.class.getResourceAsStream("/OpenSans-Regular.ttf");
+		istream = FontManager.class.getResourceAsStream("/opensans/OpenSans-Regular.ttf");
 		Font myFont;
 		try {
 			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
@@ -148,7 +148,7 @@ public class FontManager {
 	}
 	public static Font getFontSemibold(double fontSize) {
 		InputStream istream;
-		istream = FontManager.class.getResourceAsStream("/OpenSans-Semibold.ttf");
+		istream = FontManager.class.getResourceAsStream("/opensans/OpenSans-Semibold.ttf");
 		Font myFont;
 		try {
 			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
@@ -161,7 +161,7 @@ public class FontManager {
 	}
 	public static Font getFontSemiboldItalic(double fontSize) {
 		InputStream istream;
-		istream = FontManager.class.getResourceAsStream("/OpenSans-SemiboldItalic.ttf");
+		istream = FontManager.class.getResourceAsStream("/opensans/OpenSans-SemiboldItalic.ttf");
 		Font myFont;
 		try {
 			myFont = Font.createFont(Font.TRUETYPE_FONT, istream);
