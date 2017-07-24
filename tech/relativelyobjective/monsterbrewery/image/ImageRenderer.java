@@ -176,9 +176,10 @@ public class ImageRenderer {
 		constraints.ipady = 3;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.gridy++;
-		JLabel sizeTypeTag = new JLabel(String.format("%s %s %s, %s",
+		JLabel sizeTypeTag = new JLabel(String.format("%s %s%s%s, %s",
 			Lists.formatUpperCase(MonsterInformation.getMonsterSize()),
 			MonsterInformation.getMonsterType().toLowerCase(),
+			MonsterInformation.getMonsterTag().equals("") ? "" : " ",
 			MonsterInformation.getMonsterTag().toLowerCase(),
 			MonsterInformation.getAlignment().toLowerCase()
 			));
