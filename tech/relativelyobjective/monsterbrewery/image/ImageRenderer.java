@@ -56,7 +56,9 @@ public class ImageRenderer {
 		fileChooser.setFileFilter(filter);
 		if (fileChooser.showSaveDialog(currentRenderWindow) == JFileChooser.APPROVE_OPTION) {
 			File file = fileChooser.getSelectedFile();
-			file = new File(file.toString() + ".png");
+			if (!file.toString().endsWith(".png")) {
+				file = new File(file.toString() + ".png");
+			}
 			try {
 				BufferedImage img = getImage(renderArea);
 				for (int i = 0; i < img.getWidth(); i++) {
