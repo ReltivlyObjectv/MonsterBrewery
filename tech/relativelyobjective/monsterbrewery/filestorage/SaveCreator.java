@@ -51,7 +51,7 @@ public class SaveCreator {
 		fileChooser.setFileFilter(filter);
 		if (fileChooser.showSaveDialog(mainFrame) == JFileChooser.APPROVE_OPTION) {
 			File tempSaveLocation = fileChooser.getSelectedFile();
-			if (!tempSaveLocation.toString().contains(".monsterbrewery")) {
+			if (!tempSaveLocation.toString().endsWith(".monsterbrewery")) {
 				tempSaveLocation = new File(tempSaveLocation.toString() + ".monsterbrewery");
 			}
 			setFileLocation(tempSaveLocation, mainFrame);
