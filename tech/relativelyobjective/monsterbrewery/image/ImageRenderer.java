@@ -127,7 +127,7 @@ public class ImageRenderer {
 		renderWindow.setPreferredSize(renderWindow.getPreferredSize());
 		Dimension newDimension = windowContents.getPreferredSize();
 		newDimension.width = 430;
-		newDimension.height += 50;
+		newDimension.height += newDimension.height/4;
 		renderWindow.setPreferredSize(newDimension);
 		renderWindow.setMinimumSize(new Dimension(475, 50));
 		renderWindow.setSize(newDimension);
