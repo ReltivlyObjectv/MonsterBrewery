@@ -234,6 +234,9 @@ public class MonsterInformation {
 			//Do Nothing
 		}
 	}
+	public static void setArmorClass(int ac) {
+		mainFrame.getMonsterOptions().setArmorClass(ac);
+	}
 	public static void setChallengeRating(String cr) {
 		if (cr.equals("0")) {
 			mainFrame.getMonsterOptions().setChallengeRating(0.0);
@@ -342,6 +345,9 @@ public class MonsterInformation {
 		} catch(NumberFormatException e) {
 			//Do Nothing
 		}
+	}
+	public static void setCanHover(boolean c) {
+		mainFrame.getMonsterOptions().setCanHover(false);
 	}
 	public static void setWalkSpeed(String w) {
 		try{

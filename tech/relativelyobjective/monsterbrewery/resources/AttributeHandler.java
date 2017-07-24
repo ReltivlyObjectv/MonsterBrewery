@@ -139,4 +139,8 @@ public class AttributeHandler {
 		}
 		return null;
 	}
+	public static void clearAttributes() {
+		allAttributes.clear();
+		updateList();
+	}
 }

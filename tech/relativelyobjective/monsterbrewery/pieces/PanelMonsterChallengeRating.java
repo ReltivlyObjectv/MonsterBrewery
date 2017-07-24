@@ -49,11 +49,11 @@ public class PanelMonsterChallengeRating extends JPanel {
 		return (String) value.getSelectedItem();
 	}
 	public void setChallengeRating(double challengeRating) {
-		if (challengeRating < (1/8)) {
+		if (challengeRating < (1.0/8.0)) {
 			value.setSelectedItem("0");
-		} else if (challengeRating < (1/4)) {
+		} else if (challengeRating < (1.0/4.0)) {
 			value.setSelectedItem("1/8");
-		} else if (challengeRating < (1/2)) {
+		} else if (challengeRating < (1.0/2.0)) {
 			value.setSelectedItem("1/4");
 		} else if (challengeRating < (1)) {
 			value.setSelectedItem("1/2");

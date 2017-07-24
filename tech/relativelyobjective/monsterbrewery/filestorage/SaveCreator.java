@@ -30,6 +30,9 @@ import tech.relativelyobjective.monsterbrewery.resources.MonsterInformation;
 public class SaveCreator {
 	private static File saveLocation = null;
 	
+	public static void resetFileLocation() {
+		saveLocation = null;
+	}
 	public static void setFileLocation(File newSaveLocation, FrameMain mainFrame) {
 		mainFrame.setTitle(String.format("Monster Brewery (%s)",newSaveLocation.getName()));
 		saveLocation = newSaveLocation;
