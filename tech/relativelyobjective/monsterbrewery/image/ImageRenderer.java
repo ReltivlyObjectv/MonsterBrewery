@@ -45,7 +45,7 @@ public class ImageRenderer {
 	private static FrameMain mainFrame;
 	private static JDialog currentRenderWindow = null;
 	private static JPanel renderArea = null;
-	private static final Color transparentColor = new Color(238, 238, 238);
+	private static final Color TRANSPARENT_COLOR = new Color(238, 238, 238);
 	public static void initialize(FrameMain mainF) {
 		mainFrame = mainF;
 	}
@@ -61,7 +61,7 @@ public class ImageRenderer {
 				BufferedImage img = getImage(renderArea);
 				for (int i = 0; i < img.getWidth(); i++) {
 					for (int j = 0; j < img.getHeight(); j++) {
-						if (img.getRGB(i, j) == transparentColor.getRGB()) {
+						if (img.getRGB(i, j) == TRANSPARENT_COLOR.getRGB()) {
 							img.setRGB(i, j, new Color(0,0,0,0).getRGB());
 						}
 					}
@@ -97,7 +97,7 @@ public class ImageRenderer {
 			}
 		});
 		JPanel windowContents = new JPanel();
-			windowContents.setBackground(transparentColor);
+			windowContents.setBackground(TRANSPARENT_COLOR);
 			windowContents.setLayout(new GridBagLayout());
 			GridBagConstraints constraints = new GridBagConstraints();
 			constraints.gridx = 0;
