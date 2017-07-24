@@ -126,11 +126,14 @@ public class ImageRenderer {
 		//renderWindow.setPreferredSize(new Dimension(430, 700));
 		renderWindow.setPreferredSize(renderWindow.getPreferredSize());
 		Dimension newDimension = windowContents.getPreferredSize();
-		newDimension.width = 430;
+		newDimension.width = 450;
 		newDimension.height += newDimension.height/4;
+		newDimension.height -= 10;
 		renderWindow.setPreferredSize(newDimension);
-		renderWindow.setMinimumSize(new Dimension(475, 50));
-		renderWindow.setSize(newDimension);
+		renderWindow.setMinimumSize(new Dimension(newDimension.width, 50));
+		renderWindow.setMaximumSize(newDimension);
+		//renderWindow.(newDimension);
+		//renderWindow.setSize(newDimension);
 		windowContents.setPreferredSize(newDimension);
 		//windowContents.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 		JScrollPane scroller = new JScrollPane(windowContents);
