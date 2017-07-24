@@ -64,10 +64,14 @@ public class Skill implements Attribute {
 	}
 	@Override
 	public String toString() {
-		if (modifier < 0) {
-			return String.format("Skill: %s %d", skill, modifier);
+		if (skill.toLowerCase().contains("passive perception")) {
+			return String.format("Passive Perception: %d", modifier);
 		} else {
-			return String.format("Skill: %s +%d", skill, modifier);
+			if (modifier < 0) {
+				return String.format("Skill: %s %d", skill, modifier);
+			} else {
+				return String.format("Skill: %s +%d", skill, modifier);
+			}
 		}
 	}
 	public String getSkill() {

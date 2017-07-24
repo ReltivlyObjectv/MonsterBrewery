@@ -361,7 +361,7 @@ public class ImageRenderer {
 		//Misc
 		List<Skill> skillModifiers = new LinkedList<>(MonsterInformation.getSkills());
 		for (Skill s : skillModifiers) {
-			if (s.getSkill().toLowerCase().contains("perception")) {
+			if (s.getSkill().toLowerCase().contains("passive perception")) {
 				skillModifiers.remove(s);
 			}
 		}
@@ -568,7 +568,7 @@ public class ImageRenderer {
 		//Senses
 		List<Attribute> senses = new LinkedList<>(MonsterInformation.getSenses());
 		for (Skill s : MonsterInformation.getSkills()) {
-			if (s.getSkill().toLowerCase().contains("perception")) {
+			if (s.getSkill().toLowerCase().contains("passive perception")) {
 				senses.add(s);
 				break;
 			}
