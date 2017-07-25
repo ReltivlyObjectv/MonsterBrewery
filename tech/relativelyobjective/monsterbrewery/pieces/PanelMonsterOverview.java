@@ -210,7 +210,7 @@ public class PanelMonsterOverview extends JPanel {
 			System.out.printf("Could not parse: %s\n", diceTypeString);
 			return;
 		}
-		int maxValue = diceType * hitPointDiceCountInt;
+		int maxValue = (diceType + 1) * hitPointDiceCountInt;
 		int averageValue = maxValue / 2;
 		String text = String.format("(%dd%d) %s", 
 			hitPointDiceCountInt, diceType, averageValue);
