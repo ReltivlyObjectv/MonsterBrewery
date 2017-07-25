@@ -1,5 +1,6 @@
 package tech.relativelyobjective.monsterbrewery.image;
 
+import tech.relativelyobjective.monsterbrewery.resources.JLabelBrownOverview;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -233,34 +234,27 @@ public class ImageRenderer {
 		JPanel armorClass = new JPanel();
 			armorClass.setOpaque(false);
 			armorClass.setLayout(new BoxLayout(armorClass, BoxLayout.X_AXIS));
-			JLabelBrown acLabel = new JLabelBrown("Armor Class ");
-			acLabel.setFont(FontManager.getFontBold(12));
+			JLabelBrownOverview acLabel;
+			acLabel = new JLabelBrownOverview("Armor Class",
+				String.format("%d %s",
+					MonsterInformation.getArmorClass(),
+					MonsterInformation.getArmorType()
+					));
+			acLabel.setFont(FontManager.getFontRegular(12));
 			armorClass.add(acLabel);
-			JLabelBrown acData = new JLabelBrown(String.format("%d %s",
-				MonsterInformation.getArmorClass(),
-				MonsterInformation.getArmorType()
-			));
-			acData.setFont(FontManager.getFontRegular(12));
-			armorClass.add(acData);
 			armorClass.add(Box.createHorizontalGlue());
 		returnMe.add(armorClass);
 		JPanel hitPoints = new JPanel();
 			hitPoints.setOpaque(false);
 			hitPoints.setLayout(new BoxLayout(hitPoints, BoxLayout.X_AXIS));
-			JLabelBrown hpLabel = new JLabelBrown("Hit Points ");
-			hpLabel.setFont(FontManager.getFontBold(12));
+			JLabelBrownOverview hpLabel = new JLabelBrownOverview("Hit Points ",
+				MonsterInformation.getHitPointString());
+			hpLabel.setFont(FontManager.getFontRegular(12));
 			hitPoints.add(hpLabel);
-			JLabelBrown hpData = new JLabelBrown(MonsterInformation.getHitPointString());
-			hpData.setFont(FontManager.getFontRegular(12));
-			hitPoints.add(hpData);
 			hitPoints.add(Box.createHorizontalGlue());
 		returnMe.add(hitPoints);
 		JPanel speed = new JPanel();
-			speed.setOpaque(false);
-			speed.setLayout(new BoxLayout(speed, BoxLayout.X_AXIS));
-			JLabelBrown speedLabel = new JLabelBrown("Speed ");
-			speedLabel.setFont(FontManager.getFontBold(12));
-			speed.add(speedLabel);
+			//Get Information
 			String speedDataString = String.format("%d ft.",
 				MonsterInformation.getWalkSpeed());
 			int speedSwim = MonsterInformation.getSwimSpeed();
@@ -282,9 +276,12 @@ public class ImageRenderer {
 					MonsterInformation.canHover() ? "(hover)" : "");
 			}
 			speedDataString += " ";
-			JLabelBrown speedData = new JLabelBrown(speedDataString);
-			speedData.setFont(FontManager.getFontRegular(12));
-			speed.add(speedData);
+			//Finish panel
+			speed.setOpaque(false);
+			speed.setLayout(new BoxLayout(speed, BoxLayout.X_AXIS));
+			JLabelBrownOverview speedLabel = new JLabelBrownOverview("Speed", speedDataString);
+			speedLabel.setFont(FontManager.getFontRegular(12));
+			speed.add(speedLabel);
 			speed.add(Box.createHorizontalGlue());
 		returnMe.add(speed);
 		return returnMe;
@@ -341,9 +338,6 @@ public class ImageRenderer {
 			JPanel panel = new JPanel();
 			panel.setOpaque(false);
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			JLabelBrown label = new JLabelBrown("Saving Throws");
-			label.setFont(FontManager.getFontBold(12));
-			panel.add(label);
 			String string = " ";
 			int i = 0;
 			for (String s : savingThrows) {
@@ -354,9 +348,9 @@ public class ImageRenderer {
 				i++;
 			}
 			string += " ";
-			JLabelBrown data = new JLabelBrown(string);
-			data.setFont(FontManager.getFontRegular(12));
-			panel.add(data);
+			JLabelBrownOverview label = new JLabelBrownOverview("Saving Throws", string);
+			label.setFont(FontManager.getFontRegular(12));
+			panel.add(label);
 			panel.add(Box.createHorizontalGlue());
 			returnMe.add(panel);
 		}
@@ -371,9 +365,6 @@ public class ImageRenderer {
 			JPanel panel = new JPanel();
 			panel.setOpaque(false);
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			JLabelBrown label = new JLabelBrown("Skills");
-			label.setFont(FontManager.getFontBold(12));
-			panel.add(label);
 			String string = " ";
 			int i = 0;
 			for (Skill s : skillModifiers) {
@@ -388,9 +379,9 @@ public class ImageRenderer {
 				i++;
 			}
 			string += " ";
-			JLabelBrown data = new JLabelBrown(string);
-			data.setFont(FontManager.getFontRegular(12));
-			panel.add(data);
+			JLabelBrownOverview label = new JLabelBrownOverview("Skills", string);
+			label.setFont(FontManager.getFontBold(12));
+			panel.add(label);
 			panel.add(Box.createHorizontalGlue());
 			returnMe.add(panel);
 		}
@@ -433,9 +424,6 @@ public class ImageRenderer {
 			JPanel panel = new JPanel();
 			panel.setOpaque(false);
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			JLabelBrown label = new JLabelBrown("Damage Immunities");
-			label.setFont(FontManager.getFontBold(12));
-			panel.add(label);
 			String string = " ";
 			int i = 0;
 			for (DamageModifier d : damageImmunities) {
@@ -446,7 +434,7 @@ public class ImageRenderer {
 				i++;
 			}
 			string += " ";
-			JLabelBrown data = new JLabelBrown(string);
+			JLabelBrownOverview data = new JLabelBrownOverview("Damage Immunities", string);
 			data.setFont(FontManager.getFontRegular(12));
 			panel.add(data);
 			panel.add(Box.createHorizontalGlue());
@@ -456,9 +444,6 @@ public class ImageRenderer {
 			JPanel panel = new JPanel();
 			panel.setOpaque(false);
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			JLabelBrown label = new JLabelBrown("Damage Resistances");
-			label.setFont(FontManager.getFontBold(12));
-			panel.add(label);
 			String string = " ";
 			int i = 0;
 			for (DamageModifier d : damageResistances) {
@@ -469,7 +454,7 @@ public class ImageRenderer {
 				i++;
 			}
 			string += " ";
-			JLabelBrown data = new JLabelBrown(string);
+			JLabelBrownOverview data = new JLabelBrownOverview("Damage Resistances", string);
 			data.setFont(FontManager.getFontRegular(12));
 			panel.add(data);
 			panel.add(Box.createHorizontalGlue());
@@ -479,9 +464,6 @@ public class ImageRenderer {
 			JPanel panel = new JPanel();
 			panel.setOpaque(false);
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			JLabelBrown label = new JLabelBrown("Damage Vulnerabilities");
-			label.setFont(FontManager.getFontBold(12));
-			panel.add(label);
 			String string = " ";
 			int i = 0;
 			for (DamageModifier d : damageVulnerabilities) {
@@ -492,7 +474,7 @@ public class ImageRenderer {
 				i++;
 			}
 			string += " ";
-			JLabelBrown data = new JLabelBrown(string);
+			JLabelBrownOverview data = new JLabelBrownOverview("Damage Vulnerabilities", string);
 			data.setFont(FontManager.getFontRegular(12));
 			panel.add(data);
 			panel.add(Box.createHorizontalGlue());
@@ -502,9 +484,6 @@ public class ImageRenderer {
 			JPanel panel = new JPanel();
 			panel.setOpaque(false);
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			JLabelBrown label = new JLabelBrown("Condition Immunities");
-			label.setFont(FontManager.getFontBold(12));
-			panel.add(label);
 			String string = " ";
 			int i = 0;
 			for (DamageModifier d : conditionImmunities) {
@@ -515,7 +494,7 @@ public class ImageRenderer {
 				i++;
 			}
 			string += " ";
-			JLabelBrown data = new JLabelBrown(string);
+			JLabelBrownOverview data = new JLabelBrownOverview("Condition Immunities", string);
 			data.setFont(FontManager.getFontRegular(12));
 			panel.add(data);
 			panel.add(Box.createHorizontalGlue());
@@ -525,9 +504,6 @@ public class ImageRenderer {
 			JPanel panel = new JPanel();
 			panel.setOpaque(false);
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			JLabelBrown label = new JLabelBrown("Condition Resistances");
-			label.setFont(FontManager.getFontBold(12));
-			panel.add(label);
 			String string = " ";
 			int i = 0;
 			for (DamageModifier d : conditionResistances) {
@@ -538,7 +514,7 @@ public class ImageRenderer {
 				i++;
 			}
 			string += " ";
-			JLabelBrown data = new JLabelBrown(string);
+			JLabelBrownOverview data = new JLabelBrownOverview("Condition Resistances", string);
 			data.setFont(FontManager.getFontRegular(12));
 			panel.add(data);
 			panel.add(Box.createHorizontalGlue());
@@ -548,9 +524,6 @@ public class ImageRenderer {
 			JPanel panel = new JPanel();
 			panel.setOpaque(false);
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			JLabelBrown label = new JLabelBrown("Condition Vulnerabilities");
-			label.setFont(FontManager.getFontBold(12));
-			panel.add(label);
 			String string = " ";
 			int i = 0;
 			for (DamageModifier d : conditionVulnerabilities) {
@@ -561,7 +534,7 @@ public class ImageRenderer {
 				i++;
 			}
 			string += " ";
-			JLabelBrown data = new JLabelBrown(string);
+			JLabelBrownOverview data = new JLabelBrownOverview("Condition Vulnerabilities", string);
 			data.setFont(FontManager.getFontRegular(12));
 			panel.add(data);
 			panel.add(Box.createHorizontalGlue());
@@ -579,9 +552,6 @@ public class ImageRenderer {
 			JPanel panel = new JPanel();
 			panel.setOpaque(false);
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			JLabelBrown label = new JLabelBrown("Senses");
-			label.setFont(FontManager.getFontBold(12));
-			panel.add(label);
 			String string = " ";
 			int i = 0;
 			for (Attribute a : senses) {
@@ -603,7 +573,7 @@ public class ImageRenderer {
 				i++;
 			}
 			string += " ";
-			JLabelBrown data = new JLabelBrown(string);
+			JLabelBrownOverview data = new JLabelBrownOverview("Senses", string);
 			data.setFont(FontManager.getFontRegular(12));
 			panel.add(data);
 			panel.add(Box.createHorizontalGlue());
@@ -615,9 +585,6 @@ public class ImageRenderer {
 			JPanel panel = new JPanel();
 			panel.setOpaque(false);
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			JLabelBrown label = new JLabelBrown("Languages");
-			label.setFont(FontManager.getFontBold(12));
-			panel.add(label);
 			String string = " ";
 			int i = 0;
 			for (Language l : languages) {
@@ -628,7 +595,7 @@ public class ImageRenderer {
 				i++;
 			}
 			string += " ";
-			JLabelBrown data = new JLabelBrown(string);
+			JLabelBrownOverview data = new JLabelBrownOverview("Languages", string);
 			data.setFont(FontManager.getFontRegular(12));
 			panel.add(data);
 			panel.add(Box.createHorizontalGlue());
@@ -638,15 +605,12 @@ public class ImageRenderer {
 			JPanel panel = new JPanel();
 			panel.setOpaque(false);
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			JLabelBrown label = new JLabelBrown("Challenge");
-			label.setFont(FontManager.getFontBold(12));
-			panel.add(label);
 			String string = " "; 
 			String challengeRatingString = String.format("%s (%d XP)", 
 				MonsterInformation.getChallengeRating(), 
 				Lists.calculateChallengeXP(MonsterInformation.getChallengeRating()));
 			string += challengeRatingString;
-			JLabelBrown data = new JLabelBrown(string);
+			JLabelBrownOverview data = new JLabelBrownOverview("Challenge", string);
 			data.setFont(FontManager.getFontRegular(12));
 			panel.add(data);
 			panel.add(Box.createHorizontalGlue());
