@@ -59,6 +59,7 @@ public class SaveLoader {
 				MonsterInformation.setMonsterTag(element.getElementsByTagName("tag").item(0).getTextContent());
 				MonsterInformation.setAlignment(element.getElementsByTagName("alignment").item(0).getTextContent());
 				MonsterInformation.setChallengeRating(element.getElementsByTagName("challengerating").item(0).getTextContent());
+				MonsterInformation.setPronoun(element.getElementsByTagName("pronoun").item(0).getTextContent());
 			}
 		}
 		//Ability Scores

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JPanel;
+import tech.relativelyobjective.monsterbrewery.resources.Lists;
 
 /**
  *
@@ -125,6 +126,9 @@ public class PanelMonsterOptions extends JPanel {
 	public String getChallengeRating() {
 		return miscButtons.getChallengeRating();
 	}
+	public Lists.Pronouns getPronoun() {
+		return overview.getPronoun();
+	}
 	public void setMonsterName(String name) {
 		overview.setMonsterName(name);
 	}
@@ -211,5 +215,8 @@ public class PanelMonsterOptions extends JPanel {
 	}
 	public void setFlySpeed(int f) {
 		statLists.setFlySpeed(f);
+	}
+	public void setPronoun(Lists.Pronouns newPro) {
+		overview.setPronoun(newPro);
 	}
 }

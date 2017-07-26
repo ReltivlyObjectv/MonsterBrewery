@@ -213,15 +213,6 @@ public class ImageRenderer {
 		returnMe.add(getReactions(), constraints);
 		constraints.gridy++;
 		returnMe.add(getLegendaryActions(), constraints);
-		
-		
-		
-		
-		
-		//returnMe.setPreferredSize(new Dimension(420,250));
-		//returnMe.setMaximumSize(new Dimension(420,250));
-		//returnMe.setMinimumSize(new Dimension(420,0));
-		//returnMe.setSize(returnMe.getPreferredSize());
 		returnMe.setBackground(Color.decode("#fdf1dd"));
 		returnMe.setBorder(BorderFactory.createMatteBorder(0,1,0,1,
 			Color.decode("#DCDCDC")));
@@ -714,8 +705,10 @@ public class ImageRenderer {
 				int spellcasterLevel = s.getSpellcasterLevel();
 				int toHit = s.getToHit();
 				text += String.format(
-					"<b><i>Spellcasting.</i></b> The %s is a %d%s-level spellcaster. ",
-					MonsterInformation.getMonsterName().toLowerCase(),
+					"<b><i>Spellcasting.</i></b> %s is a %d%s-level spellcaster. ",
+					MonsterInformation.getPronoun().toString().toLowerCase().contains("proper") 
+						? MonsterInformation.getMonsterName() 
+						: "The "+MonsterInformation.getMonsterName().toLowerCase(),
 					spellcasterLevel,
 					spellcasterLevel == 1 ? "st" :
 					spellcasterLevel == 2 ? "nd" :
@@ -723,15 +716,21 @@ public class ImageRenderer {
 					"th"
 					);
 				text += String.format(
-					"Its spellcasting ability is %s (spell save DC %d, %s%d to hit with spell attacks). ",
+					"%s spellcasting ability is %s (spell save DC %d, %s%d to hit with spell attacks). ",
+					MonsterInformation.getPronoun().toString().toLowerCase().contains("female") ? "Her" :
+					MonsterInformation.getPronoun().toString().toLowerCase().contains("male") ? "His" :
+					MonsterInformation.getPronoun().toString().toLowerCase().contains("it") ? "Its" :
+					"ERROR",
 					Lists.formatUpperCase(s.getSpellcastingAbility().toString()),
 					s.getSpellsaveDC(),
 					toHit < 0 ? "" : "+",
 					toHit
 				);
 				text += String.format(
-					"The %s has the following %s spells prepared:<br><br>",
-					MonsterInformation.getMonsterName().toLowerCase(),
+					"%s has the following %s spells prepared:<br><br>",
+					MonsterInformation.getPronoun().toString().toLowerCase().contains("proper") 
+						? MonsterInformation.getMonsterName()
+						: "The "+MonsterInformation.getMonsterName().toLowerCase(),
 					s.getSpellClass().toLowerCase()
 					);
 				List<Spellcaster.Spell> cantrips = new LinkedList<>();
@@ -979,8 +978,14 @@ public class ImageRenderer {
 					text += spellList;
 				}
 				if (hasBeforeCombat) {
-					text += String.format("<br>*The %s casts these spells on itself before combat.",
-						MonsterInformation.getMonsterName().toLowerCase()
+					text += String.format("<br>*%s%s casts these spells on %s before combat.",
+						MonsterInformation.getPronoun().toString().toLowerCase().contains("proper") 
+							? "" : "The ",
+						MonsterInformation.getMonsterName().toLowerCase(),
+						MonsterInformation.getPronoun().toString().toLowerCase().contains("female") ? "herself" :
+							MonsterInformation.getPronoun().toString().toLowerCase().contains("male") ? "himself" :
+							MonsterInformation.getPronoun().toString().toLowerCase().contains("it") ? "itself" :
+							"ERROR"
 						);
 				}
 				text += "</html>";
@@ -1133,14 +1138,22 @@ public class ImageRenderer {
 				header.setBorder(BorderFactory.createMatteBorder(
 					0, 0, 1, 0, Color.decode("#902717")));
 				returnMe.add(header, constraints);
-				String legendaryOverview = String.format("<html>The %s can take %d legendary action%s, "+
+				String legendaryOverview = String.format("<html>%s can take %d legendary action%s, "+
 					"choosing from the options below. Only one legendary action can be used at a time "+
-					"and only at the end of another creature's turn. The %s regains spent legendary actions "+
-					"at the start of its turn<br><br></html>",
-					MonsterInformation.getMonsterName().toLowerCase(),
+					"and only at the end of another creature's turn. %s regains spent legendary actions "+
+					"at the start of %s turn<br><br></html>",
+					MonsterInformation.getPronoun().toString().toLowerCase().contains("proper") 
+						? MonsterInformation.getMonsterName() : 
+						"The "+MonsterInformation.getMonsterName().toLowerCase(),
 					l.getUsesPerCycle(),
 					l.getUsesPerCycle() == 1 ? "" : "s",
-					MonsterInformation.getMonsterName().toLowerCase()
+					MonsterInformation.getPronoun().toString().toLowerCase().contains("proper") 
+						? MonsterInformation.getMonsterName() : 
+						"The "+MonsterInformation.getMonsterName().toLowerCase(),
+					MonsterInformation.getPronoun().toString().toLowerCase().contains("female") ? "her" :
+						MonsterInformation.getPronoun().toString().toLowerCase().contains("male") ? "his" :
+						MonsterInformation.getPronoun().toString().toLowerCase().contains("it") ? "its" :
+						"ERROR"
 					);
 				constraints.gridy++;
 				JLabel legendaryOverviewLabel = new JLabel(legendaryOverview);

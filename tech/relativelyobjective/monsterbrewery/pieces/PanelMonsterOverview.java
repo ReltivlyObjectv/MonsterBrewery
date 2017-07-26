@@ -1,7 +1,6 @@
 package tech.relativelyobjective.monsterbrewery.pieces;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -30,6 +29,7 @@ public class PanelMonsterOverview extends JPanel {
 	private final JComboBox tag;
 	private final JComboBox alignment;
 	private final JComboBox hitPointDiceType;
+	private final JComboBox pronoun;
 	private final JSpinner armorClass;
 	private final JSpinner hitPointDiceCount;
 	
@@ -49,12 +49,17 @@ public class PanelMonsterOverview extends JPanel {
 		//Size
 		constraints.gridx = 0;
 		adjustGridBagAnchor(constraints);
-		super.add(new JLabel("Size"), constraints);
-		size = new JComboBox(Lists.SIZE);
-		size.setMinimumSize(new Dimension(100,100));
-		constraints.gridx = 1;
-		adjustGridBagAnchor(constraints);
-		super.add(size, constraints);
+		super.add(new JLabel("Size/Pronoun"), constraints);
+		JPanel sizePronounRow = new JPanel();
+			size = new JComboBox(Lists.SIZE);
+			//size.setMinimumSize(new Dimension(100,100));
+			sizePronounRow.add(size);
+			pronoun = new JComboBox(Lists.Pronouns.values());
+			sizePronounRow.add(pronoun);
+			sizePronounRow.setLayout(new BoxLayout(sizePronounRow, BoxLayout.LINE_AXIS));
+			constraints.gridx = 1;
+			adjustGridBagAnchor(constraints);
+		super.add(sizePronounRow, constraints);
 		constraints.gridy++;
 		//Type / Tag
 		constraints.gridx = 0;
@@ -166,6 +171,9 @@ public class PanelMonsterOverview extends JPanel {
 	public int getArmorClass() {
 		return (int) armorClass.getValue();
 	}
+	public Lists.Pronouns getPronoun() {
+		return (Lists.Pronouns) pronoun.getSelectedItem();
+	}
 	public void setMonsterName(String name) {
 		this.name.setText(name);
 	}
@@ -199,6 +207,9 @@ public class PanelMonsterOverview extends JPanel {
 	}
 	public void setArmorClass(int ac) {
 		this.armorClass.setValue(ac);
+	}
+	public void setPronoun(Lists.Pronouns newPro) {
+		pronoun.setSelectedItem(newPro);
 	}
 	public void calculateHitPointString() {
 		int hitPointDiceCountInt = getHitPointDiceCount();

@@ -54,6 +54,9 @@ public class MonsterInformation {
 	public static String getChallengeRating() {
 		return mainFrame.getMonsterOptions().getChallengeRating();
 	}
+	public static Lists.Pronouns getPronoun() {
+		return mainFrame.getMonsterOptions().getPronoun();
+	}
 	//Attributes
 	public static List<Attribute> getAttributesCopy() {
 		return AttributeHandler.getAllAttributesCopy();
@@ -251,6 +254,16 @@ public class MonsterInformation {
 				mainFrame.getMonsterOptions().setChallengeRating(Double.parseDouble(cr));
 			} catch (NumberFormatException e) {
 				//Do Nothing
+			}
+		}
+	}
+	public static void setPronoun(Lists.Pronouns newPro) {
+		mainFrame.getMonsterOptions().setPronoun(newPro);
+	}
+	public static void setPronoun(String newPro) {
+		for (int i = 0; i < Lists.Pronouns.values().length; i++) {
+			if (Lists.Pronouns.values()[i].toString().equals(newPro)) {
+				setPronoun(Lists.Pronouns.values()[i]);
 			}
 		}
 	}

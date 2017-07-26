@@ -23,7 +23,7 @@ public class FrameMain extends JFrame {
 		super.add(menu);
 		super.setJMenuBar(menu);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		super.setPreferredSize(new Dimension(1000, 580));
+		super.setPreferredSize(new Dimension(850, 580));
 		super.setMinimumSize(super.getPreferredSize());
 		super.setMaximumSize(super.getPreferredSize());
 		super.setSize(super.getPreferredSize());

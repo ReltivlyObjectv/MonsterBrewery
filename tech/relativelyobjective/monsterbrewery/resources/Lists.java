@@ -684,6 +684,14 @@ public class Lists {
 		PHYSICAL,
 		SPELL
 	}
+	public enum Pronouns {
+		IT,
+		MALE,
+		FEMALE,
+		IT_PROPER,
+		MALE_PROPER,
+		FEMALE_PROPER
+	}
 	public static String formatUpperCase(Object o) {
 		String toString = o.toString();
 		toString = toString.toLowerCase();
