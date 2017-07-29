@@ -76,6 +76,7 @@ public class ImageRenderer {
 		}
 	}
 	private static BufferedImage removeGrayBackground(BufferedImage img) {
+		//TODO Crop
 		return img;
 	}
 	public static BufferedImage getImage(Component panel) {

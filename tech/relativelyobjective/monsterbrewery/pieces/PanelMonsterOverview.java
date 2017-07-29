@@ -223,8 +223,8 @@ public class PanelMonsterOverview extends JPanel {
 		}
 		int maxValue = (diceType + 1) * hitPointDiceCountInt;
 		int averageValue = maxValue / 2;
-		String text = String.format("(%dd%d) %s", 
-			hitPointDiceCountInt, diceType, averageValue);
+		String text = String.format("%s (%dd%d)", 
+			averageValue, hitPointDiceCountInt, diceType);
 		hitPointCount.setText(text);
 	}
 	public void calculateRandomHitPointString() {
@@ -241,8 +241,8 @@ public class PanelMonsterOverview extends JPanel {
 		for (int i = 0; i < hitPointDiceCountInt; i++) {
 			value += 1 + (int) (Math.random() * diceType);
 		}
-		String text = String.format("(%dd%d) %s", 
-			hitPointDiceCountInt, diceType, value);
+		String text = String.format("%s (%dd%d)", 
+			value, hitPointDiceCountInt, diceType);
 		hitPointCount.setText(text);
 	}
 }

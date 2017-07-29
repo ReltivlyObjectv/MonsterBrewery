@@ -18,7 +18,7 @@ public class MonsterBrewery {
 		if (System.getProperty("os.name", "generic").toLowerCase().contains("mac")) {
 			try {
 					System.setProperty("apple.laf.useScreenMenuBar", "true");
-					System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Test");
+					System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Monster Brewery");
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			} catch(ClassNotFoundException e) {
 					System.out.println("ClassNotFoundException: " + e.getMessage());
