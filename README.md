@@ -1,7 +1,6 @@
 # MonsterBrewery
 Java-based D&amp;D statblock generator
 
-![Blank Screen]()
 <img src="http://i.imgur.com/zIkNgEb.png" width=500>
 
 
