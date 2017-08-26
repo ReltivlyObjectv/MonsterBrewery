@@ -29,6 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import tech.relativelyobjective.monsterbrewery.attributes.*;
+import tech.relativelyobjective.monsterbrewery.filestorage.SaveCreator;
 import tech.relativelyobjective.monsterbrewery.pieces.FrameMain;
 import tech.relativelyobjective.monsterbrewery.resources.Abilities;
 import tech.relativelyobjective.monsterbrewery.resources.FontManager;
@@ -53,6 +54,11 @@ public class ImageRenderer {
 	public static void renderToFile() {
 		renderImage(mainFrame);
 		JFileChooser fileChooser = new JFileChooser();
+		if (SaveCreator.getFileLocation() == null) {
+			fileChooser.setCurrentDirectory(new File("."));
+		} else {
+			fileChooser.setCurrentDirectory(SaveCreator.getFileLocation().getParentFile());
+		}
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG Images", "png");
 		fileChooser.setFileFilter(filter);
 		if (fileChooser.showSaveDialog(currentRenderWindow) == JFileChooser.APPROVE_OPTION) {
