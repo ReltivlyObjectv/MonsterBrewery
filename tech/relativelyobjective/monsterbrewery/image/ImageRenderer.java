@@ -663,7 +663,7 @@ public class ImageRenderer {
 		));
 		constraints.gridx++;
 		returnMe.add(intelL, constraints);
-		int wis = MonsterInformation.getIntelligence();
+		int wis = MonsterInformation.getWisdom();
 		JLabelBrown wisL = new JLabelBrown(String.format("%d (%s)",
 			wis,
 			wis >= 10 ? "+"+Abilities.calculateModifier(wis) : 
