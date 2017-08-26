@@ -22,4 +22,4 @@ I hope to offer support for as long as Monster Brewery is useful to people, but 
 
 ### Monero (XMR)
 
-<img src="http://i.imgur.com/kC2bPiP.jpg" width=150>
+<img src="http://i.imgur.com/oMpgPHv.png" width=150>
