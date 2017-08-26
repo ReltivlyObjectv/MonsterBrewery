@@ -37,6 +37,9 @@ public class SaveCreator {
 		mainFrame.setTitle(String.format("Monster Brewery (%s)",newSaveLocation.getName()));
 		saveLocation = newSaveLocation;
 	}
+	public static File getFileLocation() {
+		return saveLocation == null ? null : saveLocation;
+	}
 	public static void saveToLocation(FrameMain mainFrame) {
 		if (saveLocation == null) {
 			openSavePrompt(mainFrame);
@@ -47,6 +50,9 @@ public class SaveCreator {
 	public static void openSavePrompt(FrameMain mainFrame) {
 		
 		JFileChooser fileChooser = new JFileChooser();
+		if (SaveCreator.getFileLocation() != null) {
+			fileChooser.setCurrentDirectory(SaveCreator.getFileLocation().getParentFile());
+		}
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("MonsterBrewery Files", "monsterbrewery");
 		fileChooser.setFileFilter(filter);
 		if (fileChooser.showSaveDialog(mainFrame) == JFileChooser.APPROVE_OPTION) {

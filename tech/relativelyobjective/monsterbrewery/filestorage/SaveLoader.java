@@ -332,6 +332,9 @@ public class SaveLoader {
 	}
 	public static void openLoadPrompt(FrameMain mainFrame) {
 		JFileChooser fileChooser = new JFileChooser();
+		if (SaveCreator.getFileLocation() != null) {
+			fileChooser.setCurrentDirectory(SaveCreator.getFileLocation().getParentFile());
+		}
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("MonsterBrewery Files", "monsterbrewery");
 		fileChooser.setFileFilter(filter);
 		if (fileChooser.showOpenDialog(mainFrame) == JFileChooser.APPROVE_OPTION) {
