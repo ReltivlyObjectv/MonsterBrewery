@@ -125,7 +125,7 @@ public class SaveCreator {
 				overview.appendChild(challengeRating);
 				//Pronoun
 				Element pronoun = doc.createElement("pronoun");
-				challengeRating.appendChild(doc.createTextNode(MonsterInformation.getPronoun().toString()));
+				pronoun.appendChild(doc.createTextNode(MonsterInformation.getPronoun().toString()));
 				overview.appendChild(pronoun);
 			//Ability Scores
 			Element abilityscores = doc.createElement("abilityscores");

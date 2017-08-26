@@ -865,7 +865,7 @@ public class ImageRenderer {
 					text += spellList;
 				}
 				if (lvl4.size() > 0) {
-					String spellList = String.format("3rd level (%d slot%s): ",
+					String spellList = String.format("4th level (%d slot%s): ",
 						s.getSpellSlots()[3],
 						s.getSpellSlots()[3] > 0 ? "s" : ""
 						);
