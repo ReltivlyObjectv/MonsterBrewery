@@ -357,6 +357,7 @@ public class ImageRenderer {
 		for (Skill s : skillModifiers) {
 			if (s.getSkill().toLowerCase().contains("passive perception")) {
 				skillModifiers.remove(s);
+				break;
 			}
 		}
 		if (skillModifiers.size() > 0) {
