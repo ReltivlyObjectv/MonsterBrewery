@@ -492,17 +492,24 @@ public class ChallengeRatingCalculator {
 			attackBonuses.add(s.getToHit());
 		}
 		for (Action a : MonsterInformation.getActions()) {
-			attackBonuses.add(a.getToHit());
+			if (a.getActionType() == Lists.ActionType.MELEE || a.getActionType() == Lists.ActionType.RANGED) {
+				attackBonuses.add(a.getToHit());
+			}
 		}
 		return getAverageFromList(attackBonuses);
 	}
 	public static int guessDamagePerRound() {
 		List<Integer> damagePerRound = new LinkedList<>();
 		for (Action a : MonsterInformation.getActions()) {
-			try {
-				damagePerRound.add(a.getDiceCount() * Integer.parseInt(a.getDiceType().replace("d", "")));
-			} catch (NumberFormatException e) {
-				System.out.printf("Could not parse number: %s", a.getDiceType().replace("d", ""));
+			if (a.getActionType() == Lists.ActionType.MELEE || a.getActionType() == Lists.ActionType.RANGED) {
+				String diceType = a.getDiceType().replace("d", "");
+				try {
+					int maxDamage = a.getDiceCount() * Integer.parseInt(diceType);
+					int averageDamage = maxDamage / 2;
+					damagePerRound.add(averageDamage);
+				} catch (NumberFormatException e) {
+					System.out.printf("Could not parse number: %s", diceType);
+				}
 			}
 		}
 		return getAverageFromList(damagePerRound);

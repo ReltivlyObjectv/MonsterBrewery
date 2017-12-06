@@ -132,7 +132,8 @@ public class PanelMonsterChallengeRating extends JPanel {
 			String hitPointString = MonsterInformation.getHitPointString();
 			String totalHitPointString;
 			try {
-				totalHitPointString = hitPointString.substring(hitPointString.indexOf(")")).replace(")", "").replace(" ", "");
+				String[] hpArray = hitPointString.split(" ");
+				totalHitPointString = hpArray[0];
 			} catch (IndexOutOfBoundsException e) {
 				totalHitPointString = "1";
 			}
