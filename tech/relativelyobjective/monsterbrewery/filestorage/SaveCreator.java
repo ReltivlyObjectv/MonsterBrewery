@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -61,6 +62,16 @@ public class SaveCreator {
 			File tempSaveLocation = fileChooser.getSelectedFile();
 			if (!tempSaveLocation.toString().endsWith(".monsterbrewery")) {
 				tempSaveLocation = new File(tempSaveLocation.toString() + ".monsterbrewery");
+			}
+			if (tempSaveLocation.exists()) {
+				int response = JOptionPane.showConfirmDialog(null,
+						String.format("The file %s already exists. Do you want to replace it?", tempSaveLocation.getName()),
+						String.format("%s Exists", tempSaveLocation.getName()),
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE);
+				if (response != JOptionPane.YES_OPTION) {
+					return;
+				} 
 			}
 			setFileLocation(tempSaveLocation, mainFrame);
 			saveToLocation(saveLocation);

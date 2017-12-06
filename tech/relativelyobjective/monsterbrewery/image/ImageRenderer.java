@@ -25,6 +25,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -65,6 +66,16 @@ public class ImageRenderer {
 			File file = fileChooser.getSelectedFile();
 			if (!file.toString().endsWith(".png")) {
 				file = new File(file.toString() + ".png");
+			}
+			if (file.exists()) {
+				int response = JOptionPane.showConfirmDialog(null,
+						String.format("The file %s already exists. Do you want to replace it?", file.getName()),
+						String.format("%s Exists.", file.getName()),
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE);
+				if (response != JOptionPane.YES_OPTION) {
+					return;
+				} 
 			}
 			try {
 				BufferedImage img = getImage(renderArea);
