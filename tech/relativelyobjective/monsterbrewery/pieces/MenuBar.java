@@ -1,12 +1,35 @@
 package tech.relativelyobjective.monsterbrewery.pieces;
 
+import com.apple.mrj.MRJApplicationUtils;
+import java.awt.Cursor;
+import java.awt.Desktop;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import tech.relativelyobjective.monsterbrewery.filestorage.SaveCreator;
 import tech.relativelyobjective.monsterbrewery.filestorage.SaveLoader;
@@ -21,6 +44,7 @@ import tech.relativelyobjective.monsterbrewery.image.ImageRenderer;
  */
 public class MenuBar extends JMenuBar {
 	private final FileMenu fileMenu;
+	private boolean isAboutOpen = false;
 	
 	private class FileMenu extends JMenu {
 		private final JMenuItem newFile;
@@ -29,6 +53,7 @@ public class MenuBar extends JMenuBar {
 		private final JMenuItem load;
 		private final JMenuItem render;
 		private final JMenuItem renderToFile;
+		private final JMenuItem about;
 		
 		public FileMenu(String title) {
 			super(title);
@@ -83,6 +108,29 @@ public class MenuBar extends JMenuBar {
 				renderToFile();
 			});
 			super.add(renderToFile);
+			about = new JMenuItem("About");
+			if (System.getProperty("os.name", "generic").toLowerCase().contains("mac")) {
+			//OS X About Menu
+				try {
+					MRJApplicationUtils.registerAboutHandler(() -> {
+						showAboutMenu();
+					});
+				} catch (Exception error) {
+					//If an exception is encountered, use default about menu
+					about.addActionListener((ActionEvent e) -> {
+						showAboutMenu();
+					});
+					super.addSeparator();
+					super.add(about);
+				}
+			} else {
+				//Other About Menu
+				about.addActionListener((ActionEvent e) -> {
+					showAboutMenu();
+				});
+				super.addSeparator();
+				super.add(about);
+			}
 		}
 	}
 	
@@ -110,5 +158,132 @@ public class MenuBar extends JMenuBar {
 	}
 	private void renderToFile() {
 		ImageRenderer.renderToFile();
+	}
+	private void showAboutMenu() {
+		if (isAboutOpen) {
+			//Window already open
+		} else {
+			isAboutOpen = true;
+			JDialog aboutMenu = new JDialog(mainFrame, "About MonsterBrewery");
+			aboutMenu.setAlwaysOnTop(true);
+			aboutMenu.setPreferredSize(new Dimension(350,350));
+			aboutMenu.setMinimumSize(aboutMenu.getPreferredSize());
+			aboutMenu.setMaximumSize(aboutMenu.getPreferredSize());
+			aboutMenu.setLayout(new GridBagLayout());
+			GridBagConstraints constraints = new GridBagConstraints();
+			constraints.gridx = 0;
+			constraints.gridy = 0;
+			//About Image
+			URL coffeeURL = ImageRenderer.class.getResource("/coffee-150px.png");
+			JLabel img = null;
+			try {
+				BufferedImage buff = (BufferedImage) ImageIO.read(coffeeURL);
+				img = new JLabel(new ImageIcon(buff));
+				img.setMaximumSize(new Dimension(50,50));
+			} catch (IOException ex) {
+				Logger.getLogger(ImageRenderer.class.getName()).log(Level.SEVERE, null, ex);
+			}
+			if (img != null) {
+				aboutMenu.add(img, constraints);
+				constraints.gridy++;
+				aboutMenu.add(getAboutEmptySpace(), constraints);
+				constraints.gridy++;
+			}
+			//Creator
+			JLabel creatorHeader = new JLabel("Created By");
+			creatorHeader.setFont(new Font(creatorHeader.getFont().getFontName(), Font.BOLD, 14));
+			aboutMenu.add(creatorHeader, constraints);
+			constraints.gridy++;
+			JLabel creator = new JLabel("ReltivlyObjectv");
+			creator.setFont(new Font(creator.getFont().getFontName(), Font.PLAIN, 12));
+			aboutMenu.add(creator, constraints);
+			constraints.gridy++;
+			aboutMenu.add(getAboutEmptySpace(), constraints);
+			constraints.gridy++;
+			//Email
+			JLabel creatorEmailHeader = new JLabel("Contact Email");
+			creatorEmailHeader.setFont(new Font(creatorEmailHeader.getFont().getFontName(), Font.BOLD, 14));
+			aboutMenu.add(creatorEmailHeader, constraints);
+			constraints.gridy++;
+			String creatorEmailAddress = "me@relativelyobjective.tech";
+			JLabel creatorEmail = new JLabel(
+				"<html><a href=\"mailto:"+creatorEmailAddress+"\">"+creatorEmailAddress+"</a></html>"
+			);
+			creatorEmail.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			creatorEmail.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+						try {
+							Desktop.getDesktop().browse(new URI("mailto:"+creatorEmailAddress));
+						} catch (URISyntaxException | IOException ex) {
+								//It looks like there's a problem
+						}
+				}
+			});
+			aboutMenu.add(creatorEmail, constraints);
+			constraints.gridy++;
+			aboutMenu.add(getAboutEmptySpace(), constraints);
+			constraints.gridy++;
+			//Project Location
+			JLabel projectLocationHeader = new JLabel("Project Location");
+			projectLocationHeader.setFont(new Font(projectLocationHeader.getFont().getFontName(), Font.BOLD, 14));
+			aboutMenu.add(projectLocationHeader, constraints);
+			constraints.gridy++;
+			String projectURL = "https://github.com/ReltivlyObjectv/MonsterBrewery";
+			JLabel projectLocation = new JLabel(
+				"<html><a href=\""+projectURL+"\">"+projectURL+"</a></html>"
+			);
+			projectLocation.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			projectLocation.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+						try {
+							Desktop.getDesktop().browse(new URI(projectURL));
+						} catch (URISyntaxException | IOException ex) {
+								//It looks like there's a problem
+						}
+				}
+			});
+			projectLocation.setFont(new Font(projectLocation.getFont().getFontName(), Font.PLAIN, 12));
+			aboutMenu.add(projectLocation, constraints);
+			constraints.gridy++;
+			aboutMenu.add(getAboutEmptySpace(), constraints);
+			constraints.gridy++;
+			//Donations
+			JLabel donationHeader = new JLabel("Donate");
+			donationHeader.setFont(new Font(donationHeader.getFont().getFontName(), Font.BOLD, 14));
+			aboutMenu.add(donationHeader, constraints);
+			constraints.gridy++;
+			String donateAddress = "https://github.com/ReltivlyObjectv/MonsterBrewery#user-content-donate";
+			JLabel donate = new JLabel(
+				"<html><a href=\""+donateAddress+"\">I accept Bitcoin, Dogecoin, and Monero!</a></html>"
+			);
+			donate.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			donate.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+						try {
+							Desktop.getDesktop().browse(new URI(donateAddress));
+						} catch (URISyntaxException | IOException ex) {
+								//It looks like there's a problem
+						}
+				}
+			});
+			aboutMenu.add(donate, constraints);
+			constraints.gridy++;
+			//Finished, add listener and set visible
+			aboutMenu.addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosing(WindowEvent e) {
+					isAboutOpen = false;
+				}
+			});
+			aboutMenu.setVisible(true);
+		}
+	}
+	private JPanel getAboutEmptySpace() {
+		JPanel returnMe = new JPanel();
+		returnMe.setMinimumSize(new Dimension(1,10));
+		return returnMe;
 	}
 }
