@@ -1174,6 +1174,7 @@ public class ImageRenderer {
 				JLabel legendaryOverviewLabel = new JLabel(legendaryOverview);
 				legendaryOverviewLabel.setFont(FontManager.getFontRegular(10));
 				returnMe.add(legendaryOverviewLabel, constraints);
+				constraints.gridy++;
 				for (LegendaryActions.Action a : l.getActions()) {
 					String action = String.format("<html><b><i>%s. </i></b>%s<br></html>",
 						a.name,
