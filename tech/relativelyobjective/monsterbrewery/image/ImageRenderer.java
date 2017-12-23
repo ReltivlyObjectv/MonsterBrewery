@@ -126,11 +126,7 @@ public class ImageRenderer {
 			constraints.ipadx = 0;
 			constraints.ipady = 0;
 			constraints.weightx = 1;
-			JPanel buffer = new JPanel();
-			buffer.setOpaque(false);
-			buffer.setPreferredSize(new Dimension(100,50));
-			buffer.setMinimumSize(buffer.getPreferredSize());
-			windowContents.add(buffer, constraints);
+			windowContents.add(getNewBuffer(), constraints);
 			constraints.gridy++;
 			constraints.fill = GridBagConstraints.NONE;
 			windowContents.add(getNewEndCap(), constraints);
@@ -139,11 +135,7 @@ public class ImageRenderer {
 			constraints.gridy++;
 			windowContents.add(getNewEndCap(), constraints);
 			constraints.gridy++;
-			JPanel buffer2 = new JPanel();
-			buffer2.setOpaque(false);
-			buffer2.setPreferredSize(new Dimension(100,50));
-			buffer2.setMinimumSize(buffer2.getPreferredSize());
-			windowContents.add(buffer2, constraints);
+			windowContents.add(getNewBuffer(), constraints);
 		//renderWindow.setPreferredSize(new Dimension(430, 700));
 		renderWindow.setPreferredSize(renderWindow.getPreferredSize());
 		Dimension newDimension = windowContents.getPreferredSize();
@@ -234,6 +226,10 @@ public class ImageRenderer {
 		returnMe.setBackground(Color.decode("#fdf1dd"));
 		returnMe.setBorder(BorderFactory.createMatteBorder(0,1,0,1,
 			Color.decode("#DCDCDC")));
+		returnMe.setPreferredSize(new Dimension(
+			returnMe.getPreferredSize().width,
+			returnMe.getPreferredSize().height + 50
+		));
 		return returnMe;
 	}
 	private static JPanel getOverview() {
@@ -1202,5 +1198,12 @@ public class ImageRenderer {
 		}
 		JLabel returnMe = new JLabel(new ImageIcon(img));
 		return returnMe;
+	}
+	private static JPanel getNewBuffer() {
+			JPanel buffer = new JPanel();
+			buffer.setOpaque(false);
+			buffer.setPreferredSize(new Dimension(100,50));
+			buffer.setMinimumSize(buffer.getPreferredSize());
+			return buffer;
 	}
 }
