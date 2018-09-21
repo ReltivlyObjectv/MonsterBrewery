@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import tech.relativelyobjective.monsterbrewery.MonsterBrewery;
 import tech.relativelyobjective.monsterbrewery.image.ImageRenderer;
 
 /**
@@ -23,7 +24,7 @@ public class FrameMain extends JFrame {
 	private final MenuBar menu;
 	
 	public FrameMain() {
-		super("Monster Brewery");
+		super("MonsterBrewery");
 		super.setLayout(new BorderLayout());
 		monsterOptions = new PanelMonsterOptions();
 		menu = new MenuBar(this);
@@ -31,7 +32,11 @@ public class FrameMain extends JFrame {
 		super.add(menu);
 		super.setJMenuBar(menu);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		super.setPreferredSize(new Dimension(850, 580));
+		if (MonsterBrewery.isMac()) {
+			super.setPreferredSize(new Dimension(850, 580));
+		} else {
+			super.setPreferredSize(new Dimension(850, 615));
+		}
 		super.setMinimumSize(super.getPreferredSize());
 		super.setMaximumSize(super.getPreferredSize());
 		super.setSize(super.getPreferredSize());

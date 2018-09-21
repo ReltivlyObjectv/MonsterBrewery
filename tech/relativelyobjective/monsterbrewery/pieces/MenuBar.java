@@ -31,6 +31,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import tech.relativelyobjective.monsterbrewery.MonsterBrewery;
 import tech.relativelyobjective.monsterbrewery.filestorage.SaveCreator;
 import tech.relativelyobjective.monsterbrewery.filestorage.SaveLoader;
 import tech.relativelyobjective.monsterbrewery.filestorage.SaveWiper;
@@ -109,7 +110,7 @@ public class MenuBar extends JMenuBar {
 			});
 			super.add(renderToFile);
 			about = new JMenuItem("About");
-			if (System.getProperty("os.name", "generic").toLowerCase().contains("mac")) {
+			if (MonsterBrewery.isMac()) {
 			//OS X About Menu
 				try {
 					MRJApplicationUtils.registerAboutHandler(() -> {
@@ -166,7 +167,11 @@ public class MenuBar extends JMenuBar {
 			isAboutOpen = true;
 			JDialog aboutMenu = new JDialog(mainFrame, "About MonsterBrewery");
 			aboutMenu.setAlwaysOnTop(true);
-			aboutMenu.setPreferredSize(new Dimension(350,350));
+			if (MonsterBrewery.isMac()) {
+				aboutMenu.setPreferredSize(new Dimension(350,400));
+			} else {
+				aboutMenu.setPreferredSize(new Dimension(350,490));
+			}
 			aboutMenu.setMinimumSize(aboutMenu.getPreferredSize());
 			aboutMenu.setMaximumSize(aboutMenu.getPreferredSize());
 			aboutMenu.setLayout(new GridBagLayout());
@@ -189,6 +194,17 @@ public class MenuBar extends JMenuBar {
 				aboutMenu.add(getAboutEmptySpace(), constraints);
 				constraints.gridy++;
 			}
+			//Version
+			JLabel versionHeader = new JLabel("Version");
+			versionHeader.setFont(new Font(versionHeader.getFont().getFontName(), Font.BOLD, 14));
+			aboutMenu.add(versionHeader, constraints);
+			constraints.gridy++;
+			JLabel version = new JLabel("1.9.1");
+			version.setFont(new Font(version.getFont().getFontName(), Font.PLAIN, 12));
+			aboutMenu.add(version, constraints);
+			constraints.gridy++;
+			aboutMenu.add(getAboutEmptySpace(), constraints);
+			constraints.gridy++;
 			//Creator
 			JLabel creatorHeader = new JLabel("Created By");
 			creatorHeader.setFont(new Font(creatorHeader.getFont().getFontName(), Font.BOLD, 14));
@@ -229,7 +245,7 @@ public class MenuBar extends JMenuBar {
 			projectLocationHeader.setFont(new Font(projectLocationHeader.getFont().getFontName(), Font.BOLD, 14));
 			aboutMenu.add(projectLocationHeader, constraints);
 			constraints.gridy++;
-			String projectURL = "https://github.com/ReltivlyObjectv/MonsterBrewery";
+			String projectURL = "https://gitlab.com/ReltivlyObjectv/MonsterBrewery";
 			JLabel projectLocation = new JLabel(
 				"<html><a href=\""+projectURL+"\">"+projectURL+"</a></html>"
 			);
@@ -254,7 +270,7 @@ public class MenuBar extends JMenuBar {
 			donationHeader.setFont(new Font(donationHeader.getFont().getFontName(), Font.BOLD, 14));
 			aboutMenu.add(donationHeader, constraints);
 			constraints.gridy++;
-			String donateAddress = "https://github.com/ReltivlyObjectv/MonsterBrewery#user-content-donate";
+			String donateAddress = "https://gitlab.com/ReltivlyObjectv/MonsterBrewery#user-content-donate";
 			JLabel donate = new JLabel(
 				"<html><a href=\""+donateAddress+"\">I accept Bitcoin, Dogecoin, and Monero!</a></html>"
 			);

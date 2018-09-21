@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import tech.relativelyobjective.monsterbrewery.MonsterBrewery;
 import tech.relativelyobjective.monsterbrewery.resources.Lists;
 
 /**
@@ -36,6 +37,10 @@ public class PanelMonsterOverview extends JPanel {
 	public PanelMonsterOverview() {
 		super.setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
+		if (!MonsterBrewery.isMac()) {
+			constraints.ipadx = 3;
+			constraints.ipady = 5;
+		}
 		constraints.gridy = 0;
 		//Name
 		constraints.gridx = 0;

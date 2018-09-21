@@ -13,21 +13,24 @@ import tech.relativelyobjective.monsterbrewery.resources.MonsterInformation;
  * 
  */
 public class MonsterBrewery {
+	private static boolean isMac = false;
 	public static void main(String[] args) {
 		//Attach JMenu to Apple Menu Bar
 		if (System.getProperty("os.name", "generic").toLowerCase().contains("mac")) {
+			isMac = true;
+			System.setProperty("apple.laf.useScreenMenuBar", "true");
+			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "MonsterBrewery");
+			//Appear Naitive
 			try {
-					System.setProperty("apple.laf.useScreenMenuBar", "true");
-					System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Monster Brewery");
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			} catch(ClassNotFoundException e) {
-					System.out.println("ClassNotFoundException: " + e.getMessage());
+				System.out.println("ClassNotFoundException: " + e.getMessage());
 			} catch(InstantiationException e) {
-					System.out.println("InstantiationException: " + e.getMessage());
+				System.out.println("InstantiationException: " + e.getMessage());
 			} catch(IllegalAccessException e) {
-					System.out.println("IllegalAccessException: " + e.getMessage());
+				System.out.println("IllegalAccessException: " + e.getMessage());
 			} catch(UnsupportedLookAndFeelException e) {
-					System.out.println("UnsupportedLookAndFeelException: " + e.getMessage());
+				System.out.println("UnsupportedLookAndFeelException: " + e.getMessage());
 			}
 		}
 		//Create main frame
@@ -35,5 +38,8 @@ public class MonsterBrewery {
 			FrameMain mainWindow = new FrameMain();
 			MonsterInformation.initialize(mainWindow);
 		});
+	}
+	public static boolean isMac() {
+		return isMac;
 	}
 }
