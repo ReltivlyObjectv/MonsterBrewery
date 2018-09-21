@@ -1,3 +1,6 @@
+# Project has been moved to GitLab https://gitlab.com/ReltivlyObjectv/MonsterBrewery
+Due to the Microsoft aquisition, no further development will take place on GitHub of any of my projects.
+
 # MonsterBrewery
 Java-based D&amp;D statblock generator
 
